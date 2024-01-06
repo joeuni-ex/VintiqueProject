@@ -2,54 +2,60 @@ import { BsCart } from "react-icons/bs";
 import { IoSearch } from "react-icons/io5";
 import { FaRegUser } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa6";
+import { ImVine } from "react-icons/im";
 import "./Navbar.css";
+import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
   return (
     <nav>
       <div className="navbar">
         <div style={{ marginLeft: "5%" }}>
-          <p>😻로고</p>
+          <p>
+            <Link to="/" className="navbar-logo">
+              <ImVine /> Vintique
+            </Link>
+          </p>
         </div>
         <div>
           <ul className="navbar_link">
             <li>
-              <a href="/">Home</a>
+              <NavLink to="/">Home</NavLink>
             </li>
             <li>
-              <a href="/">Shop</a>
+              <NavLink to="/">Shop</NavLink>
             </li>
             <li>
-              <a href="/">About</a>
+              <NavLink to="/">About</NavLink>
             </li>
             <li>
-              <a href="/">
+              <NavLink to="/">
                 <li>Contact</li>
-              </a>
+              </NavLink>
             </li>
           </ul>
         </div>
         <div style={{ marginRight: "5%" }}>
           <ul className="navbar_link">
             <li>
-              <a href="">
+              <NavLink to="">
                 <BsCart />
-              </a>
+              </NavLink>
             </li>
             <li>
-              <a href="">
+              <NavLink to="">
                 <IoSearch />
-              </a>
+              </NavLink>
             </li>
             <li>
-              <a href="">
+              <NavLink to="">
                 <FaRegHeart />
-              </a>
+              </NavLink>
             </li>
             <li>
-              <a href="">
+              <NavLink to="">
                 <FaRegUser />
-              </a>
+              </NavLink>
             </li>
           </ul>
         </div>
