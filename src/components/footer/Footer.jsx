@@ -12,7 +12,7 @@ const Footer = () => {
               <ImVine /> Vintique
             </Link>
           </p>
-          <p>400 University Drive Suite 200 Coral Gables, FL 33134 USA</p>
+          <p>Lorem ipsum, dolor sit amet consectetur</p>
         </div>
         <div>
           <p>Links</p>
@@ -26,7 +26,7 @@ const Footer = () => {
         <div></div>
       </div>
       <div className="footerBottom">
-        <p>2023 furino. All rights reverved</p>
+        <p>2024 Vintique. All rights reverved</p>
       </div>
     </footer>
   );
