@@ -23,37 +23,35 @@ const Navbar = () => {
               <NavLink to="/">Home</NavLink>
             </li>
             <li>
-              <NavLink to="/">Shop</NavLink>
+              <NavLink to="/shop">Shop</NavLink>
             </li>
             <li>
-              <NavLink to="/">About</NavLink>
+              <NavLink to="/about">About</NavLink>
             </li>
             <li>
-              <NavLink to="/">
-                <li>Contact</li>
-              </NavLink>
+              <NavLink to="/">Contact</NavLink>
             </li>
           </ul>
         </div>
         <div style={{ marginRight: "5%" }}>
           <ul className="navbar_link">
             <li>
-              <NavLink to="">
+              <NavLink to="/cart">
                 <BsCart />
               </NavLink>
             </li>
             <li>
-              <NavLink to="">
+              <NavLink to="/search">
                 <IoSearch />
               </NavLink>
             </li>
             <li>
-              <NavLink to="">
+              <NavLink to="/favo">
                 <FaRegHeart />
               </NavLink>
             </li>
             <li>
-              <NavLink to="">
+              <NavLink to="/login">
                 <FaRegUser />
               </NavLink>
             </li>
