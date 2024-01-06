@@ -7,8 +7,10 @@ const Product = () => {
       <img src={mainImg} alt="" />
       <div className="productInfo">
         <p>Dining</p>
-        <p>설명</p>
-        <p>가격 : 15000원</p>
+        <span>설명</span>
+        <p style={{ fontSize: "1.1rem", marginBottom: "1rem" }}>
+          가격 : 15000원
+        </p>
       </div>
     </div>
   );

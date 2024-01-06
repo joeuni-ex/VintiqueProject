@@ -13,6 +13,19 @@
 .productInfo {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   height: 120px;
   background-color: #f4f5f7;
+}
+
+.productInfo p {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
+  margin-left: 1rem;
+}
+.productInfo span {
+  color: #898989;
+  margin-top: 0.5rem;
+  margin-left: 1rem;
 }
