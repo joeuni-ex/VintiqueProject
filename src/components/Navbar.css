@@ -1,0 +1,27 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  height: 100px;
+  justify-content: space-between;
+}
+
+.navbar .navbar_link {
+  display: flex;
+  list-style: none;
+}
+
+.navbar .navbar_link li {
+  margin: 0 10px;
+}
+
+.navbar .navbar_link li {
+  margin: 0 10px;
+}
+
+.navbar .navbar_link li > a {
+  text-decoration: none;
+  color: black;
+}
