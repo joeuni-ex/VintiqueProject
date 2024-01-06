@@ -4,8 +4,10 @@ import Product from "../../components/product/Product";
 
 const Home = () => {
   const listCount = [1, 2, 3, 4, 5, 6, 7, 8];
+  const galleryCt = [1, 2, 3, 4, 5, 6, 7, 8];
   return (
     <main>
+      {/* 메인1 */}
       <div className="container">
         <div className="HomeMainImg">
           <img src={mainImg} alt="mainImg" />
@@ -22,6 +24,7 @@ const Home = () => {
           </div>
         </div>
       </div>
+      {/* 메인2 */}
       <div className="container-list">
         <div className="ListTitle">
           <h2>Browse The Range</h2>
@@ -42,6 +45,7 @@ const Home = () => {
           </div>
         </div>
       </div>
+      {/* 메인3 */}
       <div className="container-list">
         <div className="ListTitle">
           <h2>Our Products</h2>
@@ -51,6 +55,19 @@ const Home = () => {
             <Product key={index} />
           ))}
         </div>
+        <div className="showBtn">
+          <p>Show More</p>
+        </div>
+      </div>
+      {/* 메인4 */}
+      <div className="gallery">
+        <ul className="images">
+          {galleryCt.map((img, index) => (
+            <li className="img" key={index}>
+              <img src="images/img-1.jpg" alt="img" />
+            </li>
+          ))}
+        </ul>
       </div>
     </main>
   );
