@@ -7,6 +7,7 @@ import { useEffect } from "react";
 
 const Home = () => {
   const [images, setImages] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const importImages = async () => {
@@ -21,6 +22,7 @@ const Home = () => {
       }
 
       setImages(importedImages);
+      setIsLoading(false);
     };
 
     importImages();
@@ -87,6 +89,7 @@ const Home = () => {
         <div className="ListTitle">
           <p>여러분의 가구 배치를 공유하세요!</p>
           <h1>#Furniture</h1>
+          {isLoading && <p>로딩중</p>}
         </div>
         <ul className="images">
           {images.map((img, index) => (
