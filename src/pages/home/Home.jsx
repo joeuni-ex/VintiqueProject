@@ -1,10 +1,33 @@
 import "./Home.css";
 import mainImg from "../../assets/main.jpg";
+
 import Product from "../../components/product/Product";
+import { useState } from "react";
+import { useEffect } from "react";
 
 const Home = () => {
+  const [images, setImages] = useState([]);
+
+  useEffect(() => {
+    const importImages = async () => {
+      const importedImages = [];
+      for (let i = 1; i <= 10; i++) {
+        try {
+          const image = await import(`../../assets/${i}.jpg`);
+          importedImages.push(image.default);
+        } catch (error) {
+          console.error("Error importing image:", error);
+        }
+      }
+
+      setImages(importedImages);
+    };
+
+    importImages();
+  }, []);
   const listCount = [1, 2, 3, 4, 5, 6, 7, 8];
-  const galleryCt = [1, 2, 3, 4, 5, 6, 7, 8];
+
+  console.log(images);
   return (
     <main>
       {/* 메인1 */}
@@ -61,10 +84,14 @@ const Home = () => {
       </div>
       {/* 메인4 */}
       <div className="gallery">
+        <div className="ListTitle">
+          <p>여러분의 가구 배치를 공유하세요!</p>
+          <h1>#Furniture</h1>
+        </div>
         <ul className="images">
-          {galleryCt.map((img, index) => (
+          {images.map((img, index) => (
             <li className="img" key={index}>
-              <img src="images/img-1.jpg" alt="img" />
+              <img src={img} alt={`img-${index}`} />
             </li>
           ))}
         </ul>

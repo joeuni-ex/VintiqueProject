@@ -121,6 +121,7 @@ main {
 /* 네 번째 메인 컨텐츠  */
 /* 이미지 갤러리 스타일링 */
 .gallery {
+  margin-top: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -129,7 +130,7 @@ main {
   gap: 15px;
   max-width: 85%;
   margin: 40px 0;
-  columns: 5 310px;
+  columns: 5 200px;
   list-style: none;
 }
 .gallery .images .img {
