@@ -1,0 +1,18 @@
+.product {
+  margin: 20px;
+  width: 260px;
+  height: 420px;
+  overflow: hidden;
+}
+
+.product img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+.productInfo {
+  display: flex;
+  flex-direction: column;
+  height: 120px;
+  background-color: #f4f5f7;
+}
