@@ -1,7 +1,15 @@
+import { BrowserRouter, Routes } from "react-router-dom";
 import "./App.css";
+import Navbar from "./components/Navbar";
 
 function App() {
-  return <div>파이널 프로젝트</div>;
+  return (
+    <BrowserRouter>
+      <Navbar />
+      {/* 라우팅 */}
+      <Routes></Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;
