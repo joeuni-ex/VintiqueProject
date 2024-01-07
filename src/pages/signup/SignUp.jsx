@@ -33,7 +33,7 @@ const SignUp = () => {
                   Login
                 </Link>
                 <Link
-                  to="/signin"
+                  to="/signup"
                   style={{
                     borderBottom: "solid 3px  #b88e2f",
                     marginRight: "20px",
@@ -44,20 +44,17 @@ const SignUp = () => {
                   SignUp
                 </Link>
               </div>
+              <input className="LoginInput" type="text" placeholder="이름" />
+              <input className="LoginInput" type="text" placeholder="아이디" />
               <input
                 className="LoginInput"
-                type="text"
-                placeholder="이름을 입력해 주세요"
-              />
-              <input
-                className="LoginInput"
-                type="text"
-                placeholder="아이디를 입력해 주세요"
+                type="password"
+                placeholder="비밀번호"
               />
               <input
                 className="LoginInput"
                 type="password"
-                placeholder="비밀번호를 입력해 주세요"
+                placeholder="비밀번호 재확인"
               />
               <input className="LoginBtn" type="submit" value="SignUp" />
             </form>
