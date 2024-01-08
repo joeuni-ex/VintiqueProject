@@ -1,0 +1,49 @@
+.shopContainer {
+  width: 100%;
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.bannerImg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+  z-index: 0;
+}
+.bannerImg img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  z-index: -1;
+  filter: blur(0.8px);
+  opacity: 0.6;
+}
+.sort {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100px;
+  background-color: #f9f1e7;
+}
+
+.shopText {
+  position: absolute;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  z-index: 1;
+}
+
+.shopCategory {
+  position: absolute;
+  top: 65%;
+  font-size: 1rem;
+}
