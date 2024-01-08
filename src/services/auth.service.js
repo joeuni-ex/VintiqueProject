@@ -9,8 +9,8 @@ const loginService = (user) => {
 };
 
 //가입하기 서비스
-const registerService = (user) => {
+const signupService = (user) => {
   return axios.post(BASE_URL + "/sign-up", user);
 };
 
-export { loginService, registerService };
+export { loginService, signupService };
