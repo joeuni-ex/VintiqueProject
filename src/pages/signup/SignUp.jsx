@@ -3,13 +3,15 @@ import img from "../../assets/login.jpg";
 import { useEffect, useState } from "react";
 import User from "../../model/User";
 import { useSelector } from "react-redux";
+import { signupService } from "../../services/auth.service";
 
 const SignUp = () => {
   const [user, setUser] = useState(new User("", "", "")); //유저 객체
   const [loading, setLoading] = useState(false); //로딩 상태
-  const [submitted, setSubmitted] = useState("");
   const [error, setError] = useState(""); //에러 발생 시
-  const [errorMessage, setErrorMessage] = useState(""); //에러메세지
+  const [userIdCheck, setUserIdCheck] = useState(false);
+  const [usernameError, setUsernameError] = useState(""); //아이디 에러메세지
+  const [passwordError, setPasswordError] = useState(""); //비밀번호 에러메세지
   //스토어에서 유저 가져오기
   const currentUser = useSelector((state) => state.user); //state중에 user만가져오기
 
@@ -21,6 +23,11 @@ const SignUp = () => {
       navigate("/");
     }
   }, []);
+
+  const userCheck = () => {
+    alert("버튼 클릭했음 ");
+    setUserIdCheck(true);
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -34,7 +41,8 @@ const SignUp = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setErrorMessage(""); //에러초기화
+    setUsernameError(""); //아이디 에러초기화
+    setPasswordError(""); //비밀번호 에러초기화
 
     //유저의 이름, 아이디,비밀번호, 비밀번호 재확인이 없을 경우 리턴
     if (!user.name || !user.username || !user.password || !user.password2) {
@@ -42,10 +50,32 @@ const SignUp = () => {
       return;
     }
 
-    if (user.password !== user.password2) {
-      setErrorMessage("비밀번호가 맞지 않습니다.");
+    if (user.username.trim().length <= 6) {
+      setUsernameError("아이디는 6자리 이상 입력이 필요합니다.");
+    }
+
+    if (userIdCheck === false) {
+      alert("아이디 중복확인이 필요합니다.");
       return;
     }
+
+    if (user.password !== user.password2) {
+      setPasswordError("비밀번호가 맞지 않습니다.");
+      return;
+    }
+    setLoading(true); //로딩 시작
+
+    signupService(user) //백엔드에 유저 정보 전달
+      .then((ok) => {
+        //정상 가입 완료
+        navigate("/login"); //로그인 페이지로 이동
+      })
+      .catch((error) => {
+        //에러 발생 시
+        if (error?.response?.status === 409) {
+          console.log(error.response.status);
+        }
+      });
   };
 
   return (
@@ -105,8 +135,16 @@ const SignUp = () => {
                   placeholder="아이디"
                   onChange={handleChange}
                 />
-                <input className="LoginIdBtn" type="button" value="중복확인" />
+                <input
+                  onClick={userCheck}
+                  className="LoginIdBtn"
+                  type="button"
+                  value="중복확인"
+                />
               </label>
+              {usernameError && (
+                <em style={{ color: "red" }}> {usernameError}</em>
+              )}
               <input
                 className="LoginInput"
                 name="password"
@@ -121,7 +159,9 @@ const SignUp = () => {
                 placeholder="비밀번호 재확인"
                 onChange={handleChange}
               />
-              {errorMessage && <em style={{ color: "red" }}>{errorMessage}</em>}
+              {passwordError && (
+                <em style={{ color: "red" }}>{passwordError}</em>
+              )}
               <input className="LoginBtn" type="submit" value="SignUp" />
             </form>
           </div>
