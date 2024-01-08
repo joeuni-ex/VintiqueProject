@@ -58,7 +58,7 @@
   width: 100%;
   border: none;
   height: 60px;
-  border-bottom: 5px solid #faf3ea;
+  border-bottom: 5px solid #f5deb3;
   margin: 10px 0;
 }
 .LoginBtn {
@@ -71,4 +71,20 @@
   font-weight: 700;
   color: #fff;
   margin-top: 30px;
+}
+
+/* 아이디 중복확인 */
+.LoginIdInput {
+  width: 70%;
+  border: none;
+  height: 60px;
+  border-bottom: 5px solid #f5deb3;
+  margin: 10px 0;
+}
+.LoginIdBtn {
+  width: 30%;
+  border: none;
+  height: 40px;
+  cursor: pointer;
+  background-color: #f5deb3;
 }
