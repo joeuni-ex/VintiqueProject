@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import User from "../../model/User";
 import { useSelector } from "react-redux";
 import { signupService } from "../../services/auth.service";
+import userService from "../../services/user.service";
 
 const SignUp = () => {
   const [user, setUser] = useState(new User("", "", "")); //유저 객체
@@ -24,9 +25,24 @@ const SignUp = () => {
     }
   }, []);
 
+  //아이디 중복확인
   const userCheck = () => {
-    alert("버튼 클릭했음 ");
-    setUserIdCheck(true);
+    setUsernameError(""); //아이디 에러초기화
+    if (user.username.trim().length < 6) {
+      setUsernameError("아이디는 6자리 이상 입력이 필요합니다.");
+    } else {
+      userService
+        .checkUser(user.username)
+        .then((response) => {
+          alert(`${user.username}은 사용 가능한 아이디입니다.`);
+        })
+        .catch((err) => {
+          if (err?.response?.status === 409) {
+            alert("이미 존재하는 아이디입니다.");
+          }
+        });
+      setUserIdCheck(true);
+    }
   };
 
   const handleChange = (e) => {
@@ -41,17 +57,12 @@ const SignUp = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setUsernameError(""); //아이디 에러초기화
     setPasswordError(""); //비밀번호 에러초기화
 
     //유저의 이름, 아이디,비밀번호, 비밀번호 재확인이 없을 경우 리턴
     if (!user.name || !user.username || !user.password || !user.password2) {
       alert("입력되지 않은 항목이 있습니다.");
       return;
-    }
-
-    if (user.username.trim().length <= 6) {
-      setUsernameError("아이디는 6자리 이상 입력이 필요합니다.");
     }
 
     if (userIdCheck === false) {
