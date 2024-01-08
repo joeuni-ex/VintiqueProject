@@ -7,7 +7,6 @@ import store from "./store/configStore.js";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    {/* 리듀서 적용 */}
     <Provider store={store}>
       <App />
     </Provider>
