@@ -1,11 +1,12 @@
 .product {
+  position: relative;
   margin: 20px;
   width: 260px;
   height: 420px;
   overflow: hidden;
 }
 
-.product img {
+.product .productImg {
   width: 100%;
   height: 300px;
   object-fit: cover;
@@ -29,4 +30,43 @@
   color: #898989;
   margin-top: 0.5rem;
   margin-left: 1rem;
+}
+
+.product .productAddCart {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 260px;
+  height: 420px;
+  background-color: rgba(0, 0, 0, 0.6);
+  transition: opacity 0.3s;
+  opacity: 0;
+}
+.productAddCart:hover {
+  opacity: 1;
+}
+
+.AddCartBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 50px;
+  background-color: azure;
+  cursor: pointer;
+}
+
+.productIcon {
+  display: flex;
+  color: white;
+  margin-top: 10px;
+  cursor: pointer;
+}
+.productIcon p {
+  margin: 0 10px;
 }
