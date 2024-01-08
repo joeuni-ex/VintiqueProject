@@ -39,7 +39,7 @@ const Login = () => {
                   style={{
                     marginRight: "20px",
                     padding: "5px 10px",
-                    color: "# #f5deb3;",
+                    color: "#f5deb3",
                   }}
                 >
                   SignUp
