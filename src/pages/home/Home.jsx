@@ -30,7 +30,6 @@ const Home = () => {
   }, []);
   const listCount = [1, 2, 3, 4, 5, 6, 7, 8];
 
-  console.log(images);
   return (
     <main>
       {/* 메인1 */}
