@@ -45,9 +45,14 @@ const Home = () => {
             우리 제품은 더 많은 편안함과 세련미를 제공합니다. <br />
             다양한 컬렉션으로 여러분의 공간을 개성 있게 꾸며보세요
           </p>
-          <div className="buyBtn">
-            <p>BUY Now</p>
-          </div>
+          <Link
+            to={`/product-details`}
+            style={{ color: "black", textDecoration: "none" }}
+          >
+            <div className="buyBtn">
+              <p>BUY Now</p>
+            </div>
+          </Link>
         </div>
       </div>
       {/* 메인2 */}
