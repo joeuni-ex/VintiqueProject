@@ -65,11 +65,26 @@ const Navbar = () => {
                 <FaRegHeart />
               </NavLink>
             </li>
-            <li>
-              <NavLink to="/login">
-                <FaRegUser />
-              </NavLink>
-            </li>
+            {curruntUser?.role === "USER" ? (
+              <li>
+                <NavLink to="/mypage">
+                  <FaRegUser />
+                </NavLink>
+              </li>
+            ) : (
+              <li>
+                <NavLink to="/admin">
+                  <FaRegUser />
+                </NavLink>
+              </li>
+            )}
+            {!curruntUser && (
+              <li>
+                <NavLink to="/login">
+                  <FaRegUser />
+                </NavLink>
+              </li>
+            )}
 
             {curruntUser && (
               <li>
