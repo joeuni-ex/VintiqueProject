@@ -3,11 +3,9 @@ import mainImg from "../../assets/main.jpg";
 import { FaRegHeart } from "react-icons/fa";
 import { LuShoppingCart } from "react-icons/lu";
 import { MdShare } from "react-icons/md";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Product = () => {
-  const navigate = useNavigate();
-
   return (
     <div className="product">
       <img className="productImg" src={mainImg} alt="" />
