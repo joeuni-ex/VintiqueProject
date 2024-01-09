@@ -1,0 +1,41 @@
+.userPage {
+  width: 1400px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.user-category {
+  display: flex;
+  justify-content: end;
+  width: 15%;
+}
+.user-category ul {
+  padding-top: 60px;
+  width: 100%;
+  list-style: none;
+}
+
+.user-category .list {
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+.list li {
+  margin-top: 10px;
+}
+
+.user-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 85%;
+}
+.user-content p {
+  font-size: 1.7rem;
+  height: 10%;
+}
+
+.test {
+  height: 80%;
+}
