@@ -3,14 +3,10 @@ import mainImg from "../../assets/main.jpg";
 import { FaRegHeart } from "react-icons/fa";
 import { LuShoppingCart } from "react-icons/lu";
 import { MdShare } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Product = () => {
   const navigate = useNavigate();
-
-  const handleView = () => {
-    navigate("/");
-  };
 
   return (
     <div className="product">
@@ -23,9 +19,14 @@ const Product = () => {
         </p>
       </div>
       <div className="productAddCart">
-        <div onClick={handleView} className="AddCartBtn">
-          view
-        </div>
+        <Link
+          to={`/product-details`}
+          style={{ color: "black", textDecoration: "none" }}
+        >
+          <div className="AddCartBtn">
+            <p>View</p>
+          </div>
+        </Link>
         <div className="productIcon">
           <p>
             <MdShare />
