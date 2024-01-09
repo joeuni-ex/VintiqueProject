@@ -16,14 +16,14 @@ function App() {
       <Navbar />
       {/* 라우팅 */}
       <Routes>
-        <Route path="/" element={<Home />}></Route>
-        <Route path="/home" element={<Home />}></Route>
-        <Route path="/shop" element={<Shop />}></Route>
-        <Route path="/product-details" element={<ProductDetails />}></Route>
-        <Route path="/admin" element={<Admin />}></Route>
-        <Route path="/mypage" element={<MyPage />}></Route>
-        <Route path="/login" element={<Login />}></Route>
-        <Route path="/signup" element={<SignUp />}></Route>
+        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/shop" element={<Shop />} />
+        <Route path="/product-details" element={<ProductDetails />} />
+        <Route path="/admin" element={<Admin />} />
+        <Route path="/mypage" element={<MyPage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
       </Routes>
       <Footer />
     </BrowserRouter>
