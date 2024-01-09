@@ -6,6 +6,7 @@ import Login from "./pages/login/Login";
 import Footer from "./components/footer/Footer";
 import SignUp from "./pages/signup/SignUp";
 import Shop from "./pages/shop/shop";
+import ProductDetails from "./pages/productDetails/ProductDetails";
 
 function App() {
   return (
@@ -14,8 +15,9 @@ function App() {
       {/* 라우팅 */}
       <Routes>
         <Route path="/" element={<Home />}></Route>
-        <Route path="home" element={<Home />}></Route>
-        <Route path="shop" element={<Shop />}></Route>
+        <Route path="/home" element={<Home />}></Route>
+        <Route path="/shop" element={<Shop />}></Route>
+        <Route path="/product-details" element={<ProductDetails />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<SignUp />}></Route>
       </Routes>
