@@ -4,6 +4,7 @@ import mainImg from "../../assets/main.jpg";
 import Product from "../../components/product/Product";
 import { useState } from "react";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const [images, setImages] = useState([]);
@@ -84,7 +85,7 @@ const Home = () => {
           ))}
         </div>
         <div className="showBtn">
-          <p>Show More</p>
+          <Link to="/shop">Show More</Link>
         </div>
       </div>
       {/* 메인4 */}

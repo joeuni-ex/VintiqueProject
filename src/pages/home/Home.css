@@ -112,10 +112,13 @@ main {
   width: 200px;
   height: 40px;
   border: 1px solid #b88e2f;
-  color: #b88e2f;
   font-weight: 600;
   margin-bottom: 30px;
   cursor: pointer;
+}
+.showBtn a {
+  color: #b88e2f;
+  text-decoration: none;
 }
 
 /* 네 번째 메인 컨텐츠  */
