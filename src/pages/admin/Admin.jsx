@@ -1,7 +1,7 @@
-import React from "react";
+import "./Admin.css";
 
 const Admin = () => {
-  return <div>Admin</div>;
+  return <div>관리자 페이지</div>;
 };
 
 export default Admin;
