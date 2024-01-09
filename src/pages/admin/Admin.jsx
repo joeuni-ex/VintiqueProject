@@ -1,7 +1,12 @@
+import Banner from "../../components/banner/Banner";
 import "./Admin.css";
 
 const Admin = () => {
-  return <div>관리자 페이지</div>;
+  return (
+    <div div className="shopContainer">
+      <Banner title="AdminPage" />
+    </div>
+  );
 };
 
 export default Admin;
