@@ -8,6 +8,15 @@ class UserService {
   checkUser(username) {
     return axios.get(API_URL + "/checkuser", { params: { username } });
   }
+
+  //유저 권한 변경
+  changeRole(role) {
+    return axios.put(
+      API_URL + "/change/" + role,
+      {},
+      { headers: authHeader() }
+    );
+  }
 }
 
 const userService = new UserService();
