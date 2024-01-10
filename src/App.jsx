@@ -27,7 +27,7 @@ function App() {
         <Route
           path="/admin/order"
           element={
-            <AuthGuard>
+            <AuthGuard roles={[Role.ADMIN]}>
               <AdminOrder />
             </AuthGuard>
           }
@@ -35,13 +35,27 @@ function App() {
         <Route
           path="/admin/product"
           element={
-            <AuthGuard>
+            <AuthGuard roles={[Role.ADMIN]}>
               <AdminProduct />
             </AuthGuard>
           }
         />
-        <Route path="/role-change" element={<RoleChange />} />
-        <Route path="/mypage" element={<MyPage />} />
+        <Route
+          path="/role-change"
+          element={
+            <AuthGuard roles={[Role.ADMIN, Role.USER]}>
+              <RoleChange />
+            </AuthGuard>
+          }
+        />
+        <Route
+          path="/mypage"
+          element={
+            <AuthGuard roles={[Role.ADMIN, Role.USER]}>
+              <MyPage />
+            </AuthGuard>
+          }
+        />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
       </Routes>
