@@ -8,7 +8,7 @@ const AdminOrder = () => {
     <div className="shopContainer">
       {/* <Banner title={title} /> */}
       <div className="userPage">
-        <AdminCate />
+        <AdminCate select="1" />
         <div className="user-content">
           <p>주문 관리</p>
         </div>

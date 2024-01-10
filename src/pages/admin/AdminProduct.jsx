@@ -7,7 +7,7 @@ const AdminProduct = () => {
     <div className="shopContainer">
       {/* <Banner title={title} /> */}
       <div className="userPage">
-        <AdminCate />
+        <AdminCate select="2" />
         <div className="user-content">
           <p>제품 관리</p>
         </div>

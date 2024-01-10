@@ -39,7 +39,7 @@ const RoleChange = () => {
     <div className="shopContainer">
       {/* <Banner title={title} /> */}
       <div className="userPage">
-        <AdminCate />
+        <AdminCate select="3" />
         <div className="user-content">
           <div className="role-contianer">
             <div>

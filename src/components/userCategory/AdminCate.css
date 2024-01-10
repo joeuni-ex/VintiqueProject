@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   width: 15%;
-  background-color: #f5deb3;
+  /* background-color: #f5deb3; */
 }
 .user-category p {
   margin-top: 40px;
@@ -20,17 +20,24 @@
 .user-category .list {
   font-size: 1.2rem;
   cursor: pointer;
-  text-align: center;
+  margin-left: 45px;
 }
-.list a {
-  color: black;
+.list .list-link {
   text-decoration: none;
+  color: #b1892c;
 }
 
-.list li {
+.list-link .list-li {
   margin: 5px 0;
 }
 
 .list a :hover {
-  background-color: #ffecc9;
+  color: #9c761d;
+  font-weight: 600;
+}
+
+.selected {
+  text-decoration: none;
+  color: #9c761d;
+  font-weight: bolder;
 }
