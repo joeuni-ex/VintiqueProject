@@ -8,11 +8,14 @@ import "./Navbar.css";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { clearCurrentUser } from "../../store/actions/user";
+import { useEffect } from "react";
 
 const Navbar = () => {
   const curruntUser = useSelector((state) => state.user); //인증된 유저 정보
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  useEffect(() => {}, [curruntUser]);
 
   //로그아웃
   const logout = () => {
