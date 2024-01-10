@@ -76,11 +76,17 @@ const Navbar = () => {
                 </li>
               </>
             ) : (
+              ""
+            )}
+
+            {curruntUser?.role === "ADMIN" ? (
               <li>
                 <NavLink to="/admin/order">
                   <FaRegUser />
                 </NavLink>
               </li>
+            ) : (
+              ""
             )}
             {!curruntUser && (
               <li>
