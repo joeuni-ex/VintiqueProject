@@ -52,28 +52,29 @@ const Navbar = () => {
         <div style={{ marginRight: "5%" }}>
           <ul className="navbar_link">
             {curruntUser && <li>{curruntUser.username}님 환영합니다</li>}
-
-            <li>
-              <NavLink to="/cart">
-                <BsCart />
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/search">
-                <IoSearch />
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/favo">
-                <FaRegHeart />
-              </NavLink>
-            </li>
             {curruntUser?.role === "USER" ? (
-              <li>
-                <NavLink to="/mypage">
-                  <FaRegUser />
-                </NavLink>
-              </li>
+              <>
+                <li>
+                  <NavLink to="/cart">
+                    <BsCart />
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/search">
+                    <IoSearch />
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/favo">
+                    <FaRegHeart />
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/mypage">
+                    <FaRegUser />
+                  </NavLink>
+                </li>
+              </>
             ) : (
               <li>
                 <NavLink to="/admin/order">
