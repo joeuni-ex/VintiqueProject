@@ -3,6 +3,18 @@
   box-sizing: border-box;
 }
 
+.basic-container {
+  width: 100%;
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.base-color {
+  background-color: #f4f5f7;
+}
+
 table {
   border: 1px #a39485 solid;
   font-size: 0.9em;
