@@ -7,6 +7,7 @@ import { useState } from "react";
 import { Role } from "../../model/Role";
 import AdminCate from "../../components/userCategory/AdminCate";
 
+// TODO 권한 관리 페이지 -> Update Role
 const RoleChange = () => {
   const currentUser = useSelector((state) => state.user);
   const [errorMessage, setErrorMessage] = useState("");

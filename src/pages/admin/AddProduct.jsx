@@ -3,6 +3,7 @@ import "./AddProduct.css";
 import { CiImageOn } from "react-icons/ci";
 import { IoMdCloseCircleOutline } from "react-icons/io";
 
+// TODO 상품 추가 페이지 -> POST Product
 const AddProduct = () => {
   const contentRef = useRef(null);
   const imageInputRef = useRef(null);

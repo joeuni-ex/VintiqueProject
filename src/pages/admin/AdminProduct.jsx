@@ -1,6 +1,7 @@
 import React from "react";
 import AdminCate from "../../components/userCategory/AdminCate";
 
+// TODO 제품 관리 페이지 -> GET Product
 const AdminProduct = () => {
   return (
     <div className="shopContainer">
