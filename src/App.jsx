@@ -7,8 +7,11 @@ import Footer from "./components/footer/Footer";
 import SignUp from "./pages/signup/SignUp";
 import Shop from "./pages/shop/shop";
 import ProductDetails from "./pages/productDetails/ProductDetails";
-import Admin from "./pages/admin/Admin";
 import MyPage from "./pages/mypage/myPage";
+import RoleChange from "./pages/admin/RoleChange";
+import AddProduct from "./pages/admin/AddProduct";
+import AdminOrder from "./pages/admin/AdminOrder";
+import AdminProduct from "./pages/admin/AdminProduct";
 
 function App() {
   return (
@@ -20,7 +23,9 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/shop" element={<Shop />} />
         <Route path="/product-details" element={<ProductDetails />} />
-        <Route path="/admin" element={<Admin />} />
+        <Route path="/admin/order" element={<AdminOrder />} />
+        <Route path="/admin/product" element={<AdminProduct />} />
+        <Route path="/admin/role" element={<RoleChange />} />
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />

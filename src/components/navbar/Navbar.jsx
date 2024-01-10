@@ -76,7 +76,7 @@ const Navbar = () => {
               </li>
             ) : (
               <li>
-                <NavLink to="/admin">
+                <NavLink to="/admin/order">
                   <FaRegUser />
                 </NavLink>
               </li>

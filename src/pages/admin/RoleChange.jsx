@@ -1,10 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
-import "./Admin.css";
+import "./AdminOrder.css";
 import { useNavigate } from "react-router-dom";
 import userService from "../../services/user.service";
 import { clearCurrentUser } from "../../store/actions/user";
 import { useState } from "react";
 import { Role } from "../../model/Role";
+import AdminCate from "../../components/userCategory/AdminCate";
 
 const RoleChange = () => {
   const currentUser = useSelector((state) => state.user);
@@ -34,13 +35,21 @@ const RoleChange = () => {
     }
   };
   return (
-    <div className="role-contianer">
-      <div>
-        <p>{`현재 권한은 ${currentUser.role}입니다.`}</p>
-      </div>
+    <div className="shopContainer">
+      {/* <Banner title={title} /> */}
+      <div className="userPage">
+        <AdminCate />
+        <div className="user-content">
+          <div className="role-contianer">
+            <div>
+              <p>{`현재 권한은 ${currentUser.role}입니다.`}</p>
+            </div>
 
-      <button onClick={handleRoleChange}>권한 변경</button>
-      {errorMessage && <em>{errorMessage}</em>}
+            <button onClick={handleRoleChange}>권한 변경</button>
+            {errorMessage && <em>{errorMessage}</em>}
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
