@@ -13,6 +13,7 @@ import AddProduct from "./pages/admin/AddProduct";
 import AdminOrder from "./pages/admin/AdminOrder";
 import AdminProduct from "./pages/admin/AdminProduct";
 import AuthGuard from "./guards/AuthGuard";
+import { Role } from "./model/Role";
 
 function App() {
   return (
