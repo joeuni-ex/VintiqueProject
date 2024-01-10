@@ -26,7 +26,7 @@ const Navbar = () => {
   return (
     <nav>
       <div className="navbar">
-        <div style={{ marginLeft: "5%" }}>
+        <div style={{ marginLeft: "7%" }}>
           <p>
             <Link to="/" className="navbar-logo">
               <ImVine /> Vintique
@@ -49,7 +49,7 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
-        <div style={{ marginRight: "5%" }}>
+        <div style={{ marginRight: "7%" }}>
           <ul className="navbar_link">
             {curruntUser && <li>{curruntUser.username}님 환영합니다</li>}
             {curruntUser?.role === "USER" ? (
