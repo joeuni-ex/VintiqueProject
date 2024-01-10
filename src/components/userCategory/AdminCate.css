@@ -7,10 +7,11 @@
   border-radius: 5px;
   margin-right: 20px;
   height: 80%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
 }
 .user-category p {
   margin-top: 40px;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: 600;
   text-align: center;
 }
@@ -30,6 +31,7 @@
   text-decoration: none;
   color: #221f1d;
   margin: 10px 0;
+  font-size: 1rem;
 }
 .list-link li {
   margin: 20px 0;
@@ -40,7 +42,11 @@
 }
 
 .selected {
+  font-size: 1rem;
   text-decoration: none;
   color: #1c0a00;
   font-weight: bolder;
+}
+.selected li {
+  margin: 20px 0;
 }

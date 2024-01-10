@@ -15,6 +15,25 @@
   background-color: #f4f5f7;
 }
 
+.basic-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  height: 40px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.brown-btn {
+  color: white;
+  background: #73685d;
+}
+
+.basic-btn:hover {
+  background: #877c71;
+}
+
 table {
   border: 1px #a39485 solid;
   font-size: 0.9em;

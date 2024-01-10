@@ -1,6 +1,6 @@
 .userPage {
   width: 1400px;
-  height: 900px;
+  height: 1000px;
   display: flex;
   justify-content: center;
 }
@@ -8,15 +8,11 @@
 .user-content {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   width: 85%;
+  margin-top: 6%;
 }
 .user-content p {
   font-size: 1.7rem;
-  height: 10%;
-}
-
-.test {
-  height: 80%;
+  font-weight: 600;
 }

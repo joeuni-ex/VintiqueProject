@@ -36,7 +36,7 @@ const RoleChange = () => {
     }
   };
   return (
-    <div className="shopContainer">
+    <div className="basic-container base-color">
       {/* <Banner title={title} /> */}
       <div className="userPage">
         <AdminCate select="3" />

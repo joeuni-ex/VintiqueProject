@@ -9,11 +9,11 @@ import Shop from "./pages/shop/shop";
 import ProductDetails from "./pages/productDetails/ProductDetails";
 import MyPage from "./pages/mypage/myPage";
 import RoleChange from "./pages/admin/RoleChange";
-import AddProduct from "./pages/admin/AddProduct";
 import AdminOrder from "./pages/admin/AdminOrder";
 import AdminProduct from "./pages/admin/AdminProduct";
 import AuthGuard from "./guards/AuthGuard";
 import { Role } from "./model/Role";
+import AddProduct from "./pages/admin/AddProduct";
 
 function App() {
   return (
@@ -38,6 +38,14 @@ function App() {
           element={
             <AuthGuard roles={[Role.ADMIN]}>
               <AdminProduct />
+            </AuthGuard>
+          }
+        />
+        <Route
+          path="/admin/add-product"
+          element={
+            <AuthGuard roles={[Role.ADMIN]}>
+              <AddProduct />
             </AuthGuard>
           }
         />
