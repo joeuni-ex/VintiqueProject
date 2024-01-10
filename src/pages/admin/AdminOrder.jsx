@@ -5,7 +5,7 @@ import "./AdminOrder.css";
 // TODO 주문 관리 페이지 -> GET Purchase
 const AdminOrder = () => {
   return (
-    <div className="shopContainer">
+    <div className="basic-container">
       {/* <Banner title={title} /> */}
       <div className="userPage">
         <AdminCate select="1" />

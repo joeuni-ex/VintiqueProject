@@ -9,7 +9,7 @@ const AdminCate = ({ select }) => {
   }, [select]);
 
   return (
-    <div className="user-category">
+    <div className="user-category ">
       <p>관리자페이지</p>
       <ul className="list">
         <Link

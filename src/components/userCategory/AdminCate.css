@@ -3,7 +3,10 @@
   display: flex;
   flex-direction: column;
   width: 15%;
-  /* background-color: #f5deb3; */
+  background-color: white;
+  border-radius: 5px;
+  margin-right: 20px;
+  height: 80%;
 }
 .user-category p {
   margin-top: 40px;
@@ -25,20 +28,19 @@
 }
 .list .list-link {
   text-decoration: none;
-  color: #b1892c;
+  color: #221f1d;
+  margin: 10px 0;
 }
-
-.list-link .list-li {
-  margin: 5px 0;
+.list-link li {
+  margin: 20px 0;
 }
-
 .list a :hover {
-  color: #9c761d;
+  color: #1c0a00;
   font-weight: 600;
 }
 
 .selected {
   text-decoration: none;
-  color: #9c761d;
+  color: #1c0a00;
   font-weight: bolder;
 }

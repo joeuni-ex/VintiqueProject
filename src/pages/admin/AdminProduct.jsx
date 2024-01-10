@@ -5,7 +5,7 @@ import ProductList from "../../components/productList/ProductList";
 // TODO 제품 관리 페이지 -> GET Product
 const AdminProduct = () => {
   return (
-    <div className="shopContainer">
+    <div className="basic-container base-color">
       {/* <Banner title={title} /> */}
       <div className="userPage">
         <AdminCate select="2" />
