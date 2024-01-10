@@ -26,7 +26,7 @@ const AdminCate = ({ select }) => {
         </Link>
         <Link
           className={selected === "3" ? "selected" : "list-link"}
-          to="/admin/role"
+          to="/role-change"
         >
           <li>권한 관리</li>
         </Link>

@@ -12,6 +12,7 @@ import RoleChange from "./pages/admin/RoleChange";
 import AddProduct from "./pages/admin/AddProduct";
 import AdminOrder from "./pages/admin/AdminOrder";
 import AdminProduct from "./pages/admin/AdminProduct";
+import AuthGuard from "./guards/AuthGuard";
 
 function App() {
   return (
@@ -23,9 +24,23 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/shop" element={<Shop />} />
         <Route path="/product-details" element={<ProductDetails />} />
-        <Route path="/admin/order" element={<AdminOrder />} />
-        <Route path="/admin/product" element={<AdminProduct />} />
-        <Route path="/admin/role" element={<RoleChange />} />
+        <Route
+          path="/admin/order"
+          element={
+            <AuthGuard>
+              <AdminOrder />
+            </AuthGuard>
+          }
+        />
+        <Route
+          path="/admin/product"
+          element={
+            <AuthGuard>
+              <AdminProduct />
+            </AuthGuard>
+          }
+        />
+        <Route path="/role-change" element={<RoleChange />} />
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
