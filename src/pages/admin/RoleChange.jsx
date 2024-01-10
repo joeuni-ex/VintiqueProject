@@ -12,8 +12,8 @@ const RoleChange = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  //권한 버튼 클릭 시
   const handleRoleChange = () => {
-    const adminPassword = "admin1111";
     const newRole = currentUser.role === Role.ADMIN ? Role.USER : Role.ADMIN;
 
     const adminPs = prompt("관리자 비밀번호를 입력하세요");
@@ -35,6 +35,10 @@ const RoleChange = () => {
   };
   return (
     <div className="role-contianer">
+      <div>
+        <p>{`현재 권한은 ${currentUser.role}입니다.`}</p>
+      </div>
+
       <button onClick={handleRoleChange}>권한 변경</button>
       {errorMessage && <em>{errorMessage}</em>}
     </div>
