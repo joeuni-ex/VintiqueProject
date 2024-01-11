@@ -41,6 +41,11 @@
   border-radius: 4px;
 }
 
+.divider {
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 2px;
+}
+
 table {
   border: 1px #a39485 solid;
   font-size: 0.9em;
