@@ -34,6 +34,13 @@
   background: #877c71;
 }
 
+.select-box {
+  width: 150px;
+  height: 35px;
+  padding: 5px 30px 5px 10px;
+  border-radius: 4px;
+}
+
 table {
   border: 1px #a39485 solid;
   font-size: 0.9em;
