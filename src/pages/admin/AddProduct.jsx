@@ -5,9 +5,13 @@ import { IoMdCloseCircleOutline } from "react-icons/io";
 import Product from "../../model/Product";
 import { useEffect } from "react";
 import addImageIcon from "../../assets/plusIcon.png";
+import productService from "../../services/product.service";
+import { useNavigate } from "react-router-dom";
 
 // TODO 상품 추가 페이지 -> POST Product
 const AddProduct = () => {
+  const navigate = useNavigate();
+
   //select box
   const selectList = [
     { value: "default", name: "카테고리 선택" },
@@ -19,7 +23,6 @@ const AddProduct = () => {
 
   //제품 정보 저장
   const [product, setProduct] = useState(new Product("", "", "", 0, 0, "", []));
-  const [errorMessage, setErrorMessage] = useState("");
 
   //이미지 입력 요소 참조 상태
   const ImageInputRef = useRef(null);
@@ -35,15 +38,17 @@ const AddProduct = () => {
     const file = e.target.files[0];
 
     const imageUrl = URL.createObjectURL(file);
+
     setMainImageUrl(imageUrl);
 
     setProduct((prevState) => {
       return {
         ...prevState,
-        ["mainImage"]: mainImageUrl,
+        mainImage: imageUrl,
       };
     });
   };
+
   //event handler 사이드 이미지 변경
   const onImageChangeHandler = (e) => {
     if (!e.target.files || !e.target.files.length) return;
@@ -131,12 +136,38 @@ const AddProduct = () => {
     });
   };
 
+  const onAddProductBtnClickHandler = (e) => {
+    if (
+      !product.name ||
+      !product.category ||
+      !product.price ||
+      !product.stock ||
+      !product.mainImage ||
+      !product.description ||
+      !product.boardImageList
+    ) {
+      return alert("작성되지 않은 정보가 있습니다.");
+    }
+
+    productService //백엔드에 제품 저장 요청
+      .saveProduct(product)
+      .then((response) => {
+        alert("정상적으로 추가되었습니다.");
+        navigate("/admin/product");
+      })
+      .catch((err) => {
+        alert("제품 저장 시 에러 발생!");
+        console.log(err);
+      });
+    setProduct(new Product("", "", "", 0, 0, "", []));
+  };
+
   //effect: 마운트 시 실행 할 함수
   useEffect(() => {
     setProduct(new Product("", "", "", 0, 0, []));
   }, []);
 
-  console.log(product);
+  // console.log(product);
   return (
     <div className="board-write-wrapper base-color">
       <div className="board-write-container">
@@ -157,13 +188,6 @@ const AddProduct = () => {
                 {mainImageUrl && (
                   <img className="board-write-image" src={mainImageUrl} />
                 )}
-
-                {/* <div className="icon-button">
-                <CiImageOn />
-              </div>
-              <div className="icon-button image-close">
-                <IoMdCloseCircleOutline />
-              </div> */}
               </div>
             </div>
           </div>
@@ -316,7 +340,7 @@ const AddProduct = () => {
             </div>
             <div style={{ display: "flex", justifyContent: "end" }}>
               <div className="basic-btn brown-btn" style={{ margin: "20px 0" }}>
-                <div>
+                <div onClick={onAddProductBtnClickHandler}>
                   <p style={{ fontSize: "1rem" }}> 제품 추가</p>
                 </div>
               </div>
