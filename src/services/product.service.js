@@ -2,7 +2,7 @@ import axios from "axios";
 import { BASE_API_URL } from "../common/constants";
 import { authHeader } from "./base.service";
 
-const API_URL = BASE_API_URL + "/api/products";
+const API_URL = BASE_API_URL + "/api/product";
 
 class ProductService {
   //제품 저장
