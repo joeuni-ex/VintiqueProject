@@ -1,10 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import AdminCate from "../../components/userCategory/AdminCate";
 import ProductList from "../../components/productList/ProductList";
 import { Link } from "react-router-dom";
+import productService from "../../services/product.service";
 
 // TODO 제품 관리 페이지 -> GET Product
 const AdminProduct = () => {
+  const [productList, setProductList] = useState([]);
+
+  useEffect(() => {
+    productService.getAllProducts().then((response) => {
+      setProductList(response.data);
+    });
+  }, []);
+
+  console.log(productList);
   return (
     <div className="basic-container base-color">
       {/* <Banner title={title} /> */}
