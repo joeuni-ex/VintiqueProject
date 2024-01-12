@@ -1,20 +1,20 @@
 import "./ProductList.css";
 
-const ProductList = () => {
+const ProductList = ({ product, idx }) => {
   return (
     <tr>
-      <td>James</td>
-      <td>Matman</td>
+      <td>{idx}</td>
+      <td>{product?.category}</td>
       <td>
         <div style={{ display: "flex", alignItems: "center" }}>
           <div className="product-list-img">
-            <img src="" alt="이미지" />
+            <img src={product?.mainImage} alt="이미지" />
           </div>
-          <div> 정말로 예쁜 화분입니다.</div>
+          <div>{product?.name}</div>
         </div>
       </td>
-      <td>9000원</td>
-      <td>100</td>
+      <td>{product?.price}원</td>
+      <td>{product?.stock}</td>
       <td>판매중</td>
       <td>삭제/수정</td>
     </tr>

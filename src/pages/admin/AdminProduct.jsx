@@ -50,11 +50,9 @@ const AdminProduct = () => {
               </tr>
             </thead>
             <tbody>
-              <ProductList />
-              <ProductList />
-              <ProductList />
-              <ProductList />
-              <ProductList />
+              {productList?.map((product, idx) => (
+                <ProductList key={idx} product={product} idx={idx + 1} />
+              ))}
             </tbody>
           </table>
         </div>
