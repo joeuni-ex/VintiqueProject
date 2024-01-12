@@ -14,24 +14,16 @@ class ProductService {
   }
 
   //이미지 저장
-
-  return;
-
-  saveFile = async (file) => {
+  saveFile = async (formData) => {
     try {
-      const formData = new FormData();
-      formData.append("file", file, "example.png");
-
       const config = {
         headers: {
           "Content-Type": "multipart/form-data",
-          // Add any other headers if needed
         },
       };
-      console.log(file);
+
       const response = await axios.post(ADD_IMAGE_URL(), formData, config);
 
-      // Assuming the server returns the image URL
       const imageUrl = response.data;
       return imageUrl;
     } catch (error) {
