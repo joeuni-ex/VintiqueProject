@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 const AddProduct = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState("");
+  const [updateLoading, setUpdateLoading] = useState(false);
 
   //select box
   const selectList = [
@@ -137,41 +138,62 @@ const AddProduct = () => {
     });
   };
 
-  const onAddProductBtnClickHandler = async (e) => {
+  // 제품 저장하기 클릭 시
+  const onAddProductBtnClickHandler = async () => {
+    //입력되지 않은 경우 리턴
     if (
       !product.name ||
       !product.category ||
       !product.price ||
       !product.stock ||
-      !product.mainImage ||
       !product.description ||
+      !product.mainImage ||
       !product.boardImageList
     ) {
       return alert("작성되지 않은 정보가 있습니다.");
     }
 
-    // productService //백엔드에 제품 저장 요청
-    //   .saveProduct(product)
-    //   .then((response) => {
-    //     alert("정상적으로 추가되었습니다.");
-    //     navigate("/admin/product");
-    //   })
-    //   .catch((err) => {
-    //     alert("제품 저장 시 에러 발생!");
-    //     console.log(err);
-    //   });
+    setIsLoading(true); //로딩 시작
 
-    setIsLoading(true);
+    try {
+      // 메인 이미지 저장
+      const mainImageFile = await fetch(product.mainImage).then((res) =>
+        res.blob()
+      );
+      const mainFormData = new FormData();
+      mainFormData.append("file", mainImageFile, "main-image.png");
+      const mainImageUrl = await productService.saveFile(mainFormData);
 
-    //const file = product.mainImage;
-    //await productService.saveFile(file);
-    // Create a File object from the Blob URL
-    const mainImageFile = await fetch(mainImageUrl).then((res) => res.blob());
+      // 사이드 이미지 저장
+      const boardImageFiles = await Promise.all(
+        product.boardImageList.map(async (imageUrl) => {
+          const response = await fetch(imageUrl);
+          const blob = await response.blob();
+          const formData = new FormData();
+          formData.append("file", blob, "board-image.png");
+          return productService.saveFile(formData);
+        })
+      );
 
-    // Pass the File object to saveFile
-    await productService.saveFile(mainImageFile);
-    setIsLoading(false);
-    setProduct(new Product("", "", "", 0, 0, "", []));
+      // 백엔드에서 리턴 된 URL 을 Product 객체에 업데이트
+      const updatedProduct = {
+        ...product,
+        mainImage: mainImageUrl,
+        boardImageList: boardImageFiles,
+      };
+
+      // 제품 저장
+      await productService.saveProduct(updatedProduct);
+
+      setIsLoading(false);
+
+      alert("정상적으로 추가되었습니다.");
+      navigate("/admin/product");
+    } catch (err) {
+      setIsLoading(false);
+      alert("제품 저장 시 에러 발생!");
+      console.error(err);
+    }
   };
 
   //effect: 마운트 시 실행 할 함수
