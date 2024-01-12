@@ -9,4 +9,13 @@ const authHeader = () => {
   };
 };
 
-export { authHeader };
+const authFormDataHeader = () => {
+  const currentUser = store.getState().user;
+
+  return {
+    "Content-Type": "multipart/form-data",
+    authorization: "Bearer " + currentUser?.token,
+  };
+};
+
+export { authHeader, authFormDataHeader };

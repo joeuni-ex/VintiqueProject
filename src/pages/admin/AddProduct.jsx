@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 // TODO 상품 추가 페이지 -> POST Product
 const AddProduct = () => {
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState("");
 
   //select box
   const selectList = [
@@ -67,7 +68,7 @@ const AddProduct = () => {
     setProduct((prevState) => {
       return {
         ...prevState,
-        ["boardImageList"]: imageUrls,
+        boardImageList: trimmedImageUrls,
       };
     });
   };
@@ -136,7 +137,7 @@ const AddProduct = () => {
     });
   };
 
-  const onAddProductBtnClickHandler = (e) => {
+  const onAddProductBtnClickHandler = async (e) => {
     if (
       !product.name ||
       !product.category ||
@@ -149,16 +150,27 @@ const AddProduct = () => {
       return alert("작성되지 않은 정보가 있습니다.");
     }
 
-    productService //백엔드에 제품 저장 요청
-      .saveProduct(product)
-      .then((response) => {
-        alert("정상적으로 추가되었습니다.");
-        navigate("/admin/product");
-      })
-      .catch((err) => {
-        alert("제품 저장 시 에러 발생!");
-        console.log(err);
-      });
+    // productService //백엔드에 제품 저장 요청
+    //   .saveProduct(product)
+    //   .then((response) => {
+    //     alert("정상적으로 추가되었습니다.");
+    //     navigate("/admin/product");
+    //   })
+    //   .catch((err) => {
+    //     alert("제품 저장 시 에러 발생!");
+    //     console.log(err);
+    //   });
+
+    setIsLoading(true);
+
+    //const file = product.mainImage;
+    //await productService.saveFile(file);
+    // Create a File object from the Blob URL
+    const mainImageFile = await fetch(mainImageUrl).then((res) => res.blob());
+
+    // Pass the File object to saveFile
+    await productService.saveFile(mainImageFile);
+    setIsLoading(false);
     setProduct(new Product("", "", "", 0, 0, "", []));
   };
 
@@ -167,7 +179,6 @@ const AddProduct = () => {
     setProduct(new Product("", "", "", 0, 0, []));
   }, []);
 
-  // console.log(product);
   return (
     <div className="board-write-wrapper base-color">
       <div className="board-write-container">
@@ -261,6 +272,7 @@ const AddProduct = () => {
                   <input
                     style={{ display: "none" }}
                     ref={MainImageInputRef}
+                    name="file"
                     onChange={onMainImageChangeHandler}
                     type="file"
                     accept="image/*"
@@ -341,7 +353,11 @@ const AddProduct = () => {
             <div style={{ display: "flex", justifyContent: "end" }}>
               <div className="basic-btn brown-btn" style={{ margin: "20px 0" }}>
                 <div onClick={onAddProductBtnClickHandler}>
-                  <p style={{ fontSize: "1rem" }}> 제품 추가</p>
+                  {isLoading ? (
+                    <p style={{ fontSize: "1rem" }}> 로딩중</p>
+                  ) : (
+                    <p style={{ fontSize: "1rem" }}> 제품 추가</p>
+                  )}
                 </div>
               </div>
             </div>
