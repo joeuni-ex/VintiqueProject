@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./ProductList.css";
 
 const ProductList = ({ product, idx }) => {
@@ -7,10 +8,16 @@ const ProductList = ({ product, idx }) => {
       <td>{product?.category}</td>
       <td>
         <div style={{ display: "flex", alignItems: "center" }}>
-          <div className="product-list-img">
-            <img src={product?.mainImage} alt="이미지" />
+          <Link to={`/product/${product.id}`}>
+            <div className="product-list-img">
+              <img src={product?.mainImage} alt="이미지" />
+            </div>
+          </Link>
+          <div>
+            <Link className="LinkTag" to={`/product/${product.id}`}>
+              {product?.name}
+            </Link>
           </div>
-          <div>{product?.name}</div>
         </div>
       </td>
       <td>{product?.price}원</td>

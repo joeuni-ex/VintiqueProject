@@ -18,7 +18,7 @@ const Product = () => {
       </div>
       <div className="productAddCart">
         <Link
-          to={`/product-details`}
+          to={`/product/:1`}
           style={{ color: "black", textDecoration: "none" }}
         >
           <div className="AddCartBtn">
