@@ -171,7 +171,9 @@ const SignUp = () => {
                 onChange={handleChange}
               />
               {passwordError && (
-                <em style={{ color: "red" }}>{passwordError}</em>
+                <em style={{ color: "red", fontWeight: "600" }}>
+                  {passwordError}
+                </em>
               )}
               <input className="LoginBtn" type="submit" value="SignUp" />
             </form>

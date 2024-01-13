@@ -109,7 +109,11 @@ const Login = () => {
                 type="password"
                 placeholder="비밀번호를 입력해 주세요"
               />
-              {errorMessage && <em>{errorMessage}</em>}
+              {errorMessage && (
+                <em style={{ color: "red", fontWeight: "600" }}>
+                  {errorMessage}
+                </em>
+              )}
               <input className="LoginBtn" type="submit" value="Login" />
             </form>
           </div>
