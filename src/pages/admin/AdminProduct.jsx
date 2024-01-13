@@ -12,9 +12,8 @@ const AdminProduct = () => {
     productService.getAllProducts().then((response) => {
       setProductList(response.data);
     });
-  }, []);
+  }, [productList]);
 
-  console.log(productList);
   return (
     <div className="basic-container base-color">
       {/* <Banner title={title} /> */}

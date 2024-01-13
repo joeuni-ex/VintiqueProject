@@ -12,7 +12,6 @@ import { useNavigate } from "react-router-dom";
 const AddProduct = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState("");
-  const [updateLoading, setUpdateLoading] = useState(false);
 
   //select box
   const selectList = [
@@ -191,7 +190,7 @@ const AddProduct = () => {
       navigate("/admin/product");
     } catch (err) {
       setIsLoading(false);
-      alert("제품 저장 시 에러 발생!");
+      alert("!제품 저장 시 에러 발생");
       console.error(err);
     }
   };

@@ -33,12 +33,18 @@ class ProductService {
   };
 
   //제품 삭제
-  deleteProduct(product) {
-    return axios.delete(API_URL + "/" + product.id, { headers: authHeader() }); //인증이 필요하여 헤더에 토큰 들어감
+  deleteProduct(id) {
+    return axios.delete(API_URL + "/" + id, { headers: authHeader() }); //인증이 필요하여 헤더에 토큰 들어감
   }
+
   //모든 제품 조회
   getAllProducts() {
     return axios.get(API_URL); //조회는 인증이 필요없어서 headers 안들어감
+  }
+
+  //제품 상세 조회(id)
+  getByIdProduct(id) {
+    return axios.get(API_URL + "/" + id, { headers: authHeader() }); //인증 필요
   }
 }
 //객체로 만들어서 사용(export)
