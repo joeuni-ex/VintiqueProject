@@ -37,13 +37,7 @@ const AdminOrder = () => {
                 <th>배송상태</th>
               </tr>
             </thead>
-            <tbody>
-              <ProductList />
-              <ProductList />
-              <ProductList />
-              <ProductList />
-              <ProductList />
-            </tbody>
+            <tbody></tbody>
           </table>
         </div>
       </div>
