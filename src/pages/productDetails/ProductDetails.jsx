@@ -19,6 +19,7 @@ const ProductDetails = () => {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState("");
 
+  //제품id가 변경 될 때마다 실행
   useEffect(() => {
     setIsLoading(true);
     productService
@@ -29,7 +30,7 @@ const ProductDetails = () => {
         setProduct(productData);
 
         //기본 이미지 -> 처음 시작 시 제일 크게 나오는 이미지
-        setSelectedImage(productData[0].mainImage); // Set default selected image
+        setSelectedImage(productData[0].mainImage);
         setIsLoading(false);
       })
 
