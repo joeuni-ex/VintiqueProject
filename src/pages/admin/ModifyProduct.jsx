@@ -82,7 +82,7 @@ const ModifyProduct = () => {
     if (name === "category") {
       setSelected(value);
     }
-    setProduct((prevState) => {
+    setModifyProduct((prevState) => {
       return {
         ...prevState,
         [name]: value,
@@ -139,6 +139,8 @@ const ModifyProduct = () => {
     });
   };
 
+  const onModifyProductBtnClickHandler = () => {};
+
   //제품id에 맞게 제품 정보 가져오기
   useEffect(() => {
     setIsLoading(true);
@@ -168,6 +170,8 @@ const ModifyProduct = () => {
         setIsLoading(false);
       });
   }, [id]);
+
+  console.log(modifyProduct);
 
   return (
     <div className="board-write-wrapper base-color">
@@ -207,7 +211,7 @@ const ModifyProduct = () => {
                     className="board-write-input"
                     name="name"
                     type="text"
-                    value={product[0]?.name || ""}
+                    value={modifyProduct?.name || product[0]?.name || ""}
                     placeholder="제품명을 입력하세요"
                   />
                   <label className="board-write-label">카테고리</label>
@@ -231,7 +235,7 @@ const ModifyProduct = () => {
                     className="board-write-input"
                     name="price"
                     type="text"
-                    value={product[0]?.price || ""}
+                    value={modifyProduct?.price || product[0]?.price || ""}
                     placeholder="제품 가격을 입력하세요"
                   />
                   <label className="board-write-label">재고</label>
@@ -240,7 +244,7 @@ const ModifyProduct = () => {
                     className="board-write-input"
                     name="stock"
                     type="text"
-                    value={product[0]?.stock || ""}
+                    value={modifyProduct?.stock || product[0]?.stock || ""}
                     placeholder="재고를 입력하세요"
                   />
                   <input
@@ -343,7 +347,7 @@ const ModifyProduct = () => {
                 <p style={{ fontWeight: "600" }}>제품 상세 정보</p>
               </div>
               <textarea
-                value={product[0]?.description}
+                value={modifyProduct?.description || product[0]?.description}
                 onChange={handleChange}
                 name="description"
                 className="board-write-content-textarea"
@@ -352,13 +356,13 @@ const ModifyProduct = () => {
             </div>
             <div style={{ display: "flex", justifyContent: "end" }}>
               <div className="basic-btn brown-btn" style={{ margin: "20px 0" }}>
-                {/* <div onClick={onAddProductBtnClickHandler}>
+                <div onClick={onModifyProductBtnClickHandler}>
                   {isLoading ? (
                     <p style={{ fontSize: "1rem" }}> 로딩중</p>
                   ) : (
                     <p style={{ fontSize: "1rem" }}> 제품 수정</p>
                   )}
-                </div> */}
+                </div>
               </div>
             </div>
           </div>
