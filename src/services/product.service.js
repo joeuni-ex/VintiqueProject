@@ -21,9 +21,7 @@ class ProductService {
           "Content-Type": "multipart/form-data",
         },
       };
-
       const response = await axios.post(ADD_IMAGE_URL(), formData, config);
-
       const imageUrl = response.data;
       return imageUrl;
     } catch (error) {
@@ -43,9 +41,9 @@ class ProductService {
   }
 
   //제품 상세 조회(id)
-  getByIdProduct(id) {
-    return axios.get(API_URL + "/" + id, { headers: authHeader() }); //인증 필요
-  }
+  getByIdProduct = async (id) => {
+    return await axios.get(API_URL + "/" + id, { headers: authHeader() }); //인증 필요
+  };
 }
 //객체로 만들어서 사용(export)
 const productService = new ProductService();
