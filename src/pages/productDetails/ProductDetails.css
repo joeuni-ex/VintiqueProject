@@ -29,7 +29,7 @@
 .detail-page-container {
   display: flex;
   width: 1440px;
-  height: 820px;
+  height: 600px;
   margin-top: 40px;
 }
 
@@ -66,8 +66,8 @@
 }
 
 .single_product_display {
-  width: 600px;
-  height: 600px;
+  width: 500px;
+  height: 500px;
   object-fit: cover;
   border-radius: 10px;
 }
@@ -104,13 +104,34 @@
   margin-bottom: 3px;
 }
 
-.quantity_input {
+.add_cart {
+  width: 215px;
+  height: 64px;
+  background-color: white;
+  border-radius: 10px;
+  border: 1px solid;
   font-size: 20px;
-  font-weight: 700;
-  margin: 5px 0 16px;
+  cursor: pointer;
+  margin-left: 20px;
 }
 
-.add_cart {
-  width: fit-content;
-  padding: 8px 18px;
+/* 상세 정보 */
+
+.x-margin-20 {
+  margin: 30px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.description_image {
+  width: 400px;
+  height: 250px;
+  background-color: antiquewhite;
+  margin: 30px;
+  border-radius: 10px;
+}
+
+.detail-section {
+  padding: 50px 0;
+  border-top: 1.5px solid #d9d9d9;
 }

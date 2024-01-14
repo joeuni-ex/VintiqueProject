@@ -1,8 +1,9 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "./ProductDetails.css";
 import { useEffect, useState } from "react";
 import productService from "../../services/product.service";
 import QuantityInput from "./QuantityInput";
+import Product from "../../components/product/Product";
 
 const ProductDetails = () => {
   //처음 시작 이미지 번호는 0임 -> product.images[0] = image1 을 의미함
@@ -37,6 +38,8 @@ const ProductDetails = () => {
         setIsLoading(false);
       });
   }, [id]);
+
+  const listCount = [1, 2, 3, 4];
 
   return (
     <div className="basic-container ">
@@ -96,29 +99,88 @@ const ProductDetails = () => {
           {/* 상품 디테일 */}
           <div className="single_product_details">
             <h1 className="single_product_title">{product[0]?.name}</h1>
-            <p className="single_product_description">
-              {product[0]?.description}
-            </p>
+            <div style={{ height: "300px" }}>
+              <p className="single_product_description">
+                {product[0]?.description}
+              </p>
+            </div>
+
             <p className="single_product_price">
               {/* 우리나라 원화와 맞게 toLocaleString으로 변환 */}
               {product[0]?.price.toLocaleString("ko-KR")} 원
             </p>
             <>
-              <div className="align_center quantity_input">
-                <QuantityInput
-                  quantity={quantity}
-                  setQuantity={setQuantity}
-                  stock={product[0]?.stock}
-                />
-              </div>
-              <button
-                // onClick={() => addToCart(product, quantity)}
-                className="search_button add_cart"
+              <div
+                style={{
+                  display: "flex",
+                  width: "600px",
+                  alignContent: "center",
+                }}
               >
-                장바구니 추가
-              </button>
+                <div className="align_center quantity_input">
+                  <QuantityInput
+                    quantity={quantity}
+                    setQuantity={setQuantity}
+                    stock={product[0]?.stock}
+                  />
+                </div>
+                <button className="add_cart">Add To Cart</button>
+              </div>
             </>
             {/* )} */}
+          </div>
+        </div>
+      </div>
+      {/* 두 번째 섹션 */}
+      <div className="container-list detail-section">
+        <div style={{ display: "flex" }}>
+          <p className="x-margin-20">Description</p>
+          <p className="x-margin-20">Additional Information</p>
+          <p className="x-margin-20">Reviews [5]</p>
+        </div>
+        <div style={{ width: "70%", color: "#9F9F9F" }}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum
+            voluptas commodi cumque debitis, enim, ex ipsa repellat mollitia
+            iste delectus illum accusamus blanditiis libero veniam distinctio
+            dolore reiciendis ducimus temporibus!
+          </p>
+
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. A, atque
+            soluta! Dolorum sit, harum quo perspiciatis beatae cumque. Debitis
+            tempora quidem voluptatem, quam nesciunt eligendi officia eos
+            praesentium nulla rerum.
+          </p>
+        </div>
+        <div>
+          <img
+            className="description_image"
+            src={product[0]?.boardImageList}
+            alt=""
+          />
+          <img
+            className="description_image"
+            src={product[1]?.boardImageList}
+            alt=""
+          />
+        </div>
+      </div>
+      <div className="divider"></div>
+
+      {/* 세 번째 섹션 */}
+      <div className="container-list detail-section">
+        <div className="container-list">
+          <div className="ListTitle">
+            <h2>많이 본 상품들 </h2>
+          </div>
+          <div className="HomeMainContent3">
+            {listCount.map((product, index) => (
+              <Product key={index} />
+            ))}
+          </div>
+          <div className="showBtn">
+            <Link to="/shop">Show More</Link>
           </div>
         </div>
       </div>
