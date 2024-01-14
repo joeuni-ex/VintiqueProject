@@ -16,7 +16,7 @@ const AddProduct = () => {
   //select box
   const selectList = [
     { value: "default", name: "카테고리 선택" },
-    { value: "bedroom", name: "Bedroom" },
+    { value: "dining", name: "Dining" },
     { value: "living", name: "Living" },
     { value: "bedroom", name: "Bedroom" },
   ];
