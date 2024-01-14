@@ -146,6 +146,9 @@ const ModifyProduct = () => {
       .getByIdProduct(id)
       .then((response) => {
         const productData = response.data;
+        const boardImageList = productData.map(
+          (product) => product.boardImageList
+        );
 
         setProduct(productData);
         //카테고리 세팅
@@ -155,6 +158,8 @@ const ModifyProduct = () => {
           productData[0].mainImage ? [productData[0].mainImage] : []
         );
         //사이드 이미지 세팅
+        setImageUrls(boardImageList);
+
         setIsLoading(false);
       })
 
@@ -202,7 +207,7 @@ const ModifyProduct = () => {
                     className="board-write-input"
                     name="name"
                     type="text"
-                    value={product[0]?.name}
+                    value={product[0]?.name || ""}
                     placeholder="제품명을 입력하세요"
                   />
                   <label className="board-write-label">카테고리</label>
@@ -226,7 +231,7 @@ const ModifyProduct = () => {
                     className="board-write-input"
                     name="price"
                     type="text"
-                    value={product[0]?.price}
+                    value={product[0]?.price || ""}
                     placeholder="제품 가격을 입력하세요"
                   />
                   <label className="board-write-label">재고</label>
@@ -235,7 +240,7 @@ const ModifyProduct = () => {
                     className="board-write-input"
                     name="stock"
                     type="text"
-                    value={product[0]?.stock}
+                    value={product[0]?.stock || ""}
                     placeholder="재고를 입력하세요"
                   />
                   <input
