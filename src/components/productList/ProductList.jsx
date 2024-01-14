@@ -45,7 +45,10 @@ const ProductList = ({ product, idx }) => {
         >
           삭제
         </a>
-        /수정
+        /
+        <Link to={`/modify-product/${product.id}`} className="LinkTag">
+          수정
+        </Link>
       </td>
     </tr>
   );
