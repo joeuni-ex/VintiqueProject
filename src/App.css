@@ -51,6 +51,10 @@
   border-radius: 2px;
 }
 
+.align_center {
+  display: flex;
+}
+
 table {
   border: 1px #a39485 solid;
   font-size: 0.9em;
