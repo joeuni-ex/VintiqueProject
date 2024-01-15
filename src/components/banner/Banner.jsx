@@ -8,9 +8,9 @@ const Banner = ({ title, subTitle, category }) => {
       <p className="bannerText">{title}</p>
       {subTitle && (
         <p className="bannerCategory">
-          <span style={{ fontWeight: "bold" }}>Home</span> &#62;
+          Home &#62;
           {subTitle}
-          &#62; {category}
+          &#62; <span style={{ fontWeight: "bold" }}>{category}</span>
         </p>
       )}
     </div>
