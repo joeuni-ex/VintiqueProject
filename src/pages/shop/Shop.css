@@ -6,6 +6,7 @@
   justify-content: center;
   align-items: center;
 }
+/* 배너 이미지 */
 .bannerImg {
   display: flex;
   justify-content: center;
@@ -24,11 +25,38 @@
   filter: blur(0.8px);
   opacity: 0.6;
 }
-.sort {
+
+/* 옵션 */
+.shop-option-container {
   display: flex;
   justify-content: center;
   align-items: center;
+  justify-content: space-around;
   width: 100%;
   height: 100px;
   background-color: #f9f1e7;
+}
+
+.shop-option-left {
+  display: flex;
+}
+
+.shop-option-rigth {
+  font-size: 1.1rem;
+  font-weight: 600;
+  display: flex;
+}
+
+.shop-option-rigth-show {
+  margin-left: 20px;
+  border: none;
+  width: 55px;
+  height: 55px;
+}
+
+.shop-option-rigth-sort {
+  margin-left: 20px;
+  border: none;
+  width: 188px;
+  height: 55px;
 }
