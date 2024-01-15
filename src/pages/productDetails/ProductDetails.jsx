@@ -5,6 +5,8 @@ import productService from "../../services/product.service";
 import QuantityInput from "./QuantityInput";
 import Product from "../../components/product/Product";
 import Description from "../../components/productDetail/Description";
+import Reviews from "../../components/productDetail/Reviews";
+import Information from "../../components/productDetail/Information";
 
 const ProductDetails = () => {
   //처음 시작 이미지 번호는 0임 -> product.images[0] = image1 을 의미함
@@ -175,7 +177,14 @@ const ProductDetails = () => {
             Reviews [5]
           </p>
         </div>
-        <Description product={product} />
+        {/* 메뉴 선택에 따라 컴포넌트 변경  */}
+        {selectedMenu === "description" ? (
+          <Description product={product} />
+        ) : (
+          ""
+        )}
+        {selectedMenu === "info" ? <Information product={product} /> : ""}
+        {selectedMenu === "reviews" ? <Reviews /> : ""}
       </div>
       <div className="divider"></div>
 
