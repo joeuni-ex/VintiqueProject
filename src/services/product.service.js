@@ -36,8 +36,8 @@ class ProductService {
   }
 
   //모든 제품 조회
-  getAllProducts(page) {
-    return axios.get(API_URL + "?page=" + page); //조회는 인증이 필요없어서 headers 안들어감
+  getAllProducts(page, maxpage) {
+    return axios.get(API_URL + "?page=" + page + "&maxpage=" + maxpage); //조회는 인증이 필요없어서 headers 안들어감
   }
 
   //제품 상세 조회(id)

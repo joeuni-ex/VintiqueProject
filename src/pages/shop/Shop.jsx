@@ -3,24 +3,23 @@ import Banner from "../../components/banner/Banner";
 import Product from "../../components/product/Product";
 import "./Shop.css";
 import productService from "../../services/product.service";
+import Pagination from "../../components/pagination/Pagination";
 
 const Shop = () => {
-  const listCount = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+  const maxPageSize = 12;
 
   const [page, setPage] = useState(0);
   const [totalPage, setTotalPage] = useState(0);
   const [productList, setProductList] = useState([]);
 
   useEffect(() => {
-    productService.getAllProducts(page).then((response) => {
+    productService.getAllProducts(page, maxPageSize).then((response) => {
       setProductList(response.data.content);
       setPage(response.data.pageable.pageNumber); // 현재 페이지
       setTotalPage(response.data.pageable.pageSize); //총 페이지
       //console.log(response.data);
     });
   }, [page]);
-
-  console.log(productList);
 
   return (
     <div className="shopContainer">
@@ -33,6 +32,7 @@ const Shop = () => {
           ))}
         </div>
       </div>
+      <Pagination page={page} setPage={setPage} totalPage={totalPage} />
     </div>
   );
 };

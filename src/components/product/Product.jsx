@@ -8,9 +8,9 @@ import { Link } from "react-router-dom";
 const Product = ({ product }) => {
   return (
     <div className="product">
-      <img className="productImg" src={mainImg} alt="" />
+      <img className="productImg" src={product?.mainImage} alt="" />
       <div className="productInfo">
-        <p>{product?.category}</p>
+        <p>{product?.name}</p>
         <span>{product?.description}</span>
         <p style={{ fontSize: "1.1rem", marginBottom: "1rem" }}>
           가격 : {product?.price.toLocaleString("ko-KR")} 원

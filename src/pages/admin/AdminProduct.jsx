@@ -11,8 +11,10 @@ const AdminProduct = () => {
   const [totalPage, setTotalPage] = useState(0);
   const [productList, setProductList] = useState([]);
 
+  const maxPageSize = 5;
+
   useEffect(() => {
-    productService.getAllProducts(page).then((response) => {
+    productService.getAllProducts(page, maxPageSize).then((response) => {
       setProductList(response.data.content);
       setPage(response.data.pageable.pageNumber); // 현재 페이지
       setTotalPage(response.data.pageable.pageSize); //총 페이지
