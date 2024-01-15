@@ -1,0 +1,24 @@
+.cart-item-container {
+  display: flex;
+  width: 817px;
+  height: 100px;
+  background-color: beige;
+}
+
+.cart-item-container {
+  display: flex;
+  justify-content: center;
+}
+
+.cart-item-image-container {
+  width: 80px;
+  height: 80px;
+  border-radius: 5px;
+  background-color: aquamarine;
+}
+
+.cart-item-contents {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

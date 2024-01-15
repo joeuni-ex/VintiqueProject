@@ -15,6 +15,7 @@ import { Role } from "./model/Role";
 import AddProduct from "./pages/admin/AddProduct";
 import ModifyProduct from "./pages/admin/ModifyProduct";
 import Shop from "./pages/shop/Shop";
+import Cart from "./pages/cart/Cart";
 
 function App() {
   return (
@@ -71,6 +72,14 @@ function App() {
           element={
             <AuthGuard roles={[Role.ADMIN, Role.USER]}>
               <MyPage />
+            </AuthGuard>
+          }
+        />
+        <Route
+          path="/cart"
+          element={
+            <AuthGuard roles={[Role.ADMIN, Role.USER]}>
+              <Cart />
             </AuthGuard>
           }
         />
