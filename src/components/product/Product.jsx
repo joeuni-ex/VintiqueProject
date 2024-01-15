@@ -5,20 +5,20 @@ import { LuShoppingCart } from "react-icons/lu";
 import { MdShare } from "react-icons/md";
 import { Link } from "react-router-dom";
 
-const Product = () => {
+const Product = ({ product }) => {
   return (
     <div className="product">
       <img className="productImg" src={mainImg} alt="" />
       <div className="productInfo">
-        <p>Dining</p>
-        <span>설명</span>
+        <p>{product?.category}</p>
+        <span>{product?.description}</span>
         <p style={{ fontSize: "1.1rem", marginBottom: "1rem" }}>
-          가격 : 15000원
+          가격 : {product?.price.toLocaleString("ko-KR")} 원
         </p>
       </div>
       <div className="productAddCart">
         <Link
-          to={`/product/:1`}
+          to={`/product/${product?.id}`}
           style={{ color: "black", textDecoration: "none" }}
         >
           <div className="AddCartBtn">
