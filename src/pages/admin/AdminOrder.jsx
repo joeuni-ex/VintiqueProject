@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import ProductList from "../../components/productList/ProductList";
 import AdminCate from "../../components/userCategory/AdminCate";
-import "./AdminOrder.css";
+import "./AdminPage.css";
 
 // TODO 주문 관리 페이지 -> GET Purchase
 const AdminOrder = () => {

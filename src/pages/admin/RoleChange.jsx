@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import "./AdminOrder.css";
+import "./AdminPage.css";
 import { useNavigate } from "react-router-dom";
 import userService from "../../services/user.service";
 import { clearCurrentUser } from "../../store/actions/user";
