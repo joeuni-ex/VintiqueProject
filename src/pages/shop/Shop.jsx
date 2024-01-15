@@ -4,6 +4,7 @@ import Product from "../../components/product/Product";
 import "./Shop.css";
 import productService from "../../services/product.service";
 import Pagination from "../../components/pagination/Pagination";
+import BottomBanner from "../../components/banner/BottomBanner";
 
 const Shop = () => {
   const maxPageSize = 12;
@@ -33,6 +34,7 @@ const Shop = () => {
         </div>
       </div>
       <Pagination page={page} setPage={setPage} totalPage={totalPage} />
+      <BottomBanner />
     </div>
   );
 };
