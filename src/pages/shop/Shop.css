@@ -31,7 +31,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  justify-content: space-around;
   width: 100%;
   height: 100px;
   background-color: #f9f1e7;
@@ -39,6 +38,24 @@
 
 .shop-option-left {
   display: flex;
+
+  width: 400px;
+  font-size: 1.1rem;
+}
+
+.shop-option-left-cateogry {
+  display: flex;
+  align-items: center;
+  margin: 0 20px;
+  cursor: pointer;
+}
+
+.shop-option-left-cateogry-selected {
+  display: flex;
+  align-items: center;
+  margin: 0 20px;
+  font-weight: 600;
+  cursor: pointer;
 }
 
 .shop-option-rigth {

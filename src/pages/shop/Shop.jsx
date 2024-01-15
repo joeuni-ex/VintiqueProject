@@ -11,6 +11,7 @@ const Shop = () => {
   const [page, setPage] = useState(0); // 현재 페이지
   const [totalPage, setTotalPage] = useState(0); //총 페이지
   const [productList, setProductList] = useState([]);
+  const [category, setCategory] = useState("All");
 
   useEffect(() => {
     productService.getAllProducts(page, maxPageSize).then((response) => {
@@ -21,13 +22,18 @@ const Shop = () => {
     });
   }, [page, maxPageSize]);
 
+  //한 페이지 최대 출력 개수 옵션 변경
   const handleChangeMaxShow = (e) => {
     setMaxPageSize(e.target.value);
   };
 
+  const handleChangeCategory = (category) => {
+    setCategory(category);
+  };
+
   return (
     <div className="shopContainer">
-      <Banner title="Shop" subTitle="Shop" category="전체" />
+      <Banner title="Shop" subTitle="Shop" category={category} />
       <div className="shop-option-container">
         <div
           style={{
@@ -37,9 +43,38 @@ const Shop = () => {
           }}
         >
           <div className="shop-option-left">
-            <div>▶Dining</div>
-            <div>▶Living</div>
-            <div>▶Bedroom</div>
+            <div
+              onClick={() => handleChangeCategory("All")}
+              className={
+                category && category === "All"
+                  ? "shop-option-left-cateogry-selected"
+                  : "shop-option-left-cateogry"
+              }
+            >
+              {category && category === "All" ? "▶" : ""} All
+            </div>
+            <div
+              onClick={() => handleChangeCategory("Dining")}
+              className={
+                category && category === "Dining"
+                  ? "shop-option-left-cateogry-selected"
+                  : "shop-option-left-cateogry"
+              }
+            >
+              {category && category === "Dining" ? "▶" : ""} Dining
+            </div>
+            <div
+              onClick={() => handleChangeCategory("Living")}
+              className="shop-option-left-cateogry"
+            >
+              {category && category === "Living" ? "▶" : ""} Living
+            </div>
+            <div
+              onClick={() => handleChangeCategory("Bedroom")}
+              className="shop-option-left-cateogry"
+            >
+              {category && category === "Bedroom" ? "▶" : ""} Bedroom
+            </div>
           </div>
           <div className="shop-option-rigth">
             <div>
