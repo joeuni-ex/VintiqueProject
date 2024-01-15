@@ -16,9 +16,17 @@ const ProductDetails = () => {
   //제품 수량
   const [quantity, setQuantity] = useState(1); //수량
 
+  //메뉴 선택
+  const [selectedMenu, setSelectedMenu] = useState("description");
+
   const { id } = useParams(); //주소 변수 path Variable
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState("");
+
+  //메뉴 변경 함수
+  const handleChangeMenu = (menu) => {
+    setSelectedMenu(menu);
+  };
 
   //제품id가 변경 될 때마다 실행
   useEffect(() => {
@@ -41,7 +49,11 @@ const ProductDetails = () => {
       });
   }, [id]);
 
+  useEffect(() => {}, [selectedMenu]);
+
   const listCount = [1, 2, 3, 4];
+
+  console.log(selectedMenu);
 
   return (
     <div className="basic-container ">
@@ -136,9 +148,32 @@ const ProductDetails = () => {
       {/* 두 번째 섹션 */}
       <div className="container-list detail-section">
         <div style={{ display: "flex" }}>
-          <p className="x-margin-20">Description</p>
-          <p className="x-margin-20">Additional Information</p>
-          <p className="x-margin-20">Reviews [5]</p>
+          <p
+            onClick={() => handleChangeMenu("description")}
+            className={
+              selectedMenu === "description"
+                ? "selected-menu"
+                : "detail-page-menu"
+            }
+          >
+            Description
+          </p>
+          <p
+            onClick={() => handleChangeMenu("info")}
+            className={
+              selectedMenu === "info" ? "selected-menu" : "detail-page-menu"
+            }
+          >
+            Additional Information
+          </p>
+          <p
+            onClick={() => handleChangeMenu("reviews")}
+            className={
+              selectedMenu === "reviews" ? "selected-menu" : "detail-page-menu"
+            }
+          >
+            Reviews [5]
+          </p>
         </div>
         <Description product={product} />
       </div>

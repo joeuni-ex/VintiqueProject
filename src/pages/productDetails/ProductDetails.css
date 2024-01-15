@@ -117,18 +117,20 @@
 
 /* 상세 정보 */
 
-.x-margin-20 {
+.detail-page-menu {
   margin: 30px;
   font-size: 24px;
   font-weight: 700;
+  cursor: pointer;
+  color: #d9d9d9;
 }
 
-.description_image {
-  width: 400px;
-  height: 250px;
-  background-color: antiquewhite;
+.selected-menu {
   margin: 30px;
-  border-radius: 10px;
+  font-size: 24px;
+  font-weight: 700;
+  cursor: pointer;
+  color: black;
 }
 
 .detail-section {
