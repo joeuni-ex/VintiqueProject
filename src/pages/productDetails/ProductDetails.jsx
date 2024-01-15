@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import productService from "../../services/product.service";
 import QuantityInput from "./QuantityInput";
 import Product from "../../components/product/Product";
+import Description from "../../components/productDetail/Description";
 
 const ProductDetails = () => {
   //처음 시작 이미지 번호는 0임 -> product.images[0] = image1 을 의미함
@@ -139,33 +140,7 @@ const ProductDetails = () => {
           <p className="x-margin-20">Additional Information</p>
           <p className="x-margin-20">Reviews [5]</p>
         </div>
-        <div style={{ width: "70%", color: "#9F9F9F" }}>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum
-            voluptas commodi cumque debitis, enim, ex ipsa repellat mollitia
-            iste delectus illum accusamus blanditiis libero veniam distinctio
-            dolore reiciendis ducimus temporibus!
-          </p>
-
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. A, atque
-            soluta! Dolorum sit, harum quo perspiciatis beatae cumque. Debitis
-            tempora quidem voluptatem, quam nesciunt eligendi officia eos
-            praesentium nulla rerum.
-          </p>
-        </div>
-        <div>
-          <img
-            className="description_image"
-            src={product[0]?.boardImageList}
-            alt=""
-          />
-          <img
-            className="description_image"
-            src={product[1]?.boardImageList}
-            alt=""
-          />
-        </div>
+        <Description product={product} />
       </div>
       <div className="divider"></div>
 
