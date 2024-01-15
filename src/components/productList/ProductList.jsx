@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import "./ProductList.css";
 import productService from "../../services/product.service";
+import { useState } from "react";
 
 const ProductList = ({ product, idx }) => {
   const deleteProduct = async (e) => {
@@ -34,9 +35,16 @@ const ProductList = ({ product, idx }) => {
           </div>
         </div>
       </td>
+
       <td>{product?.price}원</td>
+
       <td>{product?.stock}</td>
-      <td>판매중</td>
+      {product?.stock === 0 ? (
+        <td style={{ color: "red" }}>매진</td>
+      ) : (
+        <td>판매중</td>
+      )}
+
       <td>
         <a
           onClick={deleteProduct}

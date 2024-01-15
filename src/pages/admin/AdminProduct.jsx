@@ -12,7 +12,7 @@ const AdminProduct = () => {
     productService.getAllProducts().then((response) => {
       setProductList(response.data);
     });
-  }, [productList]);
+  }, []);
 
   return (
     <div className="basic-container base-color">
