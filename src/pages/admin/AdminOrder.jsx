@@ -15,7 +15,7 @@ const AdminOrder = () => {
           <div
             style={{ display: "flex", width: "100%", justifyContent: "end" }}
           >
-            <Link to="/admin/add-product">
+            <Link to="/admin/add-product" style={{ textDecoration: "none" }}>
               <div
                 className="basic-btn brown-btn"
                 style={{ marginBottom: "10px" }}
