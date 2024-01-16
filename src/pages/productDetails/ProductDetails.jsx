@@ -60,8 +60,6 @@ const ProductDetails = () => {
 
   const listCount = [1, 2, 3, 4];
 
-  console.log(selectedMenu);
-
   return (
     <div className="basic-container ">
       <div className="detailCategory">

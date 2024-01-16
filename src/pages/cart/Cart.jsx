@@ -31,6 +31,21 @@ const Cart = () => {
     setTotal(newTotal);
   }, [subtotal]);
 
+  // 장바구니 삭제 시 리랜더링
+  const handleCartItemDelete = async (cartItemId) => {
+    try {
+      await cartService.deleteCart(cartItemId).then(() => {
+        alert("정상적으로 삭제했습니다.");
+        cartService.getAllCart().then((response) => {
+          setCarts(response.data);
+        });
+      });
+    } catch (err) {
+      console.log(err);
+      alert("장바구니에서 제품 삭제 시 에러 발생");
+    }
+  };
+
   return (
     <div className="basic-container ">
       <Banner title="Cart" subTitle="cart" />
@@ -46,7 +61,11 @@ const Cart = () => {
           <div>
             {carts &&
               carts.map((product, index) => (
-                <CartItem key={index} product={product} />
+                <CartItem
+                  key={index}
+                  product={product}
+                  onDelete={handleCartItemDelete}
+                />
               ))}
           </div>
         </div>
