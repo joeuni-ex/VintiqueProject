@@ -4,8 +4,21 @@ import { FaRegHeart } from "react-icons/fa";
 import { LuShoppingCart } from "react-icons/lu";
 import { MdShare } from "react-icons/md";
 import { Link } from "react-router-dom";
+import Cart from "../../model/Cart";
+import CartService from "../../services/cart.service";
 
 const Product = ({ product }) => {
+  const handleAddCart = async () => {
+    try {
+      //장바구니 저장
+      await CartService.saveCart(new Cart(product.id, 1));
+      alert("정상적으로 장바구니에 추가되었습니다.");
+    } catch (err) {
+      alert("장바구니 추가 시 에러 발생");
+      console.error(err);
+    }
+  };
+
   return (
     <div className="product">
       <img className="productImg" src={product?.mainImage} alt="" />
@@ -30,7 +43,7 @@ const Product = ({ product }) => {
             <MdShare />
             Share
           </p>
-          <p>
+          <p onClick={handleAddCart}>
             <LuShoppingCart />
             Cart
           </p>
