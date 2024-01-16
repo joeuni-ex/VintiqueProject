@@ -190,7 +190,7 @@ const AddProduct = () => {
       navigate("/admin/product");
     } catch (err) {
       setIsLoading(false);
-      alert("!제품 저장 시 에러 발생");
+      alert("제품 저장 시 에러 발생");
       console.error(err);
     }
   };
