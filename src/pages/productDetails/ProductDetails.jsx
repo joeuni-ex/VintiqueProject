@@ -7,6 +7,9 @@ import Product from "../../components/product/Product";
 import Description from "../../components/productDetail/Description";
 import Reviews from "../../components/productDetail/Reviews";
 import Information from "../../components/productDetail/Information";
+// 별점 아이콘 jsx
+import Star from "../../components/rate/Star";
+import HalfStar from "../../components/rate/HalfStar";
 
 const ProductDetails = () => {
   //처음 시작 이미지 번호는 0임 -> product.images[0] = image1 을 의미함
@@ -24,6 +27,8 @@ const ProductDetails = () => {
   const { id } = useParams(); //주소 변수 path Variable
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState("");
+  //평점
+  const [rate, setRate] = useState(2.5);
 
   //메뉴 변경 함수
   const handleChangeMenu = (menu) => {
@@ -79,7 +84,6 @@ const ProductDetails = () => {
           <p>{product[0]?.name}</p>
         </div>
       </div>
-      {isLoading && <em>로딩중...</em>}
       <div className="detail-page-container">
         <div className="detail-page-container-left">
           <div className="align_center">
@@ -115,6 +119,13 @@ const ProductDetails = () => {
           {/* 상품 디테일 */}
           <div className="single_product_details">
             <h1 className="single_product_title">{product[0]?.name}</h1>
+            {/* 평점  */}
+            <div>
+              {Array.from({ length: Math.floor(rate) }).map((_, index) => (
+                <Star key={index} />
+              ))}
+              {rate % 1 !== 0 && <HalfStar />}
+            </div>
             <div style={{ height: "300px" }}>
               <p className="single_product_description">
                 {product[0]?.description}
@@ -143,7 +154,6 @@ const ProductDetails = () => {
                 <button className="add_cart">Add To Cart</button>
               </div>
             </>
-            {/* )} */}
           </div>
         </div>
       </div>
