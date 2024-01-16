@@ -16,10 +16,10 @@ class CartService {
   //   return axios.delete(API_URL + "/" + id, { headers: authHeader() }); //인증이 필요하여 헤더에 토큰 들어감
   // }
 
-  // //장바구니 제품 조회
-  // getAllProducts(page, maxpage) {
-  //   return axios.get(API_URL + "?page=" + page + "&maxpage=" + maxpage); //조회는 인증이 필요없어서 headers 안들어감
-  // }
+  //장바구니 제품 조회
+  getAllCart() {
+    return axios.get(API_URL, { headers: authHeader() });
+  }
 
   // //장바구니 상세 조회(id)
   // getByIdProduct = async (id) => {

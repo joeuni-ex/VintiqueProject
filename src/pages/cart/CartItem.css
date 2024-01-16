@@ -18,6 +18,12 @@
   background-color: #b88e2f;
 }
 
+.cart-item-image-container {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+}
+
 .cart-item-contents {
   display: flex;
   align-items: center;
