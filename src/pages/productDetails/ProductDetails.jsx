@@ -10,6 +10,8 @@ import Information from "../../components/productDetail/Information";
 // 별점 아이콘 jsx
 import Star from "../../components/rate/Star";
 import HalfStar from "../../components/rate/HalfStar";
+import cartService from "../../services/cart.service";
+import Cart from "../../model/Cart";
 
 const ProductDetails = () => {
   //처음 시작 이미지 번호는 0임 -> product.images[0] = image1 을 의미함
@@ -57,6 +59,22 @@ const ProductDetails = () => {
   }, [id]);
 
   useEffect(() => {}, [selectedMenu]);
+
+  console.log(quantity);
+
+  //장바구니 추가
+  const handleAddCart = async () => {
+    if (confirm("장바구니에 추가하시겠습니까?")) {
+      try {
+        //장바구니 저장
+        await cartService.saveCart(new Cart(id, quantity));
+        alert("정상적으로 장바구니에 추가되었습니다.");
+      } catch (err) {
+        alert("장바구니 추가 시 에러 발생");
+        console.error(err);
+      }
+    }
+  };
 
   const listCount = [1, 2, 3, 4];
 
@@ -149,7 +167,9 @@ const ProductDetails = () => {
                     stock={product[0]?.stock}
                   />
                 </div>
-                <button className="add_cart">Add To Cart</button>
+                <button onClick={handleAddCart} className="add_cart">
+                  Add To Cart
+                </button>
               </div>
             </>
           </div>
