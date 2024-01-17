@@ -4,10 +4,12 @@ import BottomBanner from "../../components/banner/BottomBanner";
 import "./Cart.css";
 import CartItem from "./CartItem";
 import cartService from "../../services/cart.service";
+import { useNavigate } from "react-router-dom";
 const Cart = () => {
   const [carts, setCarts] = useState([]);
   const [subtotal, setSubtotal] = useState(0); //소계
   const [total, setTotal] = useState(0); // 총합
+  const navigate = useNavigate();
 
   useEffect(() => {
     cartService.getAllCart().then((response) => {
@@ -46,6 +48,11 @@ const Cart = () => {
     }
   };
 
+  //결제 클릭 시
+  const handleClickPayment = () => {
+    //Todo 백엔드 Purchase 추가 및 장바구니 삭제 구현
+    navigate("/order/success");
+  };
   return (
     <div className="basic-container ">
       <Banner title="Cart" subTitle="cart" />
@@ -76,7 +83,7 @@ const Cart = () => {
           <div className="cart-totals-text">
             <div>
               <p style={{ fontWeight: "bold" }}>Subtotal</p>
-              <p>{subtotal.toLocaleString("ko-KR")}</p>
+              <p>{subtotal.toLocaleString("ko-KR")}원</p>
             </div>
             <div>
               <p style={{ fontWeight: "bold" }}>배송비</p>
@@ -85,11 +92,11 @@ const Cart = () => {
             <div>
               <p style={{ fontWeight: "bold" }}>Total</p>
               <p style={{ fontWeight: "bold", color: "#b88e2f" }}>
-                {total.toLocaleString("ko-KR")}
+                {total.toLocaleString("ko-KR")}원
               </p>
             </div>
           </div>
-          <div className="cart-totals-btn">
+          <div onClick={handleClickPayment} className="cart-totals-btn">
             <p>payment</p>
           </div>
         </div>
