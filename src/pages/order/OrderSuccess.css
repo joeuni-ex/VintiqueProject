@@ -1,0 +1,40 @@
+.order-page-container {
+  width: 1440px;
+  height: 800px;
+}
+
+.order-page-title {
+  margin-top: 80px;
+  margin-bottom: 1.2rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.order-page-result-container {
+  display: flex;
+  height: 600px;
+}
+/* 주문 완료 페이지 왼쪽 컨텐츠 */
+.order-page-result-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  flex: 0.7;
+}
+
+.order-page-result-left-title {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.order-page-result-left-title span {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #b88e2f;
+}
+
+.order-page-result-right {
+  flex: 0.3;
+  background: #f9f1e7;
+}
