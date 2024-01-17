@@ -22,8 +22,6 @@ const AdminProduct = () => {
     });
   }, [page]);
 
-  console.log(productList);
-
   return (
     <div className="basic-container base-color">
       {/* <Banner title={title} /> */}
