@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import "./ProductList.css";
 import productService from "../../services/product.service";
-import { useState } from "react";
 
 const ProductList = ({ product, idx }) => {
   const deleteProduct = async (e) => {

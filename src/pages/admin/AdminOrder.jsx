@@ -2,9 +2,29 @@ import { Link } from "react-router-dom";
 import ProductList from "../../components/productList/ProductList";
 import AdminCate from "../../components/userCategory/AdminCate";
 import "./AdminPage.css";
+import purchaseService from "../../services/purchase.service";
+import { useEffect, useState } from "react";
+import OrderList from "../../components/orderList/OrderList";
+import Pagination from "../../components/pagination/Pagination";
 
 // TODO 주문 관리 페이지 -> GET Purchase
 const AdminOrder = () => {
+  const [page, setPage] = useState(0);
+  const [totalPage, setTotalPage] = useState(0);
+  const [orderList, setOrderList] = useState([]);
+
+  const maxPageSize = 5; //한 페이지에 출력할 게시물 개수
+
+  useEffect(() => {
+    purchaseService.getAllPurchase(page, maxPageSize).then((response) => {
+      setOrderList(response.data.content);
+      setPage(response.data.pageable.pageNumber); // 현재 페이지
+      setTotalPage(response.data.pageable.pageSize); //총 페이지
+    });
+  }, [page]);
+
+  console.log(orderList);
+
   return (
     <div className="basic-container base-color">
       {/* <Banner title={title} /> */}
@@ -38,8 +58,13 @@ const AdminOrder = () => {
                 <th>배송상태</th>
               </tr>
             </thead>
-            <tbody></tbody>
+            <tbody>
+              {orderList?.map((order, idx) => (
+                <OrderList key={idx} order={order} idx={order.idx} />
+              ))}
+            </tbody>
           </table>
+          <Pagination page={page} setPage={setPage} totalPage={totalPage} />
         </div>
       </div>
     </div>

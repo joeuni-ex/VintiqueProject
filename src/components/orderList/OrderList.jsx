@@ -1,36 +1,33 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const OrderList = () => {
+const OrderList = ({ order }) => {
   return (
     <tr>
-      <td>{idx}</td>
-      <td>{product?.category}</td>
+      <td>{order?.userId}</td>
+      <td>{order?.userId}</td>
       <td>
         <div style={{ display: "flex", alignItems: "center" }}>
-          <Link to={`/product/${product.id}`}>
+          <Link to={`/product/${order.productId}`}>
             <div className="product-list-img">
-              <img src={product?.mainImage} alt="이미지" />
+              <img src={order?.mainImage} alt="이미지" />
             </div>
           </Link>
           <div>
-            <Link className="LinkTag" to={`/product/${product.id}`}>
-              {product?.name}
+            <Link className="LinkTag" to={`/product/${order.productId}`}>
+              {order?.name}
             </Link>
           </div>
         </div>
       </td>
 
-      <td>{product?.price}원</td>
+      <td>{order?.price}원</td>
 
-      <td>{product?.stock}</td>
-      {product?.stock === 0 ? (
-        <td style={{ color: "red" }}>매진</td>
-      ) : (
-        <td>판매중</td>
-      )}
+      <td>{order?.purchaseTime}</td>
 
-      <td>
+      <td>배송상태</td>
+
+      {/* <td>
         <a
           onClick={deleteProduct}
           className="LinkTag"
@@ -42,7 +39,7 @@ const OrderList = () => {
         <Link to={`/modify-product/${product.id}`} className="LinkTag">
           수정
         </Link>
-      </td>
+      </td> */}
     </tr>
   );
 };

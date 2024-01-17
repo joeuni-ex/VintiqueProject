@@ -11,7 +11,7 @@ const AdminProduct = () => {
   const [totalPage, setTotalPage] = useState(0);
   const [productList, setProductList] = useState([]);
 
-  const maxPageSize = 5;
+  const maxPageSize = 5; //한 페이지에 출력할 게시물 개수
 
   useEffect(() => {
     productService.getAllProducts(page, maxPageSize).then((response) => {

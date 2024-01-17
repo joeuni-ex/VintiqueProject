@@ -17,7 +17,7 @@ class PurchaseService {
 
   //구매 조회 (고객용)
   getMyPurchase(page, maxpage) {
-    return axios.get(API_URL, "?page=" + page + "&maxpage=" + maxpage, {
+    return axios.get(API_URL + "?page=" + page + "&maxpage=" + maxpage, {
       headers: authHeader(),
     });
   }
