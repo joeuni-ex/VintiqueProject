@@ -34,6 +34,7 @@ const AdminOrder = () => {
                 <th>고객명</th>
                 <th>구매제품</th>
                 <th>가격</th>
+                <th>주문일자</th>
                 <th>배송상태</th>
               </tr>
             </thead>
