@@ -16,6 +16,8 @@ import AddProduct from "./pages/admin/AddProduct";
 import ModifyProduct from "./pages/admin/ModifyProduct";
 import Shop from "./pages/shop/Shop";
 import Cart from "./pages/cart/Cart";
+import OrderSuccess from "./pages/order/OrderSuccess";
+import OrderFailed from "./pages/order/OrderFailed";
 
 function App() {
   return (
@@ -83,6 +85,23 @@ function App() {
             </AuthGuard>
           }
         />
+        <Route
+          path="/order/success"
+          element={
+            <AuthGuard roles={[Role.ADMIN, Role.USER]}>
+              <OrderSuccess />
+            </AuthGuard>
+          }
+        />
+        <Route
+          path="/order/failed"
+          element={
+            <AuthGuard roles={[Role.ADMIN, Role.USER]}>
+              <OrderFailed />
+            </AuthGuard>
+          }
+        />
+
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
       </Routes>
