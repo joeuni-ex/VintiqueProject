@@ -17,12 +17,16 @@ class PurchaseService {
 
   //구매 조회 (고객용)
   getMyPurchase(page, maxpage) {
-    return axios.get(API_URL, { headers: authHeader() });
+    return axios.get(API_URL, "?page=" + page + "&maxpage=" + maxpage, {
+      headers: authHeader(),
+    });
   }
 
   //전체 유저 구매 조회 (관리자용)
   getAllPurchase(page, maxpage) {
-    return axios.get(API_URL + "/all", { headers: authHeader() });
+    return axios.get(API_URL + "/all?page=" + page + "&maxpage=" + maxpage, {
+      headers: authHeader(),
+    });
   }
 }
 //객체로 만들어서 사용(export)
