@@ -21,9 +21,9 @@ const OrderList = ({ order }) => {
         </div>
       </td>
 
-      <td>{order?.price}원</td>
+      <td>{order?.totalPrice.toLocaleString("ko-KR")} 원</td>
 
-      <td>{order?.purchaseTime}</td>
+      <td>{order?.createDate}</td>
 
       <td>배송상태</td>
 

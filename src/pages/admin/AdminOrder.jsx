@@ -2,10 +2,10 @@ import { Link } from "react-router-dom";
 import ProductList from "../../components/productList/ProductList";
 import AdminCate from "../../components/userCategory/AdminCate";
 import "./AdminPage.css";
-import purchaseService from "../../services/purchase.service";
 import { useEffect, useState } from "react";
 import OrderList from "../../components/orderList/OrderList";
 import Pagination from "../../components/pagination/Pagination";
+import orderService from "../../services/order.service";
 
 // TODO 주문 관리 페이지 -> GET Purchase
 const AdminOrder = () => {
@@ -16,7 +16,7 @@ const AdminOrder = () => {
   const maxPageSize = 5; //한 페이지에 출력할 게시물 개수
 
   useEffect(() => {
-    purchaseService.getAllPurchase(page, maxPageSize).then((response) => {
+    orderService.getAllOrder(page, maxPageSize).then((response) => {
       setOrderList(response.data.content);
       setPage(response.data.pageable.pageNumber); // 현재 페이지
       setTotalPage(response.data.pageable.pageSize); //총 페이지
