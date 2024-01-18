@@ -31,21 +31,10 @@ const AdminOrder = () => {
       <div className="userPage">
         <AdminCate select="1" />
         <div className="user-content">
-          <p>주문 관리</p>
+          {/* <p>주문 관리</p> */}
           <div
             style={{ display: "flex", width: "100%", justifyContent: "end" }}
-          >
-            <Link to="/admin/add-product" style={{ textDecoration: "none" }}>
-              <div
-                className="basic-btn brown-btn"
-                style={{ marginBottom: "10px" }}
-              >
-                <div>
-                  <p style={{ fontSize: "1rem" }}> 제품 추가</p>
-                </div>
-              </div>
-            </Link>
-          </div>
+          ></div>
 
           <table>
             <thead>

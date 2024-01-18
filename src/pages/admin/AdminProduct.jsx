@@ -29,7 +29,7 @@ const AdminProduct = () => {
         <AdminCate select="2" />
         <div className="user-content">
           <div>
-            <p style={{ textAlign: "center" }}>제품 관리</p>
+            {/* <p style={{ textAlign: "center" }}>제품 관리</p> */}
             <div
               style={{ display: "flex", width: "100%", justifyContent: "end" }}
             >

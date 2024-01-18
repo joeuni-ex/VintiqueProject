@@ -1,13 +1,13 @@
-const OrderProduct = () => {
+const OrderProduct = ({ order }) => {
   return (
     <div className="order-page-product">
       <div className="order-page-product-img">
-        <img src="" alt="" />
+        <img src={order?.mainImage} alt="" />
       </div>
       <div className="order-page-product-info">
-        <p>제품 이름</p>
-        <p>제품 가격</p>
-        <p>주문 수량</p>
+        <p>{order?.name}</p>
+        <p>제품 가격 {order?.price.toLocaleString("ko-KR")}원</p>
+        <p>주문 수량 : {order?.quantity}</p>
       </div>
     </div>
   );

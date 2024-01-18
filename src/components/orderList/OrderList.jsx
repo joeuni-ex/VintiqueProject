@@ -8,13 +8,8 @@ const OrderList = ({ order }) => {
       <td>{order?.userName}</td>
       <td>
         <div style={{ display: "flex", alignItems: "center" }}>
-          <Link to={`/product/${order.productId}`}>
-            <div className="product-list-img">
-              <img src={order?.mainImage} alt="이미지" />
-            </div>
-          </Link>
           <div>
-            <Link className="LinkTag" to={`/product/${order.productId}`}>
+            <Link className="LinkTag" to={`/product/${order?.productId}`}>
               {order?.name}
             </Link>
           </div>
@@ -27,19 +22,12 @@ const OrderList = ({ order }) => {
 
       <td>{order?.status}</td>
 
-      {/* <td>
-        <a
-          onClick={deleteProduct}
-          className="LinkTag"
-          style={{ cursor: "pointer" }}
-        >
+      <td>
+        <a className="LinkTag" style={{ cursor: "pointer" }}>
           삭제
         </a>
         /
-        <Link to={`/modify-product/${product.id}`} className="LinkTag">
-          수정
-        </Link>
-      </td> */}
+      </td>
     </tr>
   );
 };
