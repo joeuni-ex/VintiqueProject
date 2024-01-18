@@ -70,7 +70,7 @@ const Navbar = () => {
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/mypage">
+                  <NavLink to="/user/order">
                     <FaRegUser />
                   </NavLink>
                 </li>

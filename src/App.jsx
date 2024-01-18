@@ -69,7 +69,7 @@ function App() {
           }
         />
         <Route
-          path="/mypage"
+          path="/user/order"
           element={
             <AuthGuard roles={[Role.ADMIN, Role.USER]}>
               <MyPage />
