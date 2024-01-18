@@ -17,7 +17,6 @@ import ModifyProduct from "./pages/admin/ModifyProduct";
 import Shop from "./pages/shop/Shop";
 import Cart from "./pages/cart/Cart";
 import OrderSuccess from "./pages/order/OrderSuccess";
-import OrderFailed from "./pages/order/OrderFailed";
 
 function App() {
   return (
@@ -86,18 +85,10 @@ function App() {
           }
         />
         <Route
-          path="/order/success"
+          path="/order/success/:id"
           element={
             <AuthGuard roles={[Role.ADMIN, Role.USER]}>
               <OrderSuccess />
-            </AuthGuard>
-          }
-        />
-        <Route
-          path="/order/failed"
-          element={
-            <AuthGuard roles={[Role.ADMIN, Role.USER]}>
-              <OrderFailed />
             </AuthGuard>
           }
         />

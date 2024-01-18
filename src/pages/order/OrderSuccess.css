@@ -34,7 +34,42 @@
   color: #b88e2f;
 }
 
+.order-page-result-left-Btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 50px;
+  border-radius: 5px;
+  border: 1px solid;
+  cursor: pointer;
+  background-color: #b88e2f;
+  color: white;
+}
+
+/* 주문 완료 페이지 오른쪽 컨텐츠  */
 .order-page-result-right {
   flex: 0.3;
   background: #f9f1e7;
+}
+
+.order-page-product {
+  display: flex;
+  align-items: center;
+  padding: 30px;
+  width: 100%;
+  height: 140px;
+  border-bottom: solid 1px #b88e2f;
+}
+.order-page-product-img {
+  width: 100px;
+  height: 100px;
+  background-color: #b88e2f;
+  overflow: hidden;
+  margin-right: 20px;
+}
+
+.order-page-product-img img {
+  width: 100%;
+  height: 100%;
 }

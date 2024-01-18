@@ -55,13 +55,14 @@ const Cart = () => {
 
     if (confirm("주문을 진행하시겠습니까?")) {
       try {
-        await orderService.saveOrder(orderData).then(() => {
+        await orderService.saveOrder(orderData).then((res) => {
+          console.log(res);
           alert("정상적으로 주문이 완료됐습니다.");
-          navigate("/order/success");
+          navigate(`/order/success/${res.data}`);
         });
       } catch (err) {
         console.log(err);
-        alert("주문 과정에서 에러 발생");
+        navigate(`/order/failed`);
       }
     }
   };
