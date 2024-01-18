@@ -5,7 +5,7 @@ const OrderList = ({ order }) => {
   return (
     <tr>
       <td>{order?.userId}</td>
-      <td>{order?.userId}</td>
+      <td>{order?.userName}</td>
       <td>
         <div style={{ display: "flex", alignItems: "center" }}>
           <Link to={`/product/${order.productId}`}>
@@ -25,7 +25,7 @@ const OrderList = ({ order }) => {
 
       <td>{order?.createDate}</td>
 
-      <td>배송상태</td>
+      <td>{order?.status}</td>
 
       {/* <td>
         <a

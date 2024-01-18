@@ -5,6 +5,7 @@ import "./Cart.css";
 import CartItem from "./CartItem";
 import cartService from "../../services/cart.service";
 import { useNavigate } from "react-router-dom";
+import orderService from "../../services/order.service";
 const Cart = () => {
   const [carts, setCarts] = useState([]);
   const [subtotal, setSubtotal] = useState(0); //소계
@@ -49,9 +50,20 @@ const Cart = () => {
   };
 
   //결제 클릭 시
-  const handleClickPayment = () => {
-    //Todo 백엔드 Purchase 추가 및 장바구니 삭제 구현
-    navigate("/order/success");
+  const handleClickPayment = async () => {
+    const orderData = {};
+
+    if (confirm("주문을 진행하시겠습니까?")) {
+      try {
+        await orderService.saveOrder(orderData).then(() => {
+          alert("정상적으로 주문이 완료됐습니다.");
+          navigate("/order/success");
+        });
+      } catch (err) {
+        console.log(err);
+        alert("주문 과정에서 에러 발생");
+      }
+    }
   };
   return (
     <div className="basic-container ">

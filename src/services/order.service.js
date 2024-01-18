@@ -6,8 +6,8 @@ const API_URL = BASE_API_URL + "/api/order";
 
 class OrderService {
   //구매 저장
-  saveOrder(cart) {
-    return axios.post(API_URL, item, { headers: authHeader() });
+  saveOrder(orderData) {
+    return axios.post(API_URL, orderData, { headers: authHeader() });
   }
 
   //구매 삭제
