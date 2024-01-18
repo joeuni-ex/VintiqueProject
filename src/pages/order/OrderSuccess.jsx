@@ -1,7 +1,32 @@
+import { useEffect, useState } from "react";
 import OrderProduct from "../../components/orderList/OrderProduct";
 import "./OrderSuccess.css";
+import { useNavigate, useParams } from "react-router-dom";
+import orderService from "../../services/order.service";
 
 const OrderSuccess = () => {
+  const { id } = useParams(); //주소 변수 path Variable
+  const [orderView, setOrderView] = useState([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await orderService.getMyOrderView(id);
+        const productData = response.data;
+        setOrderView(productData);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchData();
+  }, []);
+
+  console.log(orderView);
+
+  const shopBtn = () => {
+    navigate("/shop");
+  };
   return (
     <div className="basic-container">
       <div className="order-page-container">
@@ -14,13 +39,15 @@ const OrderSuccess = () => {
             </div>
             <div>주문일자 </div>
 
-            <div className="order-page-result-left-Btn">쇼핑계속하기</div>
+            <div onClick={shopBtn} className="order-page-result-left-Btn">
+              쇼핑계속하기
+            </div>
           </div>
           <div className="order-page-result-right">
-            <OrderProduct />
-            <OrderProduct />
-            <OrderProduct />
-            <OrderProduct />
+            {orderView &&
+              orderView.map((order, index) => (
+                <OrderProduct key={index} order={order} />
+              ))}
           </div>
         </div>
       </div>

@@ -22,6 +22,11 @@ class OrderService {
     });
   }
 
+  //구매 상세 조회 (고객용)
+  getMyOrderView(id) {
+    return axios.get(API_URL + "/success/" + id, { headers: authHeader() });
+  }
+
   //전체 유저 구매 조회 (관리자용)
   getAllOrder(page, maxpage) {
     return axios.get(API_URL + "/all?page=" + page + "&maxpage=" + maxpage, {
