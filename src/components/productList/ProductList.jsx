@@ -35,7 +35,7 @@ const ProductList = ({ product, idx }) => {
         </div>
       </td>
 
-      <td>{product?.price}원</td>
+      <td> {product?.price.toLocaleString("ko-KR")} 원</td>
 
       <td>{product?.stock}</td>
       {product?.stock === 0 ? (
