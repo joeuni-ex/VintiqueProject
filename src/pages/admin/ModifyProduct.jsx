@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "./AddProduct.css";
 import { useEffect, useRef, useState } from "react";
 import Product from "../../model/Product";
@@ -7,6 +7,7 @@ import addImageIcon from "../../assets/plusIcon.png";
 import { IoMdCloseCircleOutline } from "react-icons/io";
 
 const ModifyProduct = () => {
+  const navigate = useNavigate();
   //select box
   const selectList = [
     { value: "default", name: "카테고리 선택" },
@@ -17,11 +18,7 @@ const ModifyProduct = () => {
   const [selected, setSelected] = useState("default");
 
   //제품 상세
-  const [product, setProduct] = useState([]);
-  // 수정된 제품 정보 저장
-  const [modifyProduct, setModifyProduct] = useState(
-    new Product("", "", "", 0, 0, "", [])
-  );
+  const [product, setProduct] = useState(new Product("", "", "", 0, 0, "", []));
 
   //이미지 입력 요소 참조 상태
   const ImageInputRef = useRef(null);
@@ -82,7 +79,7 @@ const ModifyProduct = () => {
     if (name === "category") {
       setSelected(value);
     }
-    setModifyProduct((prevState) => {
+    setProduct((prevState) => {
       return {
         ...prevState,
         [name]: value,
@@ -139,39 +136,101 @@ const ModifyProduct = () => {
     });
   };
 
-  const onModifyProductBtnClickHandler = () => {};
+  //수정 버튼 클릭 시 실행
+  const onModifyProductBtnClickHandler = async () => {
+    //입력되지 않은 경우 리턴
+    if (
+      !product.name ||
+      !product.category ||
+      !product.price ||
+      !product.stock ||
+      !product.description ||
+      !product.mainImage ||
+      !product.boardImageList
+    ) {
+      return alert("작성되지 않은 정보가 있습니다.");
+    }
+    setIsLoading(true); //로딩 시작
+
+    try {
+      // 메인 이미지 저장
+      const mainImageFile = await fetch(product.mainImage).then((res) =>
+        res.blob()
+      );
+      const mainFormData = new FormData();
+      mainFormData.append("file", mainImageFile, "main-image.png");
+      const mainImageUrl = await productService.modifyFile(mainFormData, id);
+
+      // 사이드 이미지 저장
+      const boardImageFiles = await Promise.all(
+        product.boardImageList.map(async (imageUrl) => {
+          const response = await fetch(imageUrl);
+          const blob = await response.blob();
+          const formData = new FormData();
+          formData.append("file", blob, "board-image.png");
+          return productService.modifyFile(formData);
+        })
+      );
+
+      // 백엔드에서 리턴 된 URL 을 Product 객체에 업데이트
+      const updatedProduct = {
+        ...product,
+        mainImage: mainImageUrl,
+        boardImageList: boardImageFiles,
+      };
+
+      // 제품 저장
+      await productService.modifyProduct(updatedProduct, id);
+
+      setIsLoading(false);
+
+      alert("정상적으로 수정되었습니다.");
+      navigate("/admin/product");
+    } catch (err) {
+      setIsLoading(false);
+      alert("제품 저장 시 에러 발생");
+      console.error(err);
+    }
+  };
 
   //제품id에 맞게 제품 정보 가져오기
-  useEffect(() => {
-    setIsLoading(true);
-    productService
-      .getByIdProduct(id)
-      .then((response) => {
-        const productData = response.data;
-        const boardImageList = productData.map(
-          (product) => product.boardImageList
-        );
 
-        setProduct(productData);
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true);
+      try {
+        const response = await productService.getByIdProduct(id);
+        const productData = response.data[0];
+        const boardImageList = productData.boardImageList || [];
+
         //카테고리 세팅
-        setSelected(productData[0].category);
+        setSelected(productData.category);
         //메인 이미지 세팅
-        setMainImageUrl(
-          productData[0].mainImage ? [productData[0].mainImage] : []
-        );
+        setMainImageUrl(productData.mainImage ? [productData.mainImage] : []);
         //사이드 이미지 세팅
         setImageUrls(boardImageList);
 
-        setIsLoading(false);
-      })
+        setProduct({
+          name: productData.name || "",
+          category: productData.category || "default",
+          price: productData.price || 0,
+          stock: productData.stock || 0,
+          description: productData.description || "",
+          mainImage: productData.mainImage || "",
+          boardImageList: boardImageList,
+        });
 
-      .catch((error) => {
-        setError("상품을 불러오는 중 오류가 발생했습니다.");
         setIsLoading(false);
-      });
+      } catch (error) {
+        console.error("Error fetching product data:", error);
+        setIsLoading(false);
+      }
+    };
+
+    fetchData(); // Invoke the fetch function when the component mounts
   }, [id]);
 
-  console.log(modifyProduct);
+  console.log(product);
 
   return (
     <div className="board-write-wrapper base-color">
@@ -211,7 +270,7 @@ const ModifyProduct = () => {
                     className="board-write-input"
                     name="name"
                     type="text"
-                    value={modifyProduct?.name || product[0]?.name || ""}
+                    value={product?.name || ""}
                     placeholder="제품명을 입력하세요"
                   />
                   <label className="board-write-label">카테고리</label>
@@ -235,7 +294,7 @@ const ModifyProduct = () => {
                     className="board-write-input"
                     name="price"
                     type="text"
-                    value={modifyProduct?.price || product[0]?.price || ""}
+                    value={product?.price || ""}
                     placeholder="제품 가격을 입력하세요"
                   />
                   <label className="board-write-label">재고</label>
@@ -244,7 +303,7 @@ const ModifyProduct = () => {
                     className="board-write-input"
                     name="stock"
                     type="text"
-                    value={modifyProduct?.stock || product[0]?.stock || ""}
+                    value={product?.stock || ""}
                     placeholder="재고를 입력하세요"
                   />
                   <input
@@ -347,7 +406,7 @@ const ModifyProduct = () => {
                 <p style={{ fontWeight: "600" }}>제품 상세 정보</p>
               </div>
               <textarea
-                value={modifyProduct?.description || product[0]?.description}
+                value={product?.description || ""}
                 onChange={handleChange}
                 name="description"
                 className="board-write-content-textarea"
