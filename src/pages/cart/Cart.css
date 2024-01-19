@@ -8,8 +8,9 @@
 }
 
 .cart-info-contents {
-  width: 817px;
+  width: 840px;
   height: 400px;
+  overflow-y: scroll;
 }
 
 .cart-info-contents-title {
