@@ -1,0 +1,14 @@
+.order-detail-text {
+  font-size: 1.1rem;
+}
+
+.orderViewBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 25px;
+  border-radius: 3px;
+  border: 1px solid;
+  cursor: pointer;
+}
