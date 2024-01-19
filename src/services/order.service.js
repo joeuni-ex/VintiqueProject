@@ -10,11 +10,6 @@ class OrderService {
     return axios.post(API_URL, orderData, { headers: authHeader() });
   }
 
-  //구매 삭제
-  // deleteCart(id) {
-  //   return axios.delete(API_URL + "/" + id, { headers: authHeader() });
-  // }
-
   //구매 조회 (고객용)
   getMyOrder(page, maxpage) {
     return axios.get(API_URL + "?page=" + page + "&maxpage=" + maxpage, {
@@ -30,6 +25,14 @@ class OrderService {
   //전체 유저 구매 조회 (관리자용)
   getAllOrder(page, maxpage) {
     return axios.get(API_URL + "/all?page=" + page + "&maxpage=" + maxpage, {
+      headers: authHeader(),
+    });
+  }
+
+  //주문 상태 변경
+  changeOrderStatus(id, status) {
+    console.log(id, status);
+    return axios.put(API_URL + "/change/status/" + id, status, {
       headers: authHeader(),
     });
   }
