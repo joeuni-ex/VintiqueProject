@@ -26,12 +26,12 @@
 }
 
 .brown-btn {
-  color: white;
-  background: #b88e2f;
+  color: #474747;
+  background: #f9f1e7;
 }
 
 .basic-btn:hover {
-  background: #b88e2f;
+  background: #dacfc1;
 }
 
 .select-box {
@@ -71,8 +71,8 @@ th {
 
 thead {
   font-weight: bold;
-  color: #fff;
-  background: #b88e2f;
+  color: #474747;
+  background: #f9f1e7;
 }
 
 td,

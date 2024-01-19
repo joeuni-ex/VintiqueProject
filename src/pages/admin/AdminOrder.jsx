@@ -7,9 +7,11 @@ import OrderList from "../../components/orderList/OrderList";
 import Pagination from "../../components/pagination/Pagination";
 import orderService from "../../services/order.service";
 import OrderDetail from "../../components/orderList/OrderDetail";
+import Banner from "../../components/banner/Banner";
 
 // TODO 주문 관리 페이지 -> GET Purchase
 const AdminOrder = () => {
+  const title = "AdminPage"; //배너 타이틀
   const [page, setPage] = useState(0);
   const [totalPage, setTotalPage] = useState(0);
   const [orderList, setOrderList] = useState([]);
@@ -42,7 +44,6 @@ const AdminOrder = () => {
 
   // 주문 상세 보여주기
   const toggleDetails = (index, orderId) => {
-    console.log(orderId);
     setSelectedOrderIndex(index === selectedOrderIndex ? null : index);
 
     orderService
@@ -52,7 +53,8 @@ const AdminOrder = () => {
 
   return (
     <div className="basic-container base-color">
-      {/* <Banner title={title} /> */}
+      {/* 배너 */}
+      {<Banner title={title} />}
       <div className="userPage">
         <AdminCate select="1" />
         <div className="user-content">

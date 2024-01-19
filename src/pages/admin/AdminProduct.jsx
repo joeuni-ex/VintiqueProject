@@ -4,9 +4,11 @@ import ProductList from "../../components/productList/ProductList";
 import { Link } from "react-router-dom";
 import productService from "../../services/product.service";
 import Pagination from "../../components/pagination/Pagination";
+import Banner from "../../components/banner/Banner";
 
 // TODO 제품 관리 페이지 -> GET Product
 const AdminProduct = () => {
+  const title = "AdminPage"; //배너 타이틀
   const [page, setPage] = useState(0);
   const [totalPage, setTotalPage] = useState(0);
   const [productList, setProductList] = useState([]);
@@ -23,7 +25,8 @@ const AdminProduct = () => {
 
   return (
     <div className="basic-container base-color">
-      {/* <Banner title={title} /> */}
+      {/* 배너 */}
+      {<Banner title={title} />}
       <div className="userPage">
         <AdminCate select="2" />
         <div className="user-content">

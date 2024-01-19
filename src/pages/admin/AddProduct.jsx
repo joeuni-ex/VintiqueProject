@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import "./AddProduct.css";
-import { CiImageOn } from "react-icons/ci";
+
 import { IoMdCloseCircleOutline } from "react-icons/io";
 import Product from "../../model/Product";
 import { useEffect } from "react";
