@@ -18,6 +18,7 @@ const AdminProduct = () => {
       setProductList(response.data.content);
       setPage(response.data.pageable.pageNumber); // 현재 페이지
       setTotalPage(response.data.pageable.pageSize); //총 페이지
+      console.log(response.data.pageable);
       //console.log(response.data);
     });
   }, [page]);
@@ -54,7 +55,7 @@ const AdminProduct = () => {
                   <th>가격</th>
                   <th>재고</th>
                   <th>판매상태</th>
-                  <th></th>
+                  <th>옵션</th>
                 </tr>
               </thead>
               <tbody>
