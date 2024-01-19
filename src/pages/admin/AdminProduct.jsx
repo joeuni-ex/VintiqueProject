@@ -18,8 +18,6 @@ const AdminProduct = () => {
       setProductList(response.data.content);
       setPage(response.data.pageable.pageNumber); // 현재 페이지
       setTotalPage(response.data.pageable.pageSize); //총 페이지
-      console.log(response.data.pageable);
-      //console.log(response.data);
     });
   }, [page]);
 
