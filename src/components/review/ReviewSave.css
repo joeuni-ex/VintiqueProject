@@ -1,0 +1,76 @@
+.modal-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  width: 500px;
+  height: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+}
+
+.modal-close {
+  display: flex;
+  justify-content: end;
+  padding: 10px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.modal-rate-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 120px;
+  font-weight: 600;
+}
+
+.modal-review-container {
+  width: 100%;
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  flex-direction: column;
+  font-weight: 600;
+}
+
+.modal-review-textarea {
+  border: none;
+  outline: none;
+  background: none;
+  resize: none;
+
+  margin-top: 20px;
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 18px;
+  line-height: 150%;
+  font-weight: 500;
+  width: 90%;
+  height: 400px;
+  background-color: rgba(245, 245, 245, 0.7);
+}
+
+.modal-review-btn {
+  width: 200px;
+  height: 50px;
+  background-color: #f9f1e7;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  margin: 10px 0;
+}

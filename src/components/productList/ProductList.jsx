@@ -3,6 +3,7 @@ import "./ProductList.css";
 import productService from "../../services/product.service";
 
 const ProductList = ({ product, idx }) => {
+  //삭제 버튼 클릭 시
   const deleteProduct = async (e) => {
     if (confirm("해당 제품을 삭제하시겠습니까?")) {
       try {

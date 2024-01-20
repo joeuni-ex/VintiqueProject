@@ -9,7 +9,6 @@ import Reviews from "../../components/productDetail/Reviews";
 import Information from "../../components/productDetail/Information";
 // 별점 아이콘 jsx
 import Star from "../../components/rate/Star";
-import HalfStar from "../../components/rate/HalfStar";
 import cartService from "../../services/cart.service";
 import Cart from "../../model/Cart";
 
@@ -30,7 +29,7 @@ const ProductDetails = () => {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState("");
   //평점
-  const [rate, setRate] = useState(2.5);
+  const [rate, setRate] = useState(2);
 
   //메뉴 변경 함수
   const handleChangeMenu = (menu) => {
