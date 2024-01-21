@@ -75,8 +75,6 @@ const ProductDetails = () => {
 
   useEffect(() => {}, [selectedMenu]);
 
-  console.log(reviews);
-
   //장바구니 추가
   const handleAddCart = async () => {
     if (confirm("장바구니에 추가하시겠습니까?")) {
@@ -136,6 +134,18 @@ const ProductDetails = () => {
                     onClick={() => setSelectedImage(product.boardImageList)}
                   />
                 ))}
+              <img
+                src={product[0]?.mainImage}
+                alt={product.name}
+                // css 는 selectedImage state가 index일 경우 selected_image 적용한다.
+                className={
+                  selectedImage === product[0]?.mainImage
+                    ? "selected_image"
+                    : ""
+                }
+                // 클릭하면 index로 스테이트 저장
+                onClick={() => setSelectedImage(product[0].mainImage)}
+              />
             </div>
 
             <img
@@ -221,7 +231,7 @@ const ProductDetails = () => {
               selectedMenu === "reviews" ? "selected-menu" : "detail-page-menu"
             }
           >
-            Reviews [5]
+            Reviews [{reviewCnt}]
           </p>
         </div>
         {/* 메뉴 선택에 따라 컴포넌트 변경  */}
