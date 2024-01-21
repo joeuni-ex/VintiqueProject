@@ -245,7 +245,7 @@ const ProductDetails = () => {
           <div className="basic-container">
             <div className="review-rate-content">
               <Star width={30} height={30} />
-              <p className="review-rate">{rateAvg}</p>
+              <p className="review-rate">{rateAvg ? rateAvg : "0"}</p>
               <p>
                 <span style={{ fontWeight: "bold" }}>{reviewCnt}명</span>의
                 고객님이 리뷰를 남겨주셨습니다.
