@@ -11,6 +11,8 @@ import Information from "../../components/productDetail/Information";
 import Star from "../../components/rate/Star";
 import cartService from "../../services/cart.service";
 import Cart from "../../model/Cart";
+import reviewService from "../../services/review.service";
+import Star3 from "../../components/rate/Star3";
 
 const ProductDetails = () => {
   //처음 시작 이미지 번호는 0임 -> product.images[0] = image1 을 의미함
@@ -28,8 +30,11 @@ const ProductDetails = () => {
   const { id } = useParams(); //주소 변수 path Variable
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState("");
+
   //평점
-  const [rate, setRate] = useState(2);
+  const [rateAvg, setRateAvg] = useState(0);
+  const [reviewCnt, setReviewCnt] = useState(0);
+  const [reviews, setReviews] = useState([]);
 
   //메뉴 변경 함수
   const handleChangeMenu = (menu) => {
@@ -39,6 +44,7 @@ const ProductDetails = () => {
   //제품id가 변경 될 때마다 실행
   useEffect(() => {
     setIsLoading(true);
+    //제품 정보 가져오기
     productService
       .getByIdProduct(id)
       .then((response) => {
@@ -55,11 +61,21 @@ const ProductDetails = () => {
         setError("상품을 불러오는 중 오류가 발생했습니다.");
         setIsLoading(false);
       });
+    //제품 리뷰 가져오기
+    reviewService.getReviewByProduct(id).then((response) => {
+      setReviews(response.data);
+      setReviewCnt(response.data.length); //리뷰 총 개수
+      let sum = 0;
+      for (let i = 0; i < response.data.length; i++) {
+        sum += response.data[i].rate;
+      }
+      setRateAvg(sum / response.data.length); //평균 평점
+    });
   }, [id]);
 
   useEffect(() => {}, [selectedMenu]);
 
-  console.log(quantity);
+  console.log(reviews);
 
   //장바구니 추가
   const handleAddCart = async () => {
@@ -136,10 +152,14 @@ const ProductDetails = () => {
             <h1 className="single_product_title">{product[0]?.name}</h1>
             {/* 평점  */}
             <div>
-              {Array.from({ length: Math.floor(rate) }).map((_, index) => (
-                <Star key={index} />
+              {Array.from({ length: rateAvg }).map((_, index) => (
+                <Star3
+                  width={30}
+                  height={30}
+                  key={index}
+                  style={{ margin: "0px 1.5px" }}
+                />
               ))}
-              {rate % 1 !== 0 && <HalfStar />}
             </div>
             <div style={{ height: "300px" }}>
               <p className="single_product_description">
@@ -211,7 +231,21 @@ const ProductDetails = () => {
           ""
         )}
         {selectedMenu === "info" ? <Information product={product} /> : ""}
-        {selectedMenu === "reviews" ? <Reviews /> : ""}
+        {selectedMenu === "reviews" ? (
+          <div className="basic-container">
+            <div className="review-rate-content">
+              <Star width={30} height={30} />
+              <p className="review-rate">{rateAvg}</p>
+              <p>
+                <span style={{ fontWeight: "bold" }}>{reviewCnt}명</span>의
+                고객님이 리뷰를 남겨주셨습니다.
+              </p>
+            </div>
+            {reviews && reviews.map((review) => <Reviews review={review} />)}
+          </div>
+        ) : (
+          ""
+        )}
       </div>
       <div className="divider"></div>
 
