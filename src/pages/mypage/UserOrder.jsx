@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import Banner from "../../components/banner/Banner";
-import "./MyPage.css";
+import "./UserPage.css";
 
 import MyPageCate from "../../components/userCategory/MyPageCate";
 import OrderListUser from "../../components/orderList/OrderListUser";
@@ -10,7 +10,7 @@ import OrderDetail from "../../components/orderList/OrderDetail";
 import Review from "../../model/Review";
 import ReviewSave from "../../components/review/ReviewSave";
 
-const MyPage = () => {
+const UserOrder = () => {
   const title = "MyPage";
   const [page, setPage] = useState(0);
   const [totalPage, setTotalPage] = useState(0);
@@ -72,8 +72,6 @@ const MyPage = () => {
   //     setProductList(newList); //리스트 업데이트
   //   }
   // };
-
-  console.log(selectedProduct);
   return (
     <div className="basic-container">
       {/* 배너 */}
@@ -133,4 +131,4 @@ const MyPage = () => {
   );
 };
 
-export default MyPage;
+export default UserOrder;

@@ -6,7 +6,6 @@ import Login from "./pages/login/Login";
 import Footer from "./components/footer/Footer";
 import SignUp from "./pages/signup/SignUp";
 import ProductDetails from "./pages/productDetails/ProductDetails";
-import MyPage from "./pages/mypage/myPage";
 import RoleChange from "./pages/admin/RoleChange";
 import AdminOrder from "./pages/admin/AdminOrder";
 import AdminProduct from "./pages/admin/AdminProduct";
@@ -17,6 +16,8 @@ import ModifyProduct from "./pages/admin/ModifyProduct";
 import Shop from "./pages/shop/Shop";
 import Cart from "./pages/cart/Cart";
 import OrderSuccess from "./pages/order/OrderSuccess";
+import UserOrder from "./pages/mypage/UserOrder";
+import UserReview from "./pages/mypage/UserReview";
 
 function App() {
   return (
@@ -72,7 +73,15 @@ function App() {
           path="/user/order"
           element={
             <AuthGuard roles={[Role.ADMIN, Role.USER]}>
-              <MyPage />
+              <UserOrder />
+            </AuthGuard>
+          }
+        />
+        <Route
+          path="/user/review"
+          element={
+            <AuthGuard roles={[Role.ADMIN, Role.USER]}>
+              <UserReview />
             </AuthGuard>
           }
         />
