@@ -5,12 +5,21 @@ import Product from "../../components/product/Product";
 import { useState } from "react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import productService from "../../services/product.service";
 
 const Home = () => {
-  const [images, setImages] = useState([]);
+  const [maxPageSize, setMaxPageSize] = useState(8); //한 페이지에 최대 출력할 제품 개수
+  const [page, setPage] = useState(0); // 현재 페이지
+  const [productList, setProductList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [images, setImages] = useState([]);
 
   useEffect(() => {
+    //모든 제품
+    productService.getAllProducts(page, maxPageSize).then((response) => {
+      setProductList(response.data.content);
+      setPage(response.data.pageable.pageNumber); // 현재 페이지
+    });
     //이미지 갤러리 import
     const importImages = async () => {
       const importedImages = [];
@@ -29,7 +38,8 @@ const Home = () => {
 
     importImages();
   }, []);
-  const listCount = [1, 2, 3, 4, 5, 6, 7, 8];
+
+  console.log(productList);
 
   return (
     <main>
@@ -85,8 +95,8 @@ const Home = () => {
           <h2>판매중인 제품들</h2>
         </div>
         <div className="HomeMainContent3">
-          {listCount.map((product, index) => (
-            <Product key={index} />
+          {productList.map((product, index) => (
+            <Product key={index} product={product} />
           ))}
         </div>
         <div className="showBtn">
