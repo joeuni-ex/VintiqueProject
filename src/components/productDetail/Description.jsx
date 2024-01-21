@@ -24,11 +24,19 @@ const Description = ({ product }) => {
           src={product[0]?.boardImageList}
           alt=""
         />
-        <img
-          className="description_image"
-          src={product[1]?.boardImageList}
-          alt=""
-        />
+        {product[1]?.boardImageList ? (
+          <img
+            className="description_image"
+            src={product[1]?.boardImageList}
+            alt=""
+          />
+        ) : (
+          <img
+            className="description_image"
+            src={product[0]?.mainImage}
+            alt=""
+          />
+        )}
       </div>
     </>
   );
