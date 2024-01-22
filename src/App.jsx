@@ -18,6 +18,8 @@ import Cart from "./pages/cart/Cart";
 import OrderSuccess from "./pages/order/OrderSuccess";
 import UserOrder from "./pages/mypage/UserOrder";
 import UserReview from "./pages/mypage/UserReview";
+import NotFound from "./pages/error/NotFound";
+import UnAuthorized from "./pages/error/UnAuthorized";
 
 function App() {
   return (
@@ -101,7 +103,9 @@ function App() {
             </AuthGuard>
           }
         />
-
+        <Route path="/404" element={<NotFound />} />
+        <Route path="/401" element={<UnAuthorized />} />
+        <Route path="*" element={<NotFound />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
       </Routes>
