@@ -37,8 +37,6 @@ const OrderSuccess = () => {
             <div className="order-page-result-left-title">
               <span>주문이 정상적으로 완료</span>되었습니다.
             </div>
-            <div>주문일자 </div>
-
             <div onClick={shopBtn} className="order-page-result-left-Btn">
               쇼핑계속하기
             </div>
