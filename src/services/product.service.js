@@ -76,6 +76,19 @@ class ProductService {
     ); //조회는 인증이 필요없어서 headers 안들어감
   }
 
+  //카테고리 별  제품 조회()
+  getCategory(category, page, maxpage) {
+    return axios.get(
+      API_URL +
+        "/category/" +
+        category +
+        "?page=" +
+        page +
+        "&maxpage=" +
+        maxpage
+    ); //조회는 인증이 필요없어서 headers 안들어감
+  }
+
   //제품 상세 조회(id)
   getByIdProduct = async (id) => {
     return await axios.get(API_URL + "/" + id, { headers: authHeader() }); //인증 필요

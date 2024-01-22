@@ -11,11 +11,12 @@ const Shop = () => {
   const [maxPageSize, setMaxPageSize] = useState(12); //한 페이지에 최대 출력할 제품 개수
   const [page, setPage] = useState(0); // 현재 페이지
   const [totalPage, setTotalPage] = useState(0); //총 페이지
-  const [productList, setProductList] = useState([]);
-  const [category, setCategory] = useState("All");
-  const [orderBy, setOrderBy] = useState("1");
-  const [isLoading, setIsLoading] = useState(false);
+  const [productList, setProductList] = useState([]); // 제품 데이터
+  const [category, setCategory] = useState("All"); // 카테고리 변경
+  const [orderBy, setOrderBy] = useState("1"); // 가격 높은 순, 낮은 순 정렬
+  const [isLoading, setIsLoading] = useState(false); // 로딩 중
 
+  //최초 시작 시 전체 제품 가져오기
   useEffect(() => {
     setIsLoading(true);
     productService.getAllProducts(page, maxPageSize).then((response) => {
@@ -31,9 +32,29 @@ const Shop = () => {
     setMaxPageSize(e.target.value);
   };
 
+  //카테고리 변경 시 실행
   const handleChangeCategory = (category) => {
     setCategory(category);
   };
+
+  //카테고리 변경 시 실행
+  useEffect(() => {
+    setIsLoading(true);
+    productService.getCategory(category, page, maxPageSize).then((response) => {
+      setProductList(response.data.content);
+      setPage(response.data.pageable.pageNumber); // 현재 페이지
+      setTotalPage(response.data.pageable.pageSize); //총 페이지
+      setIsLoading(false);
+    });
+    if (category == "All") {
+      productService.getAllProducts(page, maxPageSize).then((response) => {
+        setProductList(response.data.content);
+        setPage(response.data.pageable.pageNumber); // 현재 페이지
+        setTotalPage(response.data.pageable.pageSize); //총 페이지
+        setIsLoading(false);
+      });
+    }
+  }, [category]);
 
   //정렬
   useEffect(() => {
@@ -72,13 +93,12 @@ const Shop = () => {
     orderByFetch();
   }, [orderBy, page, maxPageSize]);
 
+  //정렬 변경 시 실행
   const handleChangeOrderBy = (e) => {
     setOrderBy(e.target.value);
   };
 
-  console.log(productList);
-  console.log(orderBy);
-
+  console.log(category);
   return (
     <div className="shopContainer">
       <Banner title="Shop" subTitle="Shop" category={category} />
@@ -102,9 +122,9 @@ const Shop = () => {
               {category && category === "All" ? "▶" : ""} All
             </div>
             <div
-              onClick={() => handleChangeCategory("Dining")}
+              onClick={() => handleChangeCategory("dining")}
               className={
-                category && category === "Dining"
+                category && category === "dining"
                   ? "shop-option-left-cateogry-selected"
                   : "shop-option-left-cateogry"
               }
@@ -112,16 +132,16 @@ const Shop = () => {
               {category && category === "Dining" ? "▶" : ""} Dining
             </div>
             <div
-              onClick={() => handleChangeCategory("Living")}
+              onClick={() => handleChangeCategory("living")}
               className="shop-option-left-cateogry"
             >
-              {category && category === "Living" ? "▶" : ""} Living
+              {category && category === "living" ? "▶" : ""} Living
             </div>
             <div
-              onClick={() => handleChangeCategory("Bedroom")}
+              onClick={() => handleChangeCategory("bedroom")}
               className="shop-option-left-cateogry"
             >
-              {category && category === "Bedroom" ? "▶" : ""} Bedroom
+              {category && category === "bedroom" ? "▶" : ""} Bedroom
             </div>
           </div>
           <div className="shop-option-rigth">
