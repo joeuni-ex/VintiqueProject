@@ -23,6 +23,12 @@ const MyPageCate = ({ select }) => {
         >
           <li>리뷰 관리</li>
         </Link>
+        <Link
+          className={selected === "3" ? "selected" : "list-link"}
+          to="/user/interest"
+        >
+          <li>관심 제품</li>
+        </Link>
       </ul>
     </div>
   );
