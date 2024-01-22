@@ -5,6 +5,7 @@ import "./Shop.css";
 import productService from "../../services/product.service";
 import Pagination from "../../components/pagination/Pagination";
 import BottomBanner from "../../components/banner/BottomBanner";
+import Spinner from "../../components/loading/spinner";
 
 const Shop = () => {
   const [maxPageSize, setMaxPageSize] = useState(12); //한 페이지에 최대 출력할 제품 개수
@@ -12,13 +13,16 @@ const Shop = () => {
   const [totalPage, setTotalPage] = useState(0); //총 페이지
   const [productList, setProductList] = useState([]);
   const [category, setCategory] = useState("All");
+  const [orderBy, setOrderBy] = useState("1");
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     productService.getAllProducts(page, maxPageSize).then((response) => {
       setProductList(response.data.content);
       setPage(response.data.pageable.pageNumber); // 현재 페이지
       setTotalPage(response.data.pageable.pageSize); //총 페이지
-      //console.log(response.data);
+      setIsLoading(false);
     });
   }, [page, maxPageSize]);
 
@@ -30,6 +34,50 @@ const Shop = () => {
   const handleChangeCategory = (category) => {
     setCategory(category);
   };
+
+  //정렬
+  useEffect(() => {
+    setIsLoading(true);
+
+    const orderByFetch = async () => {
+      console.log("Fetching data in ascending order");
+
+      try {
+        if (orderBy === "2") {
+          await productService
+            .getAllOrderByPriceAsc(page, maxPageSize)
+            .then((response) => {
+              setProductList(response.data.content);
+              setPage(response.data.pageable.pageNumber); // 현재 페이지
+              setTotalPage(response.data.pageable.pageSize); //총 페이지
+              setIsLoading(false);
+            });
+        }
+
+        if (orderBy === "3") {
+          await productService
+            .getAllOrderByPriceDesc(page, maxPageSize)
+            .then((response) => {
+              setProductList(response.data.content);
+              setPage(response.data.pageable.pageNumber); // 현재 페이지
+              setTotalPage(response.data.pageable.pageSize); //총 페이지
+              setIsLoading(false);
+            });
+        }
+      } catch (err) {
+        console.log;
+      }
+    };
+
+    orderByFetch();
+  }, [orderBy, page, maxPageSize]);
+
+  const handleChangeOrderBy = (e) => {
+    setOrderBy(e.target.value);
+  };
+
+  console.log(productList);
+  console.log(orderBy);
 
   return (
     <div className="shopContainer">
@@ -88,7 +136,11 @@ const Shop = () => {
             </div>
             <div style={{ marginLeft: "30px" }}>
               Short by
-              <select name="" id="" className="shop-option-rigth-sort">
+              <select
+                onChange={handleChangeOrderBy}
+                name="order"
+                className="shop-option-rigth-sort"
+              >
                 <option value="1">Default</option>
                 <option value="2">가격낮은순</option>
                 <option value="3">가격높은순</option>
@@ -99,9 +151,13 @@ const Shop = () => {
       </div>
       <div className="container-list">
         <div className="HomeMainContent3">
-          {productList.map((product, index) => (
-            <Product key={index} product={product} />
-          ))}
+          {isLoading ? (
+            <Spinner />
+          ) : (
+            productList.map((product, index) => (
+              <Product key={index} product={product} />
+            ))
+          )}
         </div>
       </div>
       <Pagination page={page} setPage={setPage} totalPage={totalPage} />

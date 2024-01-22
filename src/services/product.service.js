@@ -62,6 +62,20 @@ class ProductService {
     return axios.get(API_URL + "?page=" + page + "&maxpage=" + maxpage); //조회는 인증이 필요없어서 headers 안들어감
   }
 
+  //모든 제품 조회(가격 높은 순 정렬)
+  getAllOrderByPriceDesc(page, maxpage) {
+    return axios.get(
+      API_URL + "/price-desc" + "?page=" + page + "&maxpage=" + maxpage
+    ); //조회는 인증이 필요없어서 headers 안들어감
+  }
+
+  //모든 제품 조회(가격 낮은 순 정렬)
+  getAllOrderByPriceAsc(page, maxpage) {
+    return axios.get(
+      API_URL + "/price-asc" + "?page=" + page + "&maxpage=" + maxpage
+    ); //조회는 인증이 필요없어서 headers 안들어감
+  }
+
   //제품 상세 조회(id)
   getByIdProduct = async (id) => {
     return await axios.get(API_URL + "/" + id, { headers: authHeader() }); //인증 필요
