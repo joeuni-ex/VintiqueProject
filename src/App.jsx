@@ -20,6 +20,7 @@ import UserOrder from "./pages/mypage/UserOrder";
 import UserReview from "./pages/mypage/UserReview";
 import NotFound from "./pages/error/NotFound";
 import UnAuthorized from "./pages/error/UnAuthorized";
+import About from "./pages/about/About";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
         <Route path="/shop" element={<Shop />} />
+        <Route path="/about" element={<About />} />
         <Route path="/product/:id" element={<ProductDetails />} />
         <Route
           path="/admin/order"
