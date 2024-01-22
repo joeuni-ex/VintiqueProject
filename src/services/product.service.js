@@ -76,12 +76,41 @@ class ProductService {
     ); //조회는 인증이 필요없어서 headers 안들어감
   }
 
-  //카테고리 별  제품 조회()
+  //카테고리별 제품 조회(기본)
   getCategory(category, page, maxpage) {
     return axios.get(
       API_URL +
-        "/category/" +
+        "/" +
         category +
+        "/default" +
+        "?page=" +
+        page +
+        "&maxpage=" +
+        maxpage
+    ); //조회는 인증이 필요없어서 headers 안들어감
+  }
+
+  //카테고리별 제품 조회(가격 높은 순 정렬)
+  getCategoryOrderByPriceDesc(category, page, maxpage) {
+    return axios.get(
+      API_URL +
+        "/" +
+        category +
+        "/price-desc" +
+        "?page=" +
+        page +
+        "&maxpage=" +
+        maxpage
+    ); //조회는 인증이 필요없어서 headers 안들어감
+  }
+
+  //카테고리별 제품 조회(가격 낮은 순 정렬)
+  getCategoryOrderByPriceAsc(category, page, maxpage) {
+    return axios.get(
+      API_URL +
+        "/" +
+        category +
+        "/price-asc" +
         "?page=" +
         page +
         "&maxpage=" +

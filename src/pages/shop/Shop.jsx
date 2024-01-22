@@ -61,10 +61,19 @@ const Shop = () => {
     setIsLoading(true);
 
     const orderByFetch = async () => {
-      console.log("Fetching data in ascending order");
-
       try {
-        if (orderBy === "2") {
+        if (orderBy === "1" && category === "All") {
+          await productService
+            .getAllProducts(page, maxPageSize)
+            .then((response) => {
+              setProductList(response.data.content);
+              setPage(response.data.pageable.pageNumber); // 현재 페이지
+              setTotalPage(response.data.pageable.pageSize); //총 페이지
+              setIsLoading(false);
+            });
+        }
+
+        if (orderBy === "2" && category === "All") {
           await productService
             .getAllOrderByPriceAsc(page, maxPageSize)
             .then((response) => {
@@ -75,9 +84,41 @@ const Shop = () => {
             });
         }
 
-        if (orderBy === "3") {
+        if (orderBy === "3" && category === "All") {
           await productService
             .getAllOrderByPriceDesc(page, maxPageSize)
+            .then((response) => {
+              setProductList(response.data.content);
+              setPage(response.data.pageable.pageNumber); // 현재 페이지
+              setTotalPage(response.data.pageable.pageSize); //총 페이지
+              setIsLoading(false);
+            });
+        }
+
+        if (orderBy === "1" && category !== "All") {
+          await productService
+            .getCategory(category, page, maxPageSize)
+            .then((response) => {
+              setProductList(response.data.content);
+              setPage(response.data.pageable.pageNumber); // 현재 페이지
+              setTotalPage(response.data.pageable.pageSize); //총 페이지
+              setIsLoading(false);
+            });
+        }
+
+        if (orderBy === "2" && category !== "All") {
+          await productService
+            .getCategoryOrderByPriceAsc(category, page, maxPageSize)
+            .then((response) => {
+              setProductList(response.data.content);
+              setPage(response.data.pageable.pageNumber); // 현재 페이지
+              setTotalPage(response.data.pageable.pageSize); //총 페이지
+              setIsLoading(false);
+            });
+        }
+        if (orderBy === "3" && category !== "All") {
+          await productService
+            .getCategoryOrderByPriceDesc(category, page, maxPageSize)
             .then((response) => {
               setProductList(response.data.content);
               setPage(response.data.pageable.pageNumber); // 현재 페이지
