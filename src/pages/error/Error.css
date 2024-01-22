@@ -1,0 +1,14 @@
+.error-page {
+  height: 80vh;
+}
+.error-name {
+  font-size: 4rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.error-btn {
+  margin-top: 20px;
+  background-color: #fff3e3;
+  font-weight: 600;
+}
