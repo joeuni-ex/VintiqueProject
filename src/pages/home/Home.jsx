@@ -39,8 +39,6 @@ const Home = () => {
     importImages();
   }, []);
 
-  console.log(productList);
-
   return (
     <main>
       {/* 메인1 */}
