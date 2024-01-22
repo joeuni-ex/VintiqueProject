@@ -10,7 +10,7 @@ const Reviews = ({ review }) => {
       <div style={{ display: "flex" }}>
         <div>{stars}</div>
         <div style={{ display: "flex" }}>
-          <p>{review?.name}</p>
+          <p style={{ margin: "0px 10px" }}>{review?.name}</p>
           <p>{review?.createTime}</p>
         </div>
       </div>
