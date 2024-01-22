@@ -6,7 +6,6 @@ import QuantityInput from "./QuantityInput";
 import Product from "../../components/product/Product";
 import Description from "../../components/productDetail/Description";
 import Reviews from "../../components/productDetail/Reviews";
-import Information from "../../components/productDetail/Information";
 // 별점 아이콘 jsx
 import Star from "../../components/rate/Star";
 import cartService from "../../services/cart.service";
@@ -20,6 +19,7 @@ const ProductDetails = () => {
 
   //제품 상세
   const [product, setProduct] = useState([]);
+  const [productList, setProductList] = useState([]);
 
   //제품 수량
   const [quantity, setQuantity] = useState(1); //수량
@@ -56,7 +56,6 @@ const ProductDetails = () => {
         setSelectedImage(productData[0].mainImage);
         setIsLoading(false);
       })
-
       .catch((error) => {
         setError("상품을 불러오는 중 오류가 발생했습니다.");
         setIsLoading(false);
@@ -70,6 +69,11 @@ const ProductDetails = () => {
         sum += response.data[i].rate;
       }
       setRateAvg(sum / response.data.length); //평균 평점
+    });
+    //세 번째 섹션 제품 목록 가져오기
+    productService.getAllProducts(0, 4).then((response) => {
+      setProductList(response.data.content);
+      setIsLoading(false);
     });
   }, [id]);
 
@@ -88,8 +92,6 @@ const ProductDetails = () => {
       }
     }
   };
-
-  const listCount = [1, 2, 3, 4];
 
   return (
     <div className="basic-container ">
@@ -161,15 +163,16 @@ const ProductDetails = () => {
           <div className="single_product_details">
             <h1 className="single_product_title">{product[0]?.name}</h1>
             {/* 평점  */}
-            <div>
+            <div style={{ display: "flex" }}>
               {Array.from({ length: rateAvg }).map((_, index) => (
                 <Star3
-                  width={30}
-                  height={30}
+                  width={20}
+                  height={20}
                   key={index}
                   style={{ margin: "0px 1.5px" }}
                 />
               ))}
+              <p style={{ fontWeight: "bold" }}>[{reviewCnt}]</p>
             </div>
             <div style={{ height: "300px" }}>
               <p className="single_product_description">
@@ -218,14 +221,6 @@ const ProductDetails = () => {
             Description
           </p>
           <p
-            onClick={() => handleChangeMenu("info")}
-            className={
-              selectedMenu === "info" ? "selected-menu" : "detail-page-menu"
-            }
-          >
-            Additional Information
-          </p>
-          <p
             onClick={() => handleChangeMenu("reviews")}
             className={
               selectedMenu === "reviews" ? "selected-menu" : "detail-page-menu"
@@ -245,7 +240,7 @@ const ProductDetails = () => {
           <div className="basic-container">
             <div className="review-rate-content">
               <Star width={30} height={30} />
-              <p className="review-rate">{rateAvg ? rateAvg : "0"}</p>
+              <p className="review-rate">{rateAvg ? rateAvg : "0"}/5</p>
               <p>
                 <span style={{ fontWeight: "bold" }}>{reviewCnt}명</span>의
                 고객님이 리뷰를 남겨주셨습니다.
@@ -266,8 +261,8 @@ const ProductDetails = () => {
             <h2>많이 본 상품들 </h2>
           </div>
           <div className="HomeMainContent3">
-            {listCount.map((product, index) => (
-              <Product key={index} />
+            {productList.map((product, index) => (
+              <Product key={index} product={product} />
             ))}
           </div>
           <div className="showBtn">
