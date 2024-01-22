@@ -45,11 +45,13 @@ const RoleChange = () => {
         <AdminCate select="3" />
         <div className="user-content">
           <div className="role-contianer">
-            <div>
-              <p>{`현재 권한은 ${currentUser.role}입니다.`}</p>
+            <div style={{ marginBottom: "50px" }}>
+              <p>{`현재 권한은 <${currentUser.role}>입니다.`}</p>
             </div>
 
-            <button onClick={handleRoleChange}>권한 변경</button>
+            <button className="basic-btn brown-btn" onClick={handleRoleChange}>
+              권한 변경
+            </button>
             {errorMessage && <em>{errorMessage}</em>}
           </div>
         </div>
