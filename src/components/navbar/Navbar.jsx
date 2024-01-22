@@ -4,14 +4,17 @@ import { FaRegUser } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa6";
 import { ImVine } from "react-icons/im";
 import { LuLogOut } from "react-icons/lu";
+import { GrCart } from "react-icons/gr";
 import "./Navbar.css";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { clearCurrentUser } from "../../store/actions/user";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const Navbar = () => {
   const curruntUser = useSelector((state) => state.user); //인증된 유저 정보
+  const [isSearchBarVisible, setIsSearchBarVisible] = useState(false); //검색창
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -23,6 +26,10 @@ const Navbar = () => {
     navigate("/login");
   };
 
+  //검색 아이콘 클릭 시 검색창 보임
+  const toggleSearchBar = () => {
+    setIsSearchBarVisible(!isSearchBarVisible);
+  };
   return (
     <nav>
       <div className="navbar">
@@ -53,17 +60,7 @@ const Navbar = () => {
               <>
                 <li>
                   <NavLink to="/cart">
-                    <BsCart />
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="/search">
-                    <IoSearch />
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="/favo">
-                    <FaRegHeart />
+                    <GrCart />
                   </NavLink>
                 </li>
                 <li>
