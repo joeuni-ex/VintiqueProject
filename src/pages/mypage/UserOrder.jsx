@@ -14,6 +14,7 @@ const UserOrder = () => {
   const title = "MyPage";
   const [page, setPage] = useState(0);
   const [totalPage, setTotalPage] = useState(0);
+  const maxPageSize = 12; //한 페이지에 출력할 게시물 개수
   const [orderList, setOrderList] = useState([]);
   const [selectedOrderIndex, setSelectedOrderIndex] = useState(null); //주문 상세 인덱스
   const [orderDetails, setOrderDetails] = useState([]);
@@ -27,7 +28,7 @@ const UserOrder = () => {
     const fetchData = async () => {
       orderService.getMyOrder(page, maxPageSize).then((response) => {
         const updatedOrderList = response.data.content.map((order) => {
-          return { ...order, key: order.id }; // add a unique key
+          return { ...order, key: order.id };
         });
         setOrderList(updatedOrderList);
         setPage(response.data.pageable.pageNumber); // 현재 페이지
@@ -51,27 +52,7 @@ const UserOrder = () => {
     setSelectedProduct(productId); //  버튼을 클릭하면 해당 제품id를 매개변수로 받아와서 저장
     saveComponent.current?.showProductModal(); // ProductSave 컴포넌트의 showProductModal()함수를 실행하여 모달창을 띄운다.
   };
-  const maxPageSize = 12; //한 페이지에 출력할 게시물 개수
 
-  // 제품 데이터를 가져와서 리스트에 추가 -> 모달창으로 전달해서 저장할 수 있도록
-  // const saveProductWatcher = (product) => {
-  //   let itemIndex = productList.findIndex((item) => item.id === product.id);
-  //   //productList에 선택한 제품과 같은 번호가 있을 경우
-  //   // 기존 제품 수정
-  //   if (itemIndex !== -1) {
-  //     const newList = productList.map((item) => {
-  //       if (item.id === product.id) {
-  //         return product; //입력된 product -> 수정
-  //       }
-  //       return item;
-  //     });
-  //     setProductList(newList);
-  //   } else {
-  //     // 새로 추가
-  //     const newList = productList.concat(product);
-  //     setProductList(newList); //리스트 업데이트
-  //   }
-  // };
   return (
     <div className="basic-container">
       {/* 배너 */}
@@ -121,11 +102,7 @@ const UserOrder = () => {
           </table>
           <Pagination page={page} setPage={setPage} totalPage={totalPage} />
         </div>
-        <ReviewSave
-          ref={saveComponent}
-          product={selectedProduct}
-          // onSaved={(p) => saveProductWatcher(p)}
-        />
+        <ReviewSave ref={saveComponent} product={selectedProduct} />
       </div>
     </div>
   );
