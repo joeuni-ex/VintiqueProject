@@ -44,9 +44,6 @@ const Navbar = () => {
             <li>
               <NavLink to="/about">About</NavLink>
             </li>
-            <li>
-              <NavLink to="/">Contact</NavLink>
-            </li>
           </ul>
         </div>
         <div style={{ marginRight: "7%" }}>
