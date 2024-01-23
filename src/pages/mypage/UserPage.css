@@ -1,0 +1,25 @@
+.interest-page-product-img {
+  width: 125px;
+  height: 125px;
+  overflow: hidden;
+  margin-right: 30px;
+  border: 1px solid #adadad;
+}
+
+.interest-page-product-img img {
+  width: 125px;
+  height: 125px;
+}
+
+.interest-info-text p {
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.interest-delete-btn {
+  display: flex;
+  justify-content: end;
+  align-self: flex-start;
+  cursor: pointer;
+}

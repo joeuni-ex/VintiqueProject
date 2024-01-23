@@ -6,8 +6,23 @@ import { MdShare } from "react-icons/md";
 import { Link } from "react-router-dom";
 import Cart from "../../model/Cart";
 import CartService from "../../services/cart.service";
+import interestService from "../../services/interest.service";
 
 const Product = ({ product }) => {
+  //like 버튼 클릭 시
+  const handleAddInterest = async () => {
+    if (confirm("관심 제품에 추가하시겠습니까?")) {
+      try {
+        await interestService.saveInterest(product?.id);
+        alert("정상적으로 관심 제품에 추가되었습니다.");
+      } catch (err) {
+        alert("관심 제품 추가 시 에러 발생");
+        console.error(err);
+      }
+    }
+  };
+
+  //cart버튼 클릭 시
   const handleAddCart = async () => {
     if (confirm("장바구니에 추가하시겠습니까?")) {
       try {
@@ -49,7 +64,7 @@ const Product = ({ product }) => {
             <LuShoppingCart />
             Cart
           </p>
-          <p>
+          <p onClick={handleAddInterest}>
             <FaRegHeart />
             Like
           </p>

@@ -21,6 +21,7 @@ import UserReview from "./pages/mypage/UserReview";
 import NotFound from "./pages/error/NotFound";
 import UnAuthorized from "./pages/error/UnAuthorized";
 import About from "./pages/about/About";
+import UserInterest from "./pages/mypage/UserInterest";
 
 function App() {
   return (
@@ -86,6 +87,14 @@ function App() {
           element={
             <AuthGuard roles={[Role.ADMIN, Role.USER]}>
               <UserReview />
+            </AuthGuard>
+          }
+        />
+        <Route
+          path="/user/interest"
+          element={
+            <AuthGuard roles={[Role.ADMIN, Role.USER]}>
+              <UserInterest />
             </AuthGuard>
           }
         />

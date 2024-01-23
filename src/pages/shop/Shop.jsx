@@ -139,7 +139,6 @@ const Shop = () => {
     setOrderBy(e.target.value);
   };
 
-  console.log(category);
   return (
     <div className="shopContainer">
       <Banner title="Shop" subTitle="Shop" category={category} />

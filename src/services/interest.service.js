@@ -5,20 +5,27 @@ import { authHeader } from "./base.service";
 const API_URL = BASE_API_URL + "/api/interest";
 
 class InterestService {
-  //리뷰 저장
-  saveReview(productId) {
-    return axios.post(API_URL, review, { headers: authHeader() });
+  //관심 제품 저장
+  saveInterest(productId) {
+    console.log(productId);
+    return axios.post(
+      API_URL + "/" + productId,
+      {},
+      {
+        headers: authHeader(),
+      }
+    );
   }
 
-  //유저 별 리뷰 조회
-  getReviewByUserId(page, maxpage) {
+  //유저 별 관심 제품 조회
+  getInterestByUserId(page, maxpage) {
     return axios.get(API_URL + "?page=" + page + "&maxpage=" + maxpage, {
       headers: authHeader(),
     });
   }
 
-  //리뷰 삭제
-  deleteReview(productId) {
+  //관심 제품 삭제
+  deleteInterest(productId) {
     return axios.delete(API_URL + "/" + productId, {
       headers: authHeader(),
     });

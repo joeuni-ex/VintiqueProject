@@ -55,7 +55,7 @@ const UserReview = () => {
                 ))}
             </tbody>
           </table>
-          <Pagination />
+          <Pagination page={page} setPage={setPage} totalPage={totalPage} />
         </div>
       </div>
     </div>
