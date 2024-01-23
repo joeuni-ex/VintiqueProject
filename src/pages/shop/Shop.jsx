@@ -210,7 +210,7 @@ const Shop = () => {
         </div>
       </div>
       <div className="container-list">
-        <div className="HomeMainContent3">
+        <div className="home-main-content3">
           {isLoading ? (
             <Spinner />
           ) : (
