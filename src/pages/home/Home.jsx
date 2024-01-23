@@ -43,10 +43,10 @@ const Home = () => {
     <main>
       {/* 메인1 */}
       <div className="container">
-        <div className="HomeMainImg">
+        <div className="home-main-img">
           <img src={mainImg} alt="mainImg" />
         </div>
-        <div className="HomeMainContent">
+        <div className="home-main-content">
           <p>New Arrival</p>
           <span>Discover Our New Collection</span>
           <p>
@@ -54,35 +54,43 @@ const Home = () => {
             다양한 컬렉션으로 여러분의 공간을 개성 있게 꾸며보세요
           </p>
           <Link
-            to={`/product-details`}
+            to={`/product/1`}
             style={{ color: "black", textDecoration: "none" }}
           >
             <div className="buyBtn">
-              <p>BUY Now</p>
+              <p>자세히 보기</p>
             </div>
           </Link>
         </div>
       </div>
       {/* 메인2 */}
       <div className="container-list">
-        <div className="ListTitle">
+        <div className="list-title">
           <h2>제품 둘러보기</h2>
           <br />
           <p>
             각 공간마다 편안한 분위기를 연출하는 인테리어 소품을 만나보세요.
           </p>
         </div>
-        <div className="HomeMainContent2">
-          <div className="MainList">
-            <img src={mainImg} alt="" />
+        <div className="home-main-content2">
+          <div className="main-list">
+            <div className="main-list-img">
+              <img src={mainImg} alt="" />
+            </div>
+
             <p>Dining</p>
           </div>
-          <div className="MainList">
-            <img src={mainImg} alt="" />
+          <div className="main-list">
+            <div className="main-list-img">
+              <img src={mainImg} alt="" />
+            </div>
+
             <p>Living</p>
           </div>
-          <div className="MainList">
-            <img src={mainImg} alt="" />
+          <div className="main-list">
+            <div className="main-list-img">
+              <img src={mainImg} alt="" />
+            </div>
             <p>Bedroom</p>
           </div>
         </div>
@@ -92,7 +100,7 @@ const Home = () => {
         <div className="ListTitle">
           <h2>판매중인 제품들</h2>
         </div>
-        <div className="HomeMainContent3">
+        <div className="home-main-content3">
           {productList.map((product, index) => (
             <Product key={index} product={product} />
           ))}
@@ -103,7 +111,7 @@ const Home = () => {
       </div>
       {/* 메인4 */}
       <div className="gallery">
-        <div className="ListTitle">
+        <div className="list-title">
           <p>여러분의 가구 배치를 공유하세요!</p>
           <h1>#Furniture</h1>
           {isLoading && <p>로딩중</p>}

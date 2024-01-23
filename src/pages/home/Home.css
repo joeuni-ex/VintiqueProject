@@ -10,19 +10,19 @@ main {
   justify-content: center;
 }
 /* 첫 번째 메인 컨텐츠 */
-.HomeMainImg {
+.home-main-img {
   width: 100%;
   height: 700px;
   overflow: hidden;
   z-index: -1;
 }
-.HomeMainImg img {
+.home-main-img img {
   width: 100%;
   height: 100%;
   z-index: -1;
 }
 
-.HomeMainContent {
+.home-main-content {
   width: 643px;
   height: 443px;
   display: flex;
@@ -34,18 +34,18 @@ main {
   background-color: #fff3e3;
   z-index: -0;
 }
-.HomeMainContent p {
+.home-main-content p {
   margin: 2% 10%;
 }
 
-.HomeMainContent span {
+.home-main-content span {
   color: #b88e2f;
   margin: 2% 10%;
   font-size: 3rem;
   font-weight: 700;
 }
 
-.HomeMainContent .buyBtn {
+.home-main-content .buyBtn {
   margin: 2% 10%;
   display: flex;
   justify-content: center;
@@ -66,40 +66,52 @@ main {
   align-items: center;
   width: 1400px;
 }
-.ListTitle {
+.list-title {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.HomeMainContent2 {
+.home-main-content2 {
   display: flex;
   align-items: center;
   justify-content: space-around;
 }
 
-.HomeMainContent2 .MainList {
+.home-main-content2 .main-list {
+  position: relative;
   margin: 20px;
   width: 380px;
   height: 480px;
-  overflow: hidden;
 }
 
-.MainList img {
-  width: 100%;
+.main-list .main-list-img {
+  width: 380px;
   height: 450px;
+  overflow: hidden;
+  border-radius: 30px;
+}
+
+.main-list-img img {
+  width: 100%;
+  height: 100%;
   border-radius: 30px;
   object-fit: cover;
+  transition: transform 0.3s ease;
 }
 
-.MainList p {
+.main-list:hover img {
+  transform: scale(1.1); /* You can adjust the scale factor as needed */
+}
+
+.main-list p {
   text-align: center;
   font-size: 1.1rem;
   font-weight: 600;
 }
 /* 세 번째 메인 컨텐츠 */
 
-.HomeMainContent3 {
+.home-main-content3 {
   margin: 30px 20px;
   display: flex;
   justify-content: center;
