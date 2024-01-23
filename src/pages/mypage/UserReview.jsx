@@ -38,8 +38,8 @@ const UserReview = () => {
     await reviewService.getReviewDetail(reviewId).then((response) => {
       setSelectedReview(response.data); //  버튼을 클릭하면 해당 제품id를 매개변수로 받아와서 저장
       modifyComponent.current?.showProductModal(); // ProductSave 컴포넌트의 showProductModal()함수를 실행하여 모달창을 띄운다.
+      fetchData();
     });
-    fetchData();
   };
 
   //리뷰 삭제
