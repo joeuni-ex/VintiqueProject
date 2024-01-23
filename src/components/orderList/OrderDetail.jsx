@@ -42,7 +42,7 @@ const OrderDetail = ({ item, isMyPage, createReviewRequest }) => {
             <p
               style={{ fontSize: "0.9rem", fontWeight: 500, cursor: "pointer" }}
             >
-              리뷰작성완료
+              리뷰 작성완료
             </p>
           )}
         </div>
