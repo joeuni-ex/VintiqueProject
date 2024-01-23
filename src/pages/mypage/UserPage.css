@@ -1,3 +1,4 @@
+/* 관심 제품 관련 style */
 .interest-page-product-img {
   width: 125px;
   height: 125px;
@@ -22,4 +23,62 @@
   justify-content: end;
   align-self: flex-start;
   cursor: pointer;
+}
+
+/* 리뷰 관리 관련 style */
+.writen-review-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.writen-review-product {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #d4d4d4;
+}
+
+.writen-review-product-name p {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.writen-review-product-img {
+  width: 80px;
+  height: 80px;
+  overflow: hidden;
+  margin-right: 20px;
+}
+
+.writen-review-product-img img {
+  width: 100%;
+  height: 100%;
+}
+
+.review-detail {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100px;
+  padding: 20px;
+}
+
+.review-detail-btn-box {
+  display: flex;
+  align-items: center;
+}
+
+.review-detail-modify-btn {
+  display: flex;
+  width: 150px;
+  height: 40px;
+  background-color: antiquewhite;
+  justify-content: center;
+  align-items: center;
+  margin-right: 30px;
+  cursor: pointer;
+}
+.review-detail-delete-btn {
+  height: 80px;
+  font-size: 1.2rem;
 }

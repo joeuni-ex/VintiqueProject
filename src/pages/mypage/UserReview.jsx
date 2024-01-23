@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
+import { IoClose } from "react-icons/io5";
 import Banner from "../../components/banner/Banner";
 import Pagination from "../../components/pagination/Pagination";
 import MyPageCate from "../../components/userCategory/MyPageCate";
 import "./UserPage.css";
-import orderService from "../../services/order.service";
 import reviewService from "../../services/review.service";
-import ReviewList from "../../components/review/reviewList";
+import { Link } from "react-router-dom";
+import Star from "../../components/rate/Star";
+import Star3 from "../../components/rate/Star3";
 
 const UserReview = () => {
   const title = "MyPage";
@@ -15,18 +17,33 @@ const UserReview = () => {
   const [reviewList, setReviewList] = useState([]);
 
   //모든 주문 목록 가져오기
-  useEffect(() => {
-    const fetchData = async () => {
-      reviewService.getReviewByUserId(page, maxPageSize).then((response) => {
+  const fetchData = async () => {
+    await reviewService
+      .getReviewByUserId(page, maxPageSize)
+      .then((response) => {
         setReviewList(response.data.content);
         setPage(response.data.pageable.pageNumber); // 현재 페이지
         setTotalPage(response.data.pageable.pageSize); //총 페이지
       });
-    };
+  };
+  useEffect(() => {
     fetchData();
   }, [page]);
 
   console.log(reviewList);
+
+  const handleDeleteReview = (reivewId) => {
+    if (confirm("해당 리뷰를 삭제하시겠습니까?")) {
+      reviewService.deleteReview(reivewId).then(() => {
+        fetchData(); // 다시 리뷰 목록 가져오기
+      });
+    }
+  };
+
+  const handleModifyReview = () => {
+    console.log("클릭함");
+  };
+
   return (
     <div className="basic-container">
       {/* 배너 */}
@@ -40,19 +57,63 @@ const UserReview = () => {
           <table>
             <thead>
               <tr>
-                <th>No</th>
-                <th>주문정보</th>
-                <th>가격</th>
-                <th>주문일자</th>
-                <th>배송상태</th>
-                <th></th>
+                <th>내가 작성한 리뷰</th>
               </tr>
             </thead>
             <tbody>
-              {reviewList &&
-                reviewList.map((review, idx) => (
-                  <ReviewList review={review} idx={idx} />
-                ))}
+              <tr>
+                <td colSpan="7">
+                  {reviewList &&
+                    reviewList.map((review, index) => (
+                      <div key={index} className="writen-review-container">
+                        <div className="writen-review-product">
+                          <Link to={`/product/${review?.productId}`}>
+                            <div className="writen-review-product-img">
+                              <img src={review?.mainImage} alt="" />
+                            </div>
+                          </Link>
+                          <div className="writen-review-product-name">
+                            <p>{review?.name}</p>
+                          </div>
+                        </div>
+                        <div className="review-detail">
+                          <div>
+                            <div>
+                              {Array.from({ length: review?.rate }).map(
+                                (_, index) => (
+                                  <Star3
+                                    width={15}
+                                    height={15}
+                                    key={index}
+                                    style={{ margin: "0px 1.5px" }}
+                                  />
+                                )
+                              )}
+                            </div>
+                            <div style={{ margin: "10px 0" }}>
+                              {review?.reviewContent}
+                            </div>
+                            <div>{review?.createTime}</div>
+                          </div>
+                          <div className="review-detail-btn-box">
+                            <div
+                              onClick={handleModifyReview}
+                              className="review-detail-modify-btn"
+                            >
+                              <p>리뷰 수정</p>
+                            </div>
+                            <div className="review-detail-delete-btn">
+                              <IoClose
+                                style={{ cursor: "pointer" }}
+                                onClick={() => handleDeleteReview(review.id)}
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                </td>
+              </tr>
             </tbody>
           </table>
           <Pagination page={page} setPage={setPage} totalPage={totalPage} />
