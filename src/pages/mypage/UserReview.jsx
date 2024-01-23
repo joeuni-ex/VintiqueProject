@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { IoClose } from "react-icons/io5";
 import Banner from "../../components/banner/Banner";
 import Pagination from "../../components/pagination/Pagination";
@@ -6,8 +6,9 @@ import MyPageCate from "../../components/userCategory/MyPageCate";
 import "./UserPage.css";
 import reviewService from "../../services/review.service";
 import { Link } from "react-router-dom";
-import Star from "../../components/rate/Star";
 import Star3 from "../../components/rate/Star3";
+import ReviewSave from "../../components/review/ReviewSave";
+import ReviewModify from "../../components/review/ReviewModify";
 
 const UserReview = () => {
   const title = "MyPage";
@@ -15,8 +16,10 @@ const UserReview = () => {
   const maxPageSize = 12; //한 페이지에 출력할 게시물 개수
   const [totalPage, setTotalPage] = useState(0);
   const [reviewList, setReviewList] = useState([]);
+  const modifyComponent = useRef(); //리뷰 추가 모달창
+  const [selectedReview, setSelectedReview] = useState([]); //선택한 제품의 리뷰
 
-  //모든 주문 목록 가져오기
+  //리뷰 작성 목록 가져오기
   const fetchData = async () => {
     await reviewService
       .getReviewByUserId(page, maxPageSize)
@@ -30,18 +33,22 @@ const UserReview = () => {
     fetchData();
   }, [page]);
 
-  console.log(reviewList);
+  // 리뷰 수정 버튼 클릭 시
+  const createReviewRequest = async (reviewId) => {
+    await reviewService.getReviewDetail(reviewId).then((response) => {
+      setSelectedReview(response.data); //  버튼을 클릭하면 해당 제품id를 매개변수로 받아와서 저장
+      modifyComponent.current?.showProductModal(); // ProductSave 컴포넌트의 showProductModal()함수를 실행하여 모달창을 띄운다.
+    });
+    fetchData();
+  };
 
+  //리뷰 삭제
   const handleDeleteReview = (reivewId) => {
     if (confirm("해당 리뷰를 삭제하시겠습니까?")) {
       reviewService.deleteReview(reivewId).then(() => {
         fetchData(); // 다시 리뷰 목록 가져오기
       });
     }
-  };
-
-  const handleModifyReview = () => {
-    console.log("클릭함");
   };
 
   return (
@@ -97,7 +104,7 @@ const UserReview = () => {
                           </div>
                           <div className="review-detail-btn-box">
                             <div
-                              onClick={handleModifyReview}
+                              onClick={() => createReviewRequest(review.id)}
                               className="review-detail-modify-btn"
                             >
                               <p>리뷰 수정</p>
@@ -118,6 +125,7 @@ const UserReview = () => {
           </table>
           <Pagination page={page} setPage={setPage} totalPage={totalPage} />
         </div>
+        <ReviewModify ref={modifyComponent} review={selectedReview} />
       </div>
     </div>
   );

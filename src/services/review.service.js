@@ -24,6 +24,20 @@ class ReviewService {
     });
   }
 
+  //리뷰 상세 조회
+  getReviewDetail(reivewId) {
+    return axios.get(API_URL + "/detail/" + reivewId, {
+      headers: authHeader(),
+    });
+  }
+
+  //리뷰 수정
+  modifyReview(reviewId, review) {
+    return axios.put(API_URL + "/" + reviewId, review, {
+      headers: authHeader(),
+    });
+  }
+
   //리뷰 삭제
   deleteReview(reviewId) {
     return axios.delete(API_URL + "/" + reviewId, {

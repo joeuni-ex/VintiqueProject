@@ -16,6 +16,7 @@
   align-items: center;
   background-color: rgb(255, 255, 255);
   border-radius: 10px;
+  border: 1px solid rgba(194, 194, 194, 0.7);
 }
 
 .modal-close {
