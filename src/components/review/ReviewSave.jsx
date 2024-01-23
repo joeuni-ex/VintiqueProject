@@ -5,6 +5,7 @@ import Review from "../../model/Review";
 import { IoCloseSharp } from "react-icons/io5";
 import Star from "../rate/Star";
 import Star2 from "../rate/Star2";
+import { useNavigate } from "react-router-dom";
 
 //리뷰 작성 모달창
 const ReviewSave = forwardRef((props, ref) => {
@@ -18,6 +19,7 @@ const ReviewSave = forwardRef((props, ref) => {
   const [review, setReview] = useState(new Review("", 0, props.product)); //model의 리뷰 객체
   const [errorMessage, setErrorMessage] = useState("");
   const [show, setShow] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setReview(new Review("", 0, props.product));
@@ -39,7 +41,7 @@ const ReviewSave = forwardRef((props, ref) => {
   };
 
   //리뷰 작성 클릭 시 실행
-  const saveReview = (e) => {
+  const saveReview = async (e) => {
     e.preventDefault();
 
     //리뷰 내용, 리뷰 평점 공백이면 리턴
@@ -54,12 +56,13 @@ const ReviewSave = forwardRef((props, ref) => {
     if (!review.rate) {
       alert("별점을 선택해 주세요!");
     }
-    reviewService //백엔드에 제품 저장 요청
+    await reviewService //백엔드에 제품 저장 요청
       .saveReview(review)
       .then((response) => {
         alert("리뷰가 정상적으로 작성되었습니다.");
         // props.onSaved(response.data); //상위컴포넌트에 저장데이터 전달
         setShow(false); //모달창 사라짐
+        navigate("/user/review");
       })
       .catch((err) => {
         setErrorMessage("제품 저장시 에러발생!");
