@@ -16,13 +16,15 @@ const ReviewSave = forwardRef((props, ref) => {
     },
   }));
 
-  const [review, setReview] = useState(new Review("", 0, props.product)); //model의 리뷰 객체
+  const [review, setReview] = useState(
+    new Review(props.orderItemId, "", 0, props.product)
+  ); //model의 리뷰 객체
   const [errorMessage, setErrorMessage] = useState("");
   const [show, setShow] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
-    setReview(new Review("", 0, props.product));
+    setReview(new Review(props.orderItemId, "", 0, props.product));
   }, [props.product]);
 
   //평점 선택

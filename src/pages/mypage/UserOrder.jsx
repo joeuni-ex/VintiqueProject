@@ -22,6 +22,7 @@ const UserOrder = () => {
   const saveComponent = useRef(); //리뷰 추가 모달창
 
   const [selectedProduct, setSelectedProduct] = useState(""); //선택한 제품의 리뷰
+  const [selectedOrderItemId, setSelectedOrderItemId] = useState(""); //리뷰 작성할 주문 아이템 ID
 
   //모든 주문 목록 가져오기
   useEffect(() => {
@@ -48,8 +49,10 @@ const UserOrder = () => {
   };
 
   // 리뷰 작성 버튼 클릭 시
-  const createReviewRequest = (productId) => {
+  const createReviewRequest = (productId, orderItemId) => {
+    console.log(orderItemId);
     setSelectedProduct(productId); //  버튼을 클릭하면 해당 제품id를 매개변수로 받아와서 저장
+    setSelectedOrderItemId(orderItemId);
     saveComponent.current?.showProductModal(); // ProductSave 컴포넌트의 showProductModal()함수를 실행하여 모달창을 띄운다.
   };
 
@@ -102,7 +105,11 @@ const UserOrder = () => {
           </table>
           <Pagination page={page} setPage={setPage} totalPage={totalPage} />
         </div>
-        <ReviewSave ref={saveComponent} product={selectedProduct} />
+        <ReviewSave
+          ref={saveComponent}
+          product={selectedProduct}
+          orderItemId={selectedOrderItemId}
+        />
       </div>
     </div>
   );

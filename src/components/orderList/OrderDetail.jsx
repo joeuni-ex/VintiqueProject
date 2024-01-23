@@ -30,13 +30,21 @@ const OrderDetail = ({ item, isMyPage, createReviewRequest }) => {
         </p>
       </div>
       {isMyPage ? (
-        <div
-          onClick={() => createReviewRequest(item.productId)}
-          style={{ flex: 0.1 }}
-        >
-          <p style={{ fontSize: "0.9rem", fontWeight: 500, cursor: "pointer" }}>
-            리뷰작성
-          </p>
+        <div style={{ flex: 0.1 }}>
+          {item?.writtenReview === "false" ? (
+            <p
+              onClick={() => createReviewRequest(item.productId, item.id)}
+              style={{ fontSize: "0.9rem", fontWeight: 500, cursor: "pointer" }}
+            >
+              리뷰작성
+            </p>
+          ) : (
+            <p
+              style={{ fontSize: "0.9rem", fontWeight: 500, cursor: "pointer" }}
+            >
+              리뷰작성완료
+            </p>
+          )}
         </div>
       ) : (
         ""
