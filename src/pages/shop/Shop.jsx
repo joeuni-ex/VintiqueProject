@@ -16,15 +16,19 @@ const Shop = () => {
   const [orderBy, setOrderBy] = useState("1"); // 가격 높은 순, 낮은 순 정렬
   const [isLoading, setIsLoading] = useState(false); // 로딩 중
 
-  //최초 시작 시 전체 제품 가져오기
-  useEffect(() => {
-    setIsLoading(true);
+  const fetchData = async () => {
     productService.getAllProducts(page, maxPageSize).then((response) => {
       setProductList(response.data.content);
       setPage(response.data.pageable.pageNumber); // 현재 페이지
       setTotalPage(response.data.pageable.pageSize); //총 페이지
       setIsLoading(false);
     });
+  };
+
+  //최초 시작 시 전체 제품 가져오기
+  useEffect(() => {
+    setIsLoading(true);
+    fetchData();
   }, [page, maxPageSize]);
 
   //한 페이지 최대 출력 개수 옵션 변경

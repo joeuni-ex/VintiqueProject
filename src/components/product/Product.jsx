@@ -7,16 +7,33 @@ import { Link, useNavigate } from "react-router-dom";
 import Cart from "../../model/Cart";
 import CartService from "../../services/cart.service";
 import interestService from "../../services/interest.service";
+import Heart2 from "../icon/Heart2";
+import Heart from "../icon/Heart";
 
-const Product = ({ product }) => {
+const Product = ({ product, fetchData }) => {
   //like 버튼 클릭 시
   const handleAddInterest = async () => {
     if (confirm("관심 제품에 추가하시겠습니까?")) {
       try {
         await interestService.saveInterest(product?.id);
         alert("정상적으로 관심 제품에 추가되었습니다.");
+        fetchData();
       } catch (err) {
         alert("관심 제품 추가 시 에러 발생");
+        console.error(err);
+      }
+    }
+  };
+
+  //관심 제품 삭제
+  const handleDeleteInterest = async () => {
+    if (confirm("관심 제품에서 삭제하시겠습니까?")) {
+      try {
+        await interestService.deleteInterest(product?.id);
+        alert("정상적으로 관심 제품에서 삭제되었습니다.");
+        fetchData();
+      } catch (err) {
+        alert("관심 제품 제거 시 에러 발생");
         console.error(err);
       }
     }
@@ -64,10 +81,17 @@ const Product = ({ product }) => {
             <LuShoppingCart />
             Cart
           </p>
-          <p onClick={handleAddInterest}>
-            <FaRegHeart />
-            Like
-          </p>
+          {product?.addedInterest === true ? (
+            <p onClick={handleDeleteInterest}>
+              <Heart />
+              Like
+            </p>
+          ) : (
+            <p onClick={handleAddInterest}>
+              <FaRegHeart />
+              Like
+            </p>
+          )}
         </div>
       </div>
     </div>

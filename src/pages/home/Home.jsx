@@ -17,12 +17,16 @@ const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [images, setImages] = useState([]);
 
-  useEffect(() => {
+  const fetchData = async () => {
     //모든 제품
-    productService.getAllProducts(page, maxPageSize).then((response) => {
+    await productService.getAllProducts(page, maxPageSize).then((response) => {
       setProductList(response.data.content);
       setPage(response.data.pageable.pageNumber); // 현재 페이지
     });
+  };
+
+  useEffect(() => {
+    fetchData();
     //이미지 갤러리 import
     const importImages = async () => {
       const importedImages = [];
@@ -105,7 +109,7 @@ const Home = () => {
         </div>
         <div className="home-main-content3">
           {productList.map((product, index) => (
-            <Product key={index} product={product} />
+            <Product key={index} product={product} fetchData={fetchData} />
           ))}
         </div>
         <div className="showBtn">

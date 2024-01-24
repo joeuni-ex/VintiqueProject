@@ -59,21 +59,29 @@ class ProductService {
 
   //모든 제품 조회
   getAllProducts(page, maxpage) {
-    return axios.get(API_URL + "?page=" + page + "&maxpage=" + maxpage); //조회는 인증이 필요없어서 headers 안들어감
+    return axios.get(API_URL + "?page=" + page + "&maxpage=" + maxpage, {
+      headers: authHeader(),
+    });
   }
 
   //모든 제품 조회(가격 높은 순 정렬)
   getAllOrderByPriceDesc(page, maxpage) {
     return axios.get(
-      API_URL + "/price-desc" + "?page=" + page + "&maxpage=" + maxpage
-    ); //조회는 인증이 필요없어서 headers 안들어감
+      API_URL + "/price-desc" + "?page=" + page + "&maxpage=" + maxpage,
+      {
+        headers: authHeader(),
+      }
+    );
   }
 
   //모든 제품 조회(가격 낮은 순 정렬)
   getAllOrderByPriceAsc(page, maxpage) {
     return axios.get(
-      API_URL + "/price-asc" + "?page=" + page + "&maxpage=" + maxpage
-    ); //조회는 인증이 필요없어서 headers 안들어감
+      API_URL + "/price-asc" + "?page=" + page + "&maxpage=" + maxpage,
+      {
+        headers: authHeader(),
+      }
+    );
   }
 
   //카테고리별 제품 조회(기본)
@@ -86,8 +94,11 @@ class ProductService {
         "?page=" +
         page +
         "&maxpage=" +
-        maxpage
-    ); //조회는 인증이 필요없어서 headers 안들어감
+        maxpage,
+      {
+        headers: authHeader(),
+      }
+    );
   }
 
   //카테고리별 제품 조회(가격 높은 순 정렬)
@@ -100,8 +111,11 @@ class ProductService {
         "?page=" +
         page +
         "&maxpage=" +
-        maxpage
-    ); //조회는 인증이 필요없어서 headers 안들어감
+        maxpage,
+      {
+        headers: authHeader(),
+      }
+    );
   }
 
   //카테고리별 제품 조회(가격 낮은 순 정렬)
@@ -114,8 +128,11 @@ class ProductService {
         "?page=" +
         page +
         "&maxpage=" +
-        maxpage
-    ); //조회는 인증이 필요없어서 headers 안들어감
+        maxpage,
+      {
+        headers: authHeader(),
+      }
+    );
   }
 
   //제품 상세 조회(id)
