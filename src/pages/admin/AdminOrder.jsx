@@ -51,17 +51,12 @@ const AdminOrder = () => {
   };
 
   return (
-    <div className="basic-container base-color">
+    <div className="basic-container">
       {/* 배너 */}
       <Banner title="AdminPage" />
       <div className="userPage">
         <AdminCate select="1" />
         <div className="user-content">
-          {/* <p>주문 관리</p> */}
-          <div
-            style={{ display: "flex", width: "100%", justifyContent: "end" }}
-          ></div>
-
           <table>
             <thead>
               <tr>

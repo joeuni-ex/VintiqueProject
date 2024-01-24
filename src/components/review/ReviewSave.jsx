@@ -91,7 +91,6 @@ const ReviewSave = forwardRef((props, ref) => {
     // setReview(new Review("", 0, 0)); //제품 초기화
   };
 
-  console.log(review);
   return (
     <>
       {show && (

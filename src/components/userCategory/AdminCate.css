@@ -6,7 +6,8 @@
   background-color: white;
   border-radius: 5px;
   margin-right: 20px;
-  height: 85%;
+  margin-bottom: 50px;
+  height: 500px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
 }
 .user-category p {

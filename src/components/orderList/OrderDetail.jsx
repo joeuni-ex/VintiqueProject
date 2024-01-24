@@ -11,26 +11,26 @@ const OrderDetail = ({ item, isMyPage, createReviewRequest }) => {
       <div className="order-page-product-img">
         <img src={item.mainImage} alt="" />
       </div>
-      <div style={{ flex: 0.3 }}>
+      <div style={{ flex: 0.2 }}>
         <p style={{ fontSize: "0.9rem", fontWeight: 500 }}> {item?.name}</p>
       </div>
-      <div style={{ flex: 0.2 }}>
+      <div style={{ flex: 0.25 }}>
         <p style={{ fontSize: "0.9rem", fontWeight: 500 }}>
           제품가격 : {item?.price.toLocaleString("ko-KR")}원
         </p>
       </div>
-      <div style={{ flex: 0.1 }}>
+      <div style={{ flex: 0.15 }}>
         <p style={{ fontSize: "0.9rem", fontWeight: 500 }}>
           수량 : {item?.quantity}개
         </p>
       </div>
-      <div style={{ flex: 0.2 }}>
+      <div style={{ flex: 0.15 }}>
         <p style={{ fontSize: "0.9rem", fontWeight: 500 }}>
           합계 : {item?.price * item?.quantity}원
         </p>
       </div>
       {isMyPage ? (
-        <div style={{ flex: 0.1 }}>
+        <div style={{ flex: 0.15 }}>
           {item?.writtenReview === "false" ? (
             <p
               onClick={() => createReviewRequest(item.productId, item.id)}

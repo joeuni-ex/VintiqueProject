@@ -49,7 +49,6 @@ const UserOrder = () => {
 
   // 리뷰 작성 버튼 클릭 시
   const createReviewRequest = (productId, orderItemId) => {
-    console.log(orderItemId);
     setSelectedProduct(productId); //  버튼을 클릭하면 해당 제품id를 매개변수로 받아와서 저장
     setSelectedOrderItemId(orderItemId);
     saveComponent.current?.showProductModal(); // ProductSave 컴포넌트의 showProductModal()함수를 실행하여 모달창을 띄운다.
@@ -62,9 +61,6 @@ const UserOrder = () => {
       <div className="userPage">
         <MyPageCate select="1" />
         <div className="user-content">
-          <div
-            style={{ display: "flex", width: "100%", justifyContent: "end" }}
-          ></div>
           <table>
             <thead>
               <tr>
