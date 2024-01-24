@@ -42,8 +42,8 @@ const Product = ({ product }) => {
       <div className="productInfo">
         <p>{product?.name}</p>
         <span>{product?.description}</span>
-        <p style={{ fontSize: "1.1rem", marginBottom: "1rem" }}>
-          가격 : {product?.price.toLocaleString("ko-KR")} 원
+        <p style={{ fontSize: "1rem" }}>
+          {product?.price.toLocaleString("ko-KR")}원
         </p>
       </div>
       <div className="productAddCart">
