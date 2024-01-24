@@ -1,5 +1,8 @@
 import "./Home.css";
 import mainImg from "../../assets/main2.jpg";
+import dining from "../../assets/main-dining.jpg";
+import bed from "../../assets/main-bedroom.jpg";
+import living from "../../assets/main-livingroom.jpg";
 
 import Product from "../../components/product/Product";
 import { useState } from "react";
@@ -75,19 +78,19 @@ const Home = () => {
         <div className="home-main-content2">
           <div className="main-list">
             <div className="main-list-img">
-              <img src={mainImg} alt="" />
+              <img src={dining} alt="" />
             </div>
             <p>Dining</p>
           </div>
           <div className="main-list">
             <div className="main-list-img">
-              <img src={mainImg} alt="" />
+              <img src={bed} alt="" />
             </div>
             <p>Living</p>
           </div>
           <div className="main-list">
             <div className="main-list-img">
-              <img src={mainImg} alt="" />
+              <img src={living} alt="" />
             </div>
             <p>Bedroom</p>
           </div>
