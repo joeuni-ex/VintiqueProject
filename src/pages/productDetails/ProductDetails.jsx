@@ -14,6 +14,7 @@ import reviewService from "../../services/review.service";
 import Star3 from "../../components/icon/Star3";
 import Heart from "../../components/icon/Heart";
 import Heart2 from "../../components/icon/Heart2";
+import interestService from "../../services/interest.service";
 
 const ProductDetails = () => {
   //처음 시작 이미지 번호는 0임 -> product.images[0] = image1 을 의미함
@@ -95,6 +96,32 @@ const ProductDetails = () => {
     }
   };
 
+  //관심 제품 추가
+  const handleAddInterest = async () => {
+    if (confirm("관심 제품에 추가하시겠습니까?")) {
+      try {
+        await interestService.saveInterest(id);
+        alert("정상적으로 관심 제품에 추가되었습니다.");
+      } catch (err) {
+        alert("관심 제품 추가 시 에러 발생");
+        console.error(err);
+      }
+    }
+  };
+
+  //관심 제품 삭제
+  const handleDeleteInterest = async () => {
+    if (confirm("관심 제품에서 삭제하시겠습니까?")) {
+      try {
+        await interestService.deleteInterest(id);
+        alert("정상적으로 관심 제품에서 삭제되었습니다.");
+      } catch (err) {
+        alert("관심 제품 제거 시 에러 발생");
+        console.error(err);
+      }
+    }
+  };
+
   return (
     <div className="basic-container ">
       <div className="detailCategory">
@@ -165,8 +192,14 @@ const ProductDetails = () => {
           <div className="single_product_details">
             <div className="single_product_name-container">
               <p className="single_product_name">{product[0]?.name}</p>
-              <Heart />
-              <Heart2 />
+              <Heart
+                className="detail-heart-icon"
+                onClick={handleAddInterest}
+              />
+              <Heart2
+                className="detail-heart-icon"
+                onClick={handleDeleteInterest}
+              />
             </div>
 
             {/* 평점  */}
