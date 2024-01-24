@@ -37,7 +37,7 @@ const RoleChange = () => {
     }
   };
   return (
-    <div className="basic-container base-color">
+    <div className="basic-container">
       {/* 배너 */}
       <Banner title="AdminPage" />
       <div className="userPage">

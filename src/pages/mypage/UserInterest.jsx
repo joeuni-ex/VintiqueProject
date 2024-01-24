@@ -33,6 +33,7 @@ const UserInterest = () => {
       });
     }
   };
+  console.log(interestList);
 
   return (
     <div className="basic-container">
@@ -41,9 +42,6 @@ const UserInterest = () => {
       <div className="userPage">
         <MyPageCate select="3" />
         <div className="user-content">
-          <div
-            style={{ display: "flex", width: "100%", justifyContent: "end" }}
-          ></div>
           <table>
             <thead>
               <tr>
@@ -53,6 +51,11 @@ const UserInterest = () => {
             <tbody>
               <tr>
                 <td colSpan="7">
+                  {interestList.length === 0 && (
+                    <div className="order-detail">
+                      <p>추가 된 관심 제품이 존재하지 않습니다.</p>
+                    </div>
+                  )}
                   {interestList &&
                     interestList.map((interest, index) => (
                       <div key={index} className="order-detail">

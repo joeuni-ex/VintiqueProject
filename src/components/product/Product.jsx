@@ -3,7 +3,7 @@ import mainImg from "../../assets/main.jpg";
 import { FaRegHeart } from "react-icons/fa";
 import { LuShoppingCart } from "react-icons/lu";
 import { MdShare } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Cart from "../../model/Cart";
 import CartService from "../../services/cart.service";
 import interestService from "../../services/interest.service";

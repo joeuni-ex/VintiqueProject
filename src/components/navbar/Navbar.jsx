@@ -70,11 +70,18 @@ const Navbar = () => {
             )}
 
             {curruntUser?.role === "ADMIN" ? (
-              <li>
-                <NavLink to="/admin/order">
-                  <FaRegUser />
-                </NavLink>
-              </li>
+              <>
+                <li>
+                  <NavLink to="/cart">
+                    <GrCart />
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/admin/order">
+                    <FaRegUser />
+                  </NavLink>
+                </li>
+              </>
             ) : (
               ""
             )}

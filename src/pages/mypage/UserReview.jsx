@@ -57,9 +57,6 @@ const UserReview = () => {
       <div className="userPage">
         <MyPageCate select="2" />
         <div className="user-content">
-          <div
-            style={{ display: "flex", width: "100%", justifyContent: "end" }}
-          ></div>
           <table>
             <thead>
               <tr>
@@ -69,6 +66,11 @@ const UserReview = () => {
             <tbody>
               <tr>
                 <td colSpan="7">
+                  {reviewList.length === 0 && (
+                    <div className="order-detail">
+                      <p>작성한 리뷰가 존재하지 않습니다.</p>
+                    </div>
+                  )}
                   {reviewList &&
                     reviewList.map((review, index) => (
                       <div key={index} className="writen-review-container">

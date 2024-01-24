@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./OrderDetail.css";
 const OrderDetail = ({ item, isMyPage, createReviewRequest }) => {
   return (
@@ -8,11 +9,22 @@ const OrderDetail = ({ item, isMyPage, createReviewRequest }) => {
         </p>
       </div>
 
-      <div className="order-page-product-img">
-        <img src={item.mainImage} alt="" />
-      </div>
+      <Link to={`/product/${item?.productId}`}>
+        <div className="order-page-product-img">
+          <img src={item.mainImage} alt="" />
+        </div>
+      </Link>
       <div style={{ flex: 0.2 }}>
-        <p style={{ fontSize: "0.9rem", fontWeight: 500 }}> {item?.name}</p>
+        <Link
+          style={{
+            fontSize: "0.9rem",
+            fontWeight: 500,
+            textDecoration: "none",
+          }}
+          to={`/product/${item?.productId}`}
+        >
+          {item?.name}
+        </Link>
       </div>
       <div style={{ flex: 0.25 }}>
         <p style={{ fontSize: "0.9rem", fontWeight: 500 }}>

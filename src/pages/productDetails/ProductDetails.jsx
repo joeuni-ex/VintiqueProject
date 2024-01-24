@@ -164,6 +164,7 @@ const ProductDetails = () => {
             <h1 className="single_product_title">{product[0]?.name}</h1>
             {/* 평점  */}
             <div style={{ display: "flex" }}>
+              {!rateAvg ? <Star3 /> : ""}
               {Array.from({ length: rateAvg }).map((_, index) => (
                 <Star3
                   width={20}
@@ -260,7 +261,7 @@ const ProductDetails = () => {
           <div className="ListTitle">
             <h2>많이 본 상품들 </h2>
           </div>
-          <div className="HomeMainContent3">
+          <div className="home-main-content3">
             {productList.map((product, index) => (
               <Product key={index} product={product} />
             ))}
