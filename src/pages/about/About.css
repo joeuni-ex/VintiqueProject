@@ -1,22 +1,62 @@
-.about-content {
+@import url("https://fonts.googleapis.com/css2?family=EB+Garamond:wght@700&display=swap");
+
+.about-container {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   padding: 20px;
-  width: 600px;
-  height: 520px;
-  border-radius: 10px;
+  width: 1250px;
+  height: 100%;
+  margin: 50px;
 }
 
+/* about 상단  */
+.about-content-top {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 450px;
+}
+
+.about-content-top-title {
+  font-family: "EB Garamond", serif;
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 50px;
+}
+
+.about-content-top-text {
+  margin-top: 50px;
+}
+
+/* about 이미지 */
 .about-content-img {
   width: 100%;
-  height: 350px;
+  height: 700px;
   overflow: hidden;
-  border-radius: 15px;
 }
 
 .about-content-img img {
   width: 100%;
   height: 100%;
-  border-radius: 10px;
+  object-fit: cover;
+}
+
+/* about 하단  */
+.about-content-bottom {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 450px;
+  background-color: rgb(228, 228, 228);
+}
+
+.about-content-bottom-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 30px;
 }
