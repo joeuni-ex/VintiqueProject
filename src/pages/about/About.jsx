@@ -2,11 +2,10 @@ import Banner from "../../components/banner/Banner";
 import aboutImg from "../../assets/about.jpg";
 import "./About.css";
 const About = () => {
-  const title = "About"; //배너 이름
   return (
     <div className="basic-container">
       {/* 배너 */}
-      {<Banner title={title} />}
+      <Banner title="About" />
       <div className="about-container">
         {/* 상단 */}
         <div className="about-content-top">

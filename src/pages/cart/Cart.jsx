@@ -68,7 +68,7 @@ const Cart = () => {
   };
   return (
     <div className="basic-container ">
-      <Banner title="Cart" subTitle="cart" />
+      <Banner title="Cart" />
       <div className="cart-container">
         <div className="cart-info-contents ">
           <div className="cart-info-contents-title">

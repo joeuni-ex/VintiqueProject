@@ -8,7 +8,6 @@ import Banner from "../../components/banner/Banner";
 
 // TODO 제품 관리 페이지 -> GET Product
 const AdminProduct = () => {
-  const title = "AdminPage"; //배너 타이틀
   const [page, setPage] = useState(0);
   const [totalPage, setTotalPage] = useState(0);
   const [productList, setProductList] = useState([]);
@@ -26,7 +25,7 @@ const AdminProduct = () => {
   return (
     <div className="basic-container base-color">
       {/* 배너 */}
-      {<Banner title={title} />}
+      <Banner title="AdminPage" />
       <div className="userPage">
         <AdminCate select="2" />
         <div className="user-content">

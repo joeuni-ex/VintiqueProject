@@ -8,7 +8,6 @@ import interestService from "../../services/interest.service";
 import { Link } from "react-router-dom";
 
 const UserInterest = () => {
-  const title = "MyPage";
   const [page, setPage] = useState(0);
   const maxPageSize = 7; //한 페이지에 출력할 게시물 개수
   const [totalPage, setTotalPage] = useState(0);
@@ -38,7 +37,7 @@ const UserInterest = () => {
   return (
     <div className="basic-container">
       {/* 배너 */}
-      {<Banner title={title} />}
+      <Banner title="MyPage" />
       <div className="userPage">
         <MyPageCate select="3" />
         <div className="user-content">

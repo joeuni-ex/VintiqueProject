@@ -11,7 +11,6 @@ import ReviewSave from "../../components/review/ReviewSave";
 import ReviewModify from "../../components/review/ReviewModify";
 
 const UserReview = () => {
-  const title = "MyPage";
   const [page, setPage] = useState(0);
   const maxPageSize = 12; //한 페이지에 출력할 게시물 개수
   const [totalPage, setTotalPage] = useState(0);
@@ -54,7 +53,7 @@ const UserReview = () => {
   return (
     <div className="basic-container">
       {/* 배너 */}
-      {<Banner title={title} />}
+      <Banner title="MyPage" />
       <div className="userPage">
         <MyPageCate select="2" />
         <div className="user-content">

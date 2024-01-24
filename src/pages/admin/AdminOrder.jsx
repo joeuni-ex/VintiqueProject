@@ -11,7 +11,6 @@ import Banner from "../../components/banner/Banner";
 
 // TODO 주문 관리 페이지 -> GET Purchase
 const AdminOrder = () => {
-  const title = "AdminPage"; //배너 타이틀
   const [page, setPage] = useState(0);
   const [totalPage, setTotalPage] = useState(0);
   const [orderList, setOrderList] = useState([]);
@@ -54,7 +53,7 @@ const AdminOrder = () => {
   return (
     <div className="basic-container base-color">
       {/* 배너 */}
-      {<Banner title={title} />}
+      <Banner title="AdminPage" />
       <div className="userPage">
         <AdminCate select="1" />
         <div className="user-content">

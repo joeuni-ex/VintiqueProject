@@ -10,7 +10,6 @@ import Banner from "../../components/banner/Banner";
 
 // TODO 권한 관리 페이지 -> Update Role
 const RoleChange = () => {
-  const title = "AdminPage"; //배너 타이틀
   const currentUser = useSelector((state) => state.user);
   const [errorMessage, setErrorMessage] = useState("");
   const dispatch = useDispatch();
@@ -40,7 +39,7 @@ const RoleChange = () => {
   return (
     <div className="basic-container base-color">
       {/* 배너 */}
-      <Banner title={title} />
+      <Banner title="AdminPage" />
       <div className="userPage">
         <AdminCate select="3" />
         <div className="user-content">

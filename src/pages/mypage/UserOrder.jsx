@@ -11,7 +11,6 @@ import Review from "../../model/Review";
 import ReviewSave from "../../components/review/ReviewSave";
 
 const UserOrder = () => {
-  const title = "MyPage";
   const [page, setPage] = useState(0);
   const [totalPage, setTotalPage] = useState(0);
   const maxPageSize = 12; //한 페이지에 출력할 게시물 개수
@@ -59,7 +58,7 @@ const UserOrder = () => {
   return (
     <div className="basic-container">
       {/* 배너 */}
-      {<Banner title={title} />}
+      <Banner title="MyPage" />
       <div className="userPage">
         <MyPageCate select="1" />
         <div className="user-content">
