@@ -26,17 +26,13 @@ const Navbar = () => {
     navigate("/login");
   };
 
-  //검색 아이콘 클릭 시 검색창 보임
-  const toggleSearchBar = () => {
-    setIsSearchBarVisible(!isSearchBarVisible);
-  };
   return (
     <nav>
       <div className="navbar">
         <div style={{ marginLeft: "7%" }}>
-          <p>
+          <p style={{ width: "250px" }}>
             <Link to="/" className="navbar-logo">
-              <ImVine /> Vintique
+              <ImVine style={{ fontSize: "1.3rem" }} /> Vintique
             </Link>
           </p>
         </div>
