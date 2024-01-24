@@ -3,8 +3,8 @@ import "./ReviewSave.css";
 import reviewService from "../../services/review.service";
 import Review from "../../model/Review";
 import { IoCloseSharp } from "react-icons/io5";
-import Star from "../rate/Star";
-import Star2 from "../rate/Star2";
+import Star from "../icon/Star";
+import Star2 from "../icon/Star2";
 import { useNavigate } from "react-router-dom";
 
 //리뷰 작성 모달창

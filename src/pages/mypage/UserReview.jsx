@@ -6,7 +6,7 @@ import MyPageCate from "../../components/userCategory/MyPageCate";
 import "./UserPage.css";
 import reviewService from "../../services/review.service";
 import { Link } from "react-router-dom";
-import Star3 from "../../components/rate/Star3";
+import Star3 from "../../components/icon/Star3";
 import ReviewSave from "../../components/review/ReviewSave";
 import ReviewModify from "../../components/review/ReviewModify";
 

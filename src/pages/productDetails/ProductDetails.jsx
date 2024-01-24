@@ -7,11 +7,13 @@ import Product from "../../components/product/Product";
 import Description from "../../components/productDetail/Description";
 import Reviews from "../../components/productDetail/Reviews";
 // 별점 아이콘 jsx
-import Star from "../../components/rate/Star";
+import Star from "../../components/icon/Star";
 import cartService from "../../services/cart.service";
 import Cart from "../../model/Cart";
 import reviewService from "../../services/review.service";
-import Star3 from "../../components/rate/Star3";
+import Star3 from "../../components/icon/Star3";
+import Heart from "../../components/icon/Heart";
+import Heart2 from "../../components/icon/Heart2";
 
 const ProductDetails = () => {
   //처음 시작 이미지 번호는 0임 -> product.images[0] = image1 을 의미함
@@ -161,7 +163,12 @@ const ProductDetails = () => {
         <div className="detail-page-container-right">
           {/* 상품 디테일 */}
           <div className="single_product_details">
-            <h1 className="single_product_title">{product[0]?.name}</h1>
+            <div className="single_product_name-container">
+              <p className="single_product_name">{product[0]?.name}</p>
+              <Heart />
+              <Heart2 />
+            </div>
+
             {/* 평점  */}
             <div style={{ display: "flex" }}>
               {!rateAvg ? <Star3 /> : ""}

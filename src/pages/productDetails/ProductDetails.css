@@ -41,6 +41,7 @@
   width: 50%;
   padding: 20px;
 }
+/* 오른쪽 제품 설명  */
 
 .single_product {
   justify-content: center;
@@ -82,13 +83,20 @@
   padding: 16px 24px;
 }
 
-.single_product_title {
-  margin-bottom: 16px;
-  font-size: 32px;
+.single_product_name-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.single_product_name {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-right: 15px;
 }
 
 .single_product_description {
-  margin-bottom: 16px;
+  margin: 10px 0;
   line-height: 1.4;
 }
 

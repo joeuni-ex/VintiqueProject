@@ -1,4 +1,4 @@
-import Star from "../rate/Star";
+import Star from "../icon/Star";
 import "./Reviews.css";
 
 const Reviews = ({ review }) => {
