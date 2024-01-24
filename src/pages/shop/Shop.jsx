@@ -60,80 +60,80 @@ const Shop = () => {
     }
   }, [category]);
 
+  const orderByFetch = async () => {
+    try {
+      if (orderBy === "1" && category === "All") {
+        await productService
+          .getAllProducts(page, maxPageSize)
+          .then((response) => {
+            setProductList(response.data.content);
+            setPage(response.data.pageable.pageNumber); // 현재 페이지
+            setTotalPage(response.data.pageable.pageSize); //총 페이지
+            setIsLoading(false);
+          });
+      }
+
+      if (orderBy === "2" && category === "All") {
+        await productService
+          .getAllOrderByPriceAsc(page, maxPageSize)
+          .then((response) => {
+            setProductList(response.data.content);
+            setPage(response.data.pageable.pageNumber); // 현재 페이지
+            setTotalPage(response.data.pageable.pageSize); //총 페이지
+            setIsLoading(false);
+          });
+      }
+
+      if (orderBy === "3" && category === "All") {
+        await productService
+          .getAllOrderByPriceDesc(page, maxPageSize)
+          .then((response) => {
+            setProductList(response.data.content);
+            setPage(response.data.pageable.pageNumber); // 현재 페이지
+            setTotalPage(response.data.pageable.pageSize); //총 페이지
+            setIsLoading(false);
+          });
+      }
+
+      if (orderBy === "1" && category !== "All") {
+        await productService
+          .getCategory(category, page, maxPageSize)
+          .then((response) => {
+            setProductList(response.data.content);
+            setPage(response.data.pageable.pageNumber); // 현재 페이지
+            setTotalPage(response.data.pageable.pageSize); //총 페이지
+            setIsLoading(false);
+          });
+      }
+
+      if (orderBy === "2" && category !== "All") {
+        await productService
+          .getCategoryOrderByPriceAsc(category, page, maxPageSize)
+          .then((response) => {
+            setProductList(response.data.content);
+            setPage(response.data.pageable.pageNumber); // 현재 페이지
+            setTotalPage(response.data.pageable.pageSize); //총 페이지
+            setIsLoading(false);
+          });
+      }
+      if (orderBy === "3" && category !== "All") {
+        await productService
+          .getCategoryOrderByPriceDesc(category, page, maxPageSize)
+          .then((response) => {
+            setProductList(response.data.content);
+            setPage(response.data.pageable.pageNumber); // 현재 페이지
+            setTotalPage(response.data.pageable.pageSize); //총 페이지
+            setIsLoading(false);
+          });
+      }
+    } catch (err) {
+      console.log;
+    }
+  };
+
   //정렬
   useEffect(() => {
     setIsLoading(true);
-
-    const orderByFetch = async () => {
-      try {
-        if (orderBy === "1" && category === "All") {
-          await productService
-            .getAllProducts(page, maxPageSize)
-            .then((response) => {
-              setProductList(response.data.content);
-              setPage(response.data.pageable.pageNumber); // 현재 페이지
-              setTotalPage(response.data.pageable.pageSize); //총 페이지
-              setIsLoading(false);
-            });
-        }
-
-        if (orderBy === "2" && category === "All") {
-          await productService
-            .getAllOrderByPriceAsc(page, maxPageSize)
-            .then((response) => {
-              setProductList(response.data.content);
-              setPage(response.data.pageable.pageNumber); // 현재 페이지
-              setTotalPage(response.data.pageable.pageSize); //총 페이지
-              setIsLoading(false);
-            });
-        }
-
-        if (orderBy === "3" && category === "All") {
-          await productService
-            .getAllOrderByPriceDesc(page, maxPageSize)
-            .then((response) => {
-              setProductList(response.data.content);
-              setPage(response.data.pageable.pageNumber); // 현재 페이지
-              setTotalPage(response.data.pageable.pageSize); //총 페이지
-              setIsLoading(false);
-            });
-        }
-
-        if (orderBy === "1" && category !== "All") {
-          await productService
-            .getCategory(category, page, maxPageSize)
-            .then((response) => {
-              setProductList(response.data.content);
-              setPage(response.data.pageable.pageNumber); // 현재 페이지
-              setTotalPage(response.data.pageable.pageSize); //총 페이지
-              setIsLoading(false);
-            });
-        }
-
-        if (orderBy === "2" && category !== "All") {
-          await productService
-            .getCategoryOrderByPriceAsc(category, page, maxPageSize)
-            .then((response) => {
-              setProductList(response.data.content);
-              setPage(response.data.pageable.pageNumber); // 현재 페이지
-              setTotalPage(response.data.pageable.pageSize); //총 페이지
-              setIsLoading(false);
-            });
-        }
-        if (orderBy === "3" && category !== "All") {
-          await productService
-            .getCategoryOrderByPriceDesc(category, page, maxPageSize)
-            .then((response) => {
-              setProductList(response.data.content);
-              setPage(response.data.pageable.pageNumber); // 현재 페이지
-              setTotalPage(response.data.pageable.pageSize); //총 페이지
-              setIsLoading(false);
-            });
-        }
-      } catch (err) {
-        console.log;
-      }
-    };
 
     orderByFetch();
   }, [orderBy, page, maxPageSize]);
@@ -219,7 +219,7 @@ const Shop = () => {
             <Spinner />
           ) : (
             productList.map((product, index) => (
-              <Product key={index} product={product} />
+              <Product key={index} product={product} fetchData={orderByFetch} />
             ))
           )}
         </div>
