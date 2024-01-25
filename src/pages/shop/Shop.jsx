@@ -5,7 +5,7 @@ import "./Shop.css";
 import productService from "../../services/product.service";
 import Pagination from "../../components/pagination/Pagination";
 import BottomBanner from "../../components/banner/BottomBanner";
-import Spinner from "../../components/loading/spinner";
+import Spinner from "../../components/loading/Spinner";
 
 const Shop = () => {
   const [maxPageSize, setMaxPageSize] = useState(12); //한 페이지에 최대 출력할 제품 개수
