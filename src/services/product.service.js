@@ -10,7 +10,6 @@ const ADD_IMAGE_URL = () => `${BASE_API_URL}/file/upload`;
 class ProductService {
   //제품 저장
   saveProduct(product) {
-    console.log(product);
     return axios.post(API_URL, product, { headers: authHeader() }); //인증이 필요하여 헤더에 토큰 들어감
   }
 
@@ -36,22 +35,22 @@ class ProductService {
     return axios.put(API_URL + "/" + id, product, { headers: authHeader() }); //인증이 필요하여 헤더에 토큰 들어감
   }
 
-  //이미지 저장
-  modifyFile = async (formData) => {
-    try {
-      const config = {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      };
-      const response = await axios.post(ADD_IMAGE_URL(), formData, config);
-      const imageUrl = response.data;
-      return imageUrl;
-    } catch (error) {
-      console.error("Error uploading file:", error);
-      return null;
-    }
-  };
+  //이미지 수정-> 파이어 스토어 대체
+  // modifyFile = async (formData) => {
+  //   try {
+  //     const config = {
+  //       headers: {
+  //         "Content-Type": "multipart/form-data",
+  //       },
+  //     };
+  //     const response = await axios.post(ADD_IMAGE_URL(), formData, config);
+  //     const imageUrl = response.data;
+  //     return imageUrl;
+  //   } catch (error) {
+  //     console.error("Error uploading file:", error);
+  //     return null;
+  //   }
+  // };
 
   //제품 삭제
   deleteProduct(id) {

@@ -26,8 +26,6 @@ const AdminProduct = () => {
     fetchData();
   }, [page]);
 
-  console.log(productList);
-
   return (
     <div className="basic-container">
       {/* 배너 */}

@@ -33,7 +33,6 @@ const UserInterest = () => {
       });
     }
   };
-  console.log(interestList);
 
   return (
     <div className="basic-container">

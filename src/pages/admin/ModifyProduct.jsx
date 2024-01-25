@@ -170,8 +170,6 @@ const ModifyProduct = () => {
         mainImage: url,
       });
 
-      console.log(product.boardImageList);
-
       //사이드 이미지 업로드
       const boardImageFiles = await Promise.all(
         product.boardImageList.map(async (image, index) => {
