@@ -13,11 +13,6 @@ class ProductService {
     return axios.post(API_URL, product, { headers: authHeader() });
   }
 
-  //제품 저장-인증 된 유저
-  saveProduct(product) {
-    return axios.post(API_URL, product, { headers: authHeader() });
-  }
-
   //제품 수정
   modifyProduct(product, id) {
     return axios.put(API_URL + "/" + id, product, { headers: authHeader() });
