@@ -10,22 +10,22 @@ const ADD_IMAGE_URL = () => `${BASE_API_URL}/file/upload`;
 class ProductService {
   //제품 저장
   saveProduct(product) {
-    return axios.post(API_URL, product, { headers: authHeader() }); //인증이 필요하여 헤더에 토큰 들어감
+    return axios.post(API_URL, product, { headers: authHeader() });
   }
 
   //제품 저장-인증 된 유저
   saveProduct(product) {
-    return axios.post(API_URL, product, { headers: authHeader() }); //인증이 필요하여 헤더에 토큰 들어감
+    return axios.post(API_URL, product, { headers: authHeader() });
   }
 
   //제품 수정
   modifyProduct(product, id) {
-    return axios.put(API_URL + "/" + id, product, { headers: authHeader() }); //인증이 필요하여 헤더에 토큰 들어감
+    return axios.put(API_URL + "/" + id, product, { headers: authHeader() });
   }
 
   //제품 삭제
   deleteProduct(id) {
-    return axios.delete(API_URL + "/" + id, { headers: authHeader() }); //인증이 필요하여 헤더에 토큰 들어감
+    return axios.delete(API_URL + "/" + id, { headers: authHeader() });
   }
 
   //모든 제품 조회
@@ -108,7 +108,7 @@ class ProductService {
 
   //제품 상세 조회(id)
   getByIdProduct = async (id) => {
-    return await axios.get(API_URL + "/" + id, { headers: authHeader() }); //인증 필요
+    return await axios.get(API_URL + "/" + id, { headers: authHeader() });
   };
 }
 //객체로 만들어서 사용(export)
