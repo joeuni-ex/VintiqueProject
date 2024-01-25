@@ -1,15 +1,13 @@
-import { useDispatch, useSelector } from "react-redux";
-import "./AdminPage.css";
-import { useNavigate } from "react-router-dom";
-import userService from "../../services/user.service";
-import { clearCurrentUser } from "../../store/actions/user";
-import { useState } from "react";
-import { Role } from "../../model/Role";
-import AdminCate from "../../components/userCategory/AdminCate";
+import React, { useState } from "react";
 import Banner from "../../components/banner/Banner";
+import AdminCate from "../../components/userCategory/AdminCate";
+import userService from "../../services/user.service";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { Role } from "../../model/Role";
+import { clearCurrentUser } from "../../store/actions/user";
 
-// TODO 권한 관리 페이지 -> Update Role
-const RoleChange = () => {
+const UserRoleChange = () => {
   const currentUser = useSelector((state) => state.user);
   const [errorMessage, setErrorMessage] = useState("");
   const dispatch = useDispatch();
@@ -41,9 +39,9 @@ const RoleChange = () => {
   return (
     <div className="basic-container">
       {/* 배너 */}
-      <Banner title="AdminPage" />
+      <Banner title="MyPage" />
       <div className="userPage">
-        <AdminCate select="3" />
+        <AdminCate select="4" />
         <div className="user-content">
           <div className="role-contianer">
             <div style={{ marginBottom: "50px" }}>
@@ -61,4 +59,4 @@ const RoleChange = () => {
   );
 };
 
-export default RoleChange;
+export default UserRoleChange;

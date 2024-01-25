@@ -22,6 +22,7 @@ import NotFound from "./pages/error/NotFound";
 import UnAuthorized from "./pages/error/UnAuthorized";
 import About from "./pages/about/About";
 import UserInterest from "./pages/mypage/UserInterest";
+import UserRoleChange from "./pages/mypage/UserRoleChange";
 
 function App() {
   return (
@@ -95,6 +96,14 @@ function App() {
           element={
             <AuthGuard roles={[Role.ADMIN, Role.USER]}>
               <UserInterest />
+            </AuthGuard>
+          }
+        />
+        <Route
+          path="/user/role"
+          element={
+            <AuthGuard roles={[Role.ADMIN, Role.USER]}>
+              <UserRoleChange />
             </AuthGuard>
           }
         />
