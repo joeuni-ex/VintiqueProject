@@ -12,10 +12,11 @@ const Shop = () => {
   const [page, setPage] = useState(0); // 현재 페이지
   const [totalPage, setTotalPage] = useState(0); //총 페이지
   const [productList, setProductList] = useState([]); // 제품 데이터
-  const [category, setCategory] = useState("All"); // 카테고리 변경
+  const [category, setCategory] = useState("all"); // 카테고리 변경
   const [orderBy, setOrderBy] = useState("1"); // 가격 높은 순, 낮은 순 정렬
   const [isLoading, setIsLoading] = useState(false); // 로딩 중
 
+  //최초 시작 시 전체 제품 가져오는 함수
   const fetchData = async () => {
     productService.getAllProducts(page, maxPageSize).then((response) => {
       setProductList(response.data.content);
@@ -50,7 +51,7 @@ const Shop = () => {
       setTotalPage(response.data.pageable.pageSize); //총 페이지
       setIsLoading(false);
     });
-    if (category == "All") {
+    if (category == "all") {
       productService.getAllProducts(page, maxPageSize).then((response) => {
         setProductList(response.data.content);
         setPage(response.data.pageable.pageNumber); // 현재 페이지
@@ -60,9 +61,11 @@ const Shop = () => {
     }
   }, [category]);
 
+  //정렬 및 관심 제품 추가,삭제 시 실행되는 함수
   const orderByFetch = async () => {
     try {
-      if (orderBy === "1" && category === "All") {
+      if (orderBy === "1" && category === "all") {
+        //정렬 default And catetory 전체
         await productService
           .getAllProducts(page, maxPageSize)
           .then((response) => {
@@ -73,7 +76,7 @@ const Shop = () => {
           });
       }
 
-      if (orderBy === "2" && category === "All") {
+      if (orderBy === "2" && category === "all") {
         await productService
           .getAllOrderByPriceAsc(page, maxPageSize)
           .then((response) => {
@@ -84,7 +87,7 @@ const Shop = () => {
           });
       }
 
-      if (orderBy === "3" && category === "All") {
+      if (orderBy === "3" && category === "all") {
         await productService
           .getAllOrderByPriceDesc(page, maxPageSize)
           .then((response) => {
@@ -95,7 +98,7 @@ const Shop = () => {
           });
       }
 
-      if (orderBy === "1" && category !== "All") {
+      if (orderBy === "1" && category !== "all") {
         await productService
           .getCategory(category, page, maxPageSize)
           .then((response) => {
@@ -106,7 +109,7 @@ const Shop = () => {
           });
       }
 
-      if (orderBy === "2" && category !== "All") {
+      if (orderBy === "2" && category !== "all") {
         await productService
           .getCategoryOrderByPriceAsc(category, page, maxPageSize)
           .then((response) => {
@@ -116,7 +119,7 @@ const Shop = () => {
             setIsLoading(false);
           });
       }
-      if (orderBy === "3" && category !== "All") {
+      if (orderBy === "3" && category !== "all") {
         await productService
           .getCategoryOrderByPriceDesc(category, page, maxPageSize)
           .then((response) => {
@@ -134,7 +137,6 @@ const Shop = () => {
   //정렬
   useEffect(() => {
     setIsLoading(true);
-
     orderByFetch();
   }, [orderBy, page, maxPageSize]);
 
@@ -156,14 +158,14 @@ const Shop = () => {
         >
           <div className="shop-option-left">
             <div
-              onClick={() => handleChangeCategory("All")}
+              onClick={() => handleChangeCategory("all")}
               className={
-                category && category === "All"
+                category && category === "all"
                   ? "shop-option-left-cateogry-selected"
                   : "shop-option-left-cateogry"
               }
             >
-              {category && category === "All" ? "▶" : ""} All
+              {category && category === "all" ? "▶" : ""} All
             </div>
             <div
               onClick={() => handleChangeCategory("dining")}
