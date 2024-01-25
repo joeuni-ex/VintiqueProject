@@ -74,11 +74,15 @@ const UserOrder = () => {
             </thead>
             <tbody>
               {orderList.length === 0 && (
-                <div className="order-detail ">
-                  <p style={{ marginLeft: "50px" }}>
-                    주문 내역이 존재하지 않습니다.
-                  </p>
-                </div>
+                <tr>
+                  <td colSpan="6">
+                    <div className="order-detail">
+                      <p style={{ marginLeft: "50px" }}>
+                        주문 내역이 존재하지 않습니다.
+                      </p>
+                    </div>
+                  </td>
+                </tr>
               )}
               {orderList?.map((order, idx) => (
                 <React.Fragment key={idx}>

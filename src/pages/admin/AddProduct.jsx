@@ -182,17 +182,22 @@ const AddProduct = () => {
       });
 
       //메인 이미지 업로드
-      const locationRef = ref(storage, `vintique/${doc.id}`);
+      const locationRef = ref(storage, `vintique/${doc.id}/mainImage`);
       const result = await uploadBytes(locationRef, product.mainImage); //파일업로드
       const url = await getDownloadURL(result.ref); //파일의 주소
       await updateDoc(doc, {
         mainImage: url,
       });
 
+      console.log(product.boardImageList);
+
       //사이드 이미지 업로드
       const boardImageFiles = await Promise.all(
-        product.boardImageList.map(async (image) => {
-          const imageLocationRef = ref(storage, `vintique/${doc.id}`);
+        product.boardImageList.map(async (image, index) => {
+          const imageLocationRef = ref(
+            storage,
+            `vintique/${doc.id}/sideImage_${index}`
+          );
 
           const result = await uploadBytes(imageLocationRef, image);
           const imageUrl = await getDownloadURL(result.ref);
@@ -224,8 +229,10 @@ const AddProduct = () => {
         boardImageList: boardImageFiles,
       };
 
+      console.log(updatedProduct);
+
       // 제품 저장
-      // await productService.saveProduct(updatedProduct);
+      await productService.saveProduct(updatedProduct);
 
       setIsLoading(false);
 
