@@ -13,7 +13,6 @@ import { useEffect, useState } from "react";
 
 const Navbar = () => {
   const curruntUser = useSelector((state) => state.user); //인증된 유저 정보
-  const [isSearchBarVisible, setIsSearchBarVisible] = useState(false); //검색창
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -30,7 +29,7 @@ const Navbar = () => {
     <nav>
       <div className="navbar">
         <div style={{ marginLeft: "7%" }}>
-          <p style={{ width: "250px" }}>
+          <p>
             <Link to="/" className="navbar-logo">
               <ImVine style={{ fontSize: "1.3rem" }} /> Vintique
             </Link>

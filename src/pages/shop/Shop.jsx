@@ -175,7 +175,7 @@ const Shop = () => {
                   : "shop-option-left-cateogry"
               }
             >
-              {category && category === "Dining" ? "▶" : ""} Dining
+              {category && category === "dining" ? "▶" : ""} Dining
             </div>
             <div
               onClick={() => handleChangeCategory("living")}

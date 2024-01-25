@@ -16,13 +16,13 @@
   font-family: "EB Garamond", serif;
   color: black;
   text-decoration: none;
-  width: 250px;
   font-size: 1.6rem;
 }
 
 .navbar .navbar_link {
   display: flex;
   list-style: none;
+  padding: 0;
 }
 
 .navbar .navbar_link li {

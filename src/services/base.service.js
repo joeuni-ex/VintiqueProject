@@ -5,10 +5,9 @@ const authHeader = () => {
 
   return {
     "Content-Type": "application/json",
-    authorization: "Bearer " + currentUser?.token,
+    authorization: currentUser ? `Bearer ${currentUser.token}` : "",
   };
 };
-
 const authFormDataHeader = () => {
   const currentUser = store.getState().user;
 
