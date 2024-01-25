@@ -5,6 +5,9 @@ import Product from "../../model/Product";
 import productService from "../../services/product.service";
 import addImageIcon from "../../assets/plusIcon.png";
 import { IoMdCloseCircleOutline } from "react-icons/io";
+import { addDoc, arrayUnion, collection, updateDoc } from "firebase/firestore";
+import { db, storage } from "../../firebase/config";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
 const ModifyProduct = () => {
   const navigate = useNavigate();
@@ -44,7 +47,7 @@ const ModifyProduct = () => {
     setProduct((prevState) => {
       return {
         ...prevState,
-        mainImage: imageUrl,
+        mainImage: file,
       };
     });
   };
@@ -67,7 +70,7 @@ const ModifyProduct = () => {
     setProduct((prevState) => {
       return {
         ...prevState,
-        boardImageList: trimmedImageUrls,
+        boardImageList: [...prevState.boardImageList, file],
       };
     });
   };
@@ -153,29 +156,45 @@ const ModifyProduct = () => {
     setIsLoading(true); //로딩 시작
 
     try {
-      // 메인 이미지 저장
-      const mainImageFile = await fetch(product.mainImage).then((res) =>
-        res.blob()
-      );
-      const mainFormData = new FormData();
-      mainFormData.append("file", mainImageFile, "main-image.png");
-      const mainImageUrl = await productService.modifyFile(mainFormData, id);
+      //파이어 스토어에 tweet 저장하기 -> addDoc
+      const doc = await addDoc(collection(db, "images"), {
+        mainImage: product.name,
+        sideImages: product.name,
+      });
 
-      // 사이드 이미지 저장
+      //메인 이미지 업로드
+      const locationRef = ref(storage, `vintique/${doc.id}/mainImage`);
+      const result = await uploadBytes(locationRef, product.mainImage); //파일업로드
+      const url = await getDownloadURL(result.ref); //파일의 주소
+      await updateDoc(doc, {
+        mainImage: url,
+      });
+
+      console.log(product.boardImageList);
+
+      //사이드 이미지 업로드
       const boardImageFiles = await Promise.all(
-        product.boardImageList.map(async (imageUrl) => {
-          const response = await fetch(imageUrl);
-          const blob = await response.blob();
-          const formData = new FormData();
-          formData.append("file", blob, "board-image.png");
-          return productService.modifyFile(formData);
+        product.boardImageList.map(async (image, index) => {
+          const imageLocationRef = ref(
+            storage,
+            `vintique/${doc.id}/sideImage_${index}`
+          );
+
+          const result = await uploadBytes(imageLocationRef, image);
+          const imageUrl = await getDownloadURL(result.ref);
+
+          await updateDoc(doc, {
+            sideImages: arrayUnion(imageUrl),
+          });
+
+          return imageUrl;
         })
       );
 
       // 백엔드에서 리턴 된 URL 을 Product 객체에 업데이트
       const updatedProduct = {
         ...product,
-        mainImage: mainImageUrl,
+        mainImage: url,
         boardImageList: boardImageFiles,
       };
 

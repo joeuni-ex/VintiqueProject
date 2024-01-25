@@ -83,8 +83,6 @@ const AddProduct = () => {
     });
   };
 
-  console.log(product.boardImageList);
-
   //event handler
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -165,16 +163,8 @@ const AddProduct = () => {
     }
 
     setIsLoading(true); //로딩 시작
-    console.log("로딩시작");
 
     try {
-      // 메인 이미지 저장
-      // const mainImageFile = await fetch(product.mainImage).then((res) =>
-      //   res.blob()
-      // );
-      // const mainFormData = new FormData();
-      // mainFormData.append("file", mainImageFile, "main-image.png");
-
       //파이어 스토어에 tweet 저장하기 -> addDoc
       const doc = await addDoc(collection(db, "images"), {
         mainImage: product.name,
@@ -210,26 +200,12 @@ const AddProduct = () => {
         })
       );
 
-      // const mainImageUrl = await productService.saveFile(mainFormData);
-      // 사이드 이미지 저장
-      // const boardImageFiles = await Promise.all(
-      //   product.boardImageList.map(async (imageUrl) => {
-      //     const response = await fetch(imageUrl);
-      //     const blob = await response.blob();
-      //     const formData = new FormData();
-      //     formData.append("file", blob, "board-image.png");
-      //     return productService.saveFile(formData);
-      //   })
-      // );
-
       // 백엔드에서 리턴 된 URL 을 Product 객체에 업데이트
       const updatedProduct = {
         ...product,
         mainImage: url,
         boardImageList: boardImageFiles,
       };
-
-      console.log(updatedProduct);
 
       // 제품 저장
       await productService.saveProduct(updatedProduct);
