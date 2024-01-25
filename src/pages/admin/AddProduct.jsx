@@ -7,6 +7,15 @@ import { useEffect } from "react";
 import addImageIcon from "../../assets/plusIcon.png";
 import productService from "../../services/product.service";
 import { useNavigate } from "react-router-dom";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { db, storage } from "../../firebase/config";
+import {
+  addDoc,
+  arrayUnion,
+  collection,
+  doc,
+  updateDoc,
+} from "firebase/firestore";
 
 // TODO 상품 추가 페이지 -> POST Product
 const AddProduct = () => {
@@ -42,10 +51,11 @@ const AddProduct = () => {
 
     setMainImageUrl(imageUrl);
 
+    console.log(file);
     setProduct((prevState) => {
       return {
         ...prevState,
-        mainImage: imageUrl,
+        mainImage: file,
       };
     });
   };
@@ -68,10 +78,12 @@ const AddProduct = () => {
     setProduct((prevState) => {
       return {
         ...prevState,
-        boardImageList: trimmedImageUrls,
+        boardImageList: [...prevState.boardImageList, file],
       };
     });
   };
+
+  console.log(product.boardImageList);
 
   //event handler
   const handleChange = (e) => {
@@ -153,36 +165,67 @@ const AddProduct = () => {
     }
 
     setIsLoading(true); //로딩 시작
+    console.log("로딩시작");
 
     try {
       // 메인 이미지 저장
-      const mainImageFile = await fetch(product.mainImage).then((res) =>
-        res.blob()
-      );
-      const mainFormData = new FormData();
-      mainFormData.append("file", mainImageFile, "main-image.png");
-      const mainImageUrl = await productService.saveFile(mainFormData);
+      // const mainImageFile = await fetch(product.mainImage).then((res) =>
+      //   res.blob()
+      // );
+      // const mainFormData = new FormData();
+      // mainFormData.append("file", mainImageFile, "main-image.png");
 
-      // 사이드 이미지 저장
+      //파이어 스토어에 tweet 저장하기 -> addDoc
+      const doc = await addDoc(collection(db, "images"), {
+        mainImage: product.name,
+        sideImages: product.name,
+      });
+
+      //메인 이미지 업로드
+      const locationRef = ref(storage, `vintique/${doc.id}`);
+      const result = await uploadBytes(locationRef, product.mainImage); //파일업로드
+      const url = await getDownloadURL(result.ref); //파일의 주소
+      await updateDoc(doc, {
+        mainImage: url,
+      });
+
+      //사이드 이미지 업로드
       const boardImageFiles = await Promise.all(
-        product.boardImageList.map(async (imageUrl) => {
-          const response = await fetch(imageUrl);
-          const blob = await response.blob();
-          const formData = new FormData();
-          formData.append("file", blob, "board-image.png");
-          return productService.saveFile(formData);
+        product.boardImageList.map(async (image) => {
+          const imageLocationRef = ref(storage, `vintique/${doc.id}`);
+
+          const result = await uploadBytes(imageLocationRef, image);
+          const imageUrl = await getDownloadURL(result.ref);
+
+          await updateDoc(doc, {
+            sideImages: arrayUnion(imageUrl),
+          });
+
+          return imageUrl;
         })
       );
+
+      // const mainImageUrl = await productService.saveFile(mainFormData);
+      // 사이드 이미지 저장
+      // const boardImageFiles = await Promise.all(
+      //   product.boardImageList.map(async (imageUrl) => {
+      //     const response = await fetch(imageUrl);
+      //     const blob = await response.blob();
+      //     const formData = new FormData();
+      //     formData.append("file", blob, "board-image.png");
+      //     return productService.saveFile(formData);
+      //   })
+      // );
 
       // 백엔드에서 리턴 된 URL 을 Product 객체에 업데이트
       const updatedProduct = {
         ...product,
-        mainImage: mainImageUrl,
+        mainImage: url,
         boardImageList: boardImageFiles,
       };
 
       // 제품 저장
-      await productService.saveProduct(updatedProduct);
+      // await productService.saveProduct(updatedProduct);
 
       setIsLoading(false);
 

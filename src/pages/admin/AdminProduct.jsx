@@ -14,13 +14,19 @@ const AdminProduct = () => {
 
   const maxPageSize = 5; //한 페이지에 출력할 게시물 개수
 
-  useEffect(() => {
-    productService.getAllProducts(page, maxPageSize).then((response) => {
+  const fetchData = async () => {
+    await productService.getAllProducts(page, maxPageSize).then((response) => {
       setProductList(response.data.content);
       setPage(response.data.pageable.pageNumber); // 현재 페이지
       setTotalPage(response.data.pageable.pageSize); //총 페이지
     });
+  };
+
+  useEffect(() => {
+    fetchData();
   }, [page]);
+
+  console.log(productList);
 
   return (
     <div className="basic-container">
@@ -60,7 +66,12 @@ const AdminProduct = () => {
               </thead>
               <tbody>
                 {productList?.map((product, idx) => (
-                  <ProductList key={idx} product={product} idx={product.id} />
+                  <ProductList
+                    key={idx}
+                    product={product}
+                    idx={product.id}
+                    fetchData={fetchData}
+                  />
                 ))}
               </tbody>
             </table>

@@ -15,7 +15,7 @@ export default class Product {
     this.price = price;
     this.stock = stock;
     this.mainImage = mainImage;
-    this.boardImageList = boardImageList;
+    this.boardImageList = boardImageList || [];
     this.id = id;
   }
 }
