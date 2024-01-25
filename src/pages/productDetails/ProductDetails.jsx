@@ -44,8 +44,8 @@ const ProductDetails = () => {
     setSelectedMenu(menu);
   };
 
-  //제품id가 변경 될 때마다 실행
-  useEffect(() => {
+  //제품 상세 정보 가져오기
+  const fetchData = async () => {
     setIsLoading(true);
     //제품 정보 가져오기
     productService
@@ -63,6 +63,11 @@ const ProductDetails = () => {
         setError("상품을 불러오는 중 오류가 발생했습니다.");
         setIsLoading(false);
       });
+  };
+
+  //제품id가 변경 될 때마다 실행
+  useEffect(() => {
+    fetchData();
     //제품 리뷰 가져오기
     reviewService.getReviewByProduct(id).then((response) => {
       setReviews(response.data);
@@ -102,6 +107,7 @@ const ProductDetails = () => {
       try {
         await interestService.saveInterest(id);
         alert("정상적으로 관심 제품에 추가되었습니다.");
+        fetchData();
       } catch (err) {
         alert("관심 제품 추가 시 에러 발생");
         console.error(err);
@@ -115,6 +121,7 @@ const ProductDetails = () => {
       try {
         await interestService.deleteInterest(id);
         alert("정상적으로 관심 제품에서 삭제되었습니다.");
+        fetchData();
       } catch (err) {
         alert("관심 제품 제거 시 에러 발생");
         console.error(err);
@@ -192,14 +199,27 @@ const ProductDetails = () => {
           <div className="single_product_details">
             <div className="single_product_name-container">
               <p className="single_product_name">{product[0]?.name}</p>
-              <Heart
-                className="detail-heart-icon"
-                onClick={handleAddInterest}
-              />
-              <Heart2
-                className="detail-heart-icon"
-                onClick={handleDeleteInterest}
-              />
+              {product[0]?.addedInterest === true ? (
+                <>
+                  <Heart
+                    className="detail-heart-icon"
+                    onClick={handleDeleteInterest}
+                  />
+                  <p style={{ fontWeight: "bold", marginLeft: "5px" }}>
+                    {product[0]?.interestCount}
+                  </p>
+                </>
+              ) : (
+                <>
+                  <Heart2
+                    className="detail-heart-icon"
+                    onClick={handleAddInterest}
+                  />
+                  <p style={{ fontWeight: "bold", marginLeft: "5px" }}>
+                    {product[0]?.interestCount}
+                  </p>
+                </>
+              )}
             </div>
 
             {/* 평점  */}
@@ -213,7 +233,9 @@ const ProductDetails = () => {
                   style={{ margin: "0px 1.5px" }}
                 />
               ))}
-              <p style={{ fontWeight: "bold" }}>[{reviewCnt}]</p>
+              <p style={{ fontWeight: "bold", marginLeft: "5px" }}>
+                [{reviewCnt}]
+              </p>
             </div>
             <div style={{ height: "300px" }}>
               <p className="single_product_description">
