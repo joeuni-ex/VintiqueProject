@@ -9,18 +9,27 @@ import CartService from "../../services/cart.service";
 import interestService from "../../services/interest.service";
 import Heart2 from "../icon/Heart2";
 import Heart from "../icon/Heart";
+import { useSelector } from "react-redux";
 
 const Product = ({ product, fetchData }) => {
+  const curruntUser = useSelector((state) => state.user); //인증된 유저 정보
+  const navigate = useNavigate();
+
   //like 버튼 클릭 시
   const handleAddInterest = async () => {
     if (confirm("관심 제품에 추가하시겠습니까?")) {
-      try {
-        await interestService.saveInterest(product?.id);
-        alert("정상적으로 관심 제품에 추가되었습니다.");
-        fetchData();
-      } catch (err) {
-        alert("관심 제품 추가 시 에러 발생");
-        console.error(err);
+      if (curruntUser) {
+        try {
+          await interestService.saveInterest(product?.id);
+          alert("정상적으로 관심 제품에 추가되었습니다.");
+          fetchData();
+        } catch (err) {
+          alert("관심 제품 추가 시 에러 발생");
+          console.error(err);
+        }
+      } else {
+        alert("로그인이 필요한 서비스입니다.");
+        navigate("/login");
       }
     }
   };
@@ -42,13 +51,18 @@ const Product = ({ product, fetchData }) => {
   //cart버튼 클릭 시
   const handleAddCart = async () => {
     if (confirm("장바구니에 추가하시겠습니까?")) {
-      try {
-        //장바구니 저장
-        await CartService.saveCart(new Cart(product.id, 1));
-        alert("정상적으로 장바구니에 추가되었습니다.");
-      } catch (err) {
-        alert("장바구니 추가 시 에러 발생");
-        console.error(err);
+      if (curruntUser) {
+        try {
+          //장바구니 저장
+          await CartService.saveCart(new Cart(product.id, 1));
+          alert("정상적으로 장바구니에 추가되었습니다.");
+        } catch (err) {
+          alert("장바구니 추가 시 에러 발생");
+          console.error(err);
+        }
+      } else {
+        alert("로그인이 필요한 서비스입니다.");
+        navigate("/login");
       }
     }
   };
