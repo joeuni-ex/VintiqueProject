@@ -62,7 +62,7 @@ const Home = () => {
             다양한 컬렉션으로 공간을 개성 있게 꾸며보세요.
           </p>
           <Link
-            to={`/product/1`}
+            to={`/product/7`}
             style={{ color: "black", textDecoration: "none" }}
           >
             <div className="buyBtn">
