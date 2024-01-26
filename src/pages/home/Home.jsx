@@ -22,6 +22,7 @@ const Home = () => {
     await productService.getAllProducts(page, maxPageSize).then((response) => {
       setProductList(response.data.content);
       setPage(response.data.pageable.pageNumber); // 현재 페이지
+      setIsLoading(false);
     });
   };
 
@@ -108,6 +109,7 @@ const Home = () => {
           <p>요즘 가장 핫한 상품</p>
         </div>
         <div className="home-main-content3">
+          {isLoading && <p>로딩중</p>}
           {productList.map((product, index) => (
             <Product key={index} product={product} fetchData={fetchData} />
           ))}
