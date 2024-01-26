@@ -15,13 +15,14 @@ const ReviewModify = forwardRef((props, ref) => {
     },
   }));
 
-  const [review, setReview] = useState(new Review("", 0, props.product)); //model의 리뷰 객체
+  const [review, setReview] = useState(new Review(0, "", 0, props.product)); //model의 리뷰 객체
   const [errorMessage, setErrorMessage] = useState("");
   const [show, setShow] = useState(false);
 
   useEffect(() => {
     setReview(
       new Review(
+        props.review.orderItemId,
         props.review.reviewContent,
         props.review.rate,
         props.review.productId
