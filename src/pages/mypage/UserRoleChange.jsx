@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Role } from "../../model/Role";
 import { clearCurrentUser } from "../../store/actions/user";
+import MyPageCate from "../../components/userCategory/MyPageCate";
 
 const UserRoleChange = () => {
   const currentUser = useSelector((state) => state.user);
@@ -41,7 +42,7 @@ const UserRoleChange = () => {
       {/* 배너 */}
       <Banner title="MyPage" />
       <div className="userPage">
-        <AdminCate select="4" />
+        <MyPageCate select="4" />
         <div className="user-content">
           <div className="role-contianer">
             <div style={{ marginBottom: "50px" }}>
