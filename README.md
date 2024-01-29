@@ -6,6 +6,10 @@ SpringBoot + Firebase + React 를 활용하여 제작한 인테리어 소품을 
 권한은 관리자와 유저로 구성되어 있으며, 관리자의 경우 주문 관리/제품 관리/권한 관리 기능을 지원하며, 
 유저의 경우 장바구니/주문 관리 /리뷰 관리/ 관심 제품 기능을 지원하는 프로젝트 입니다.
 
+![image](https://github.com/joeuni-ex/React_BookMarket/assets/141595215/9f612236-7095-4403-8a79-be87060aab25)
+
+
+
 ## ⚙️개발환경
 **Front-end**
 - React (Vite)
