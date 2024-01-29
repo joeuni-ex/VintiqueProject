@@ -251,7 +251,7 @@ const ModifyProduct = () => {
     <div className="board-write-wrapper base-color">
       <div className="board-write-container">
         <div className="board-write-title-box">
-          <p>제품 추가</p>
+          <p>제품 수정</p>
         </div>
         <div className="divider"></div>
         <div className="board-write-box">
