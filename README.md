@@ -11,6 +11,7 @@ SpringBoot + Firebase + React 를 활용하여 제작한 인테리어 소품을 
 ![image](https://github.com/joeuni-ex/VintiqueProject/assets/141595215/6329236c-9448-4031-bae9-2fab6911ff7c)
 
 
+
 ## :raising_hand:개발인원
 - 개인 프로젝트(1명)
 
@@ -101,6 +102,8 @@ SpringBoot + Firebase + React 를 활용하여 제작한 인테리어 소품을 
 - 관리자 비밀번호 입력 시 관리자 -> 유저로 권한 변경 가능
 - 권한 변경 후 재 로그인 필요 
 - 현재 비밀번호 : 1234
+
+![image](https://github.com/joeuni-ex/VintiqueProject/assets/141595215/4d042231-1c8f-4ce3-b02c-e31dd46a14d0)
 
 
 #### 배포주소 
