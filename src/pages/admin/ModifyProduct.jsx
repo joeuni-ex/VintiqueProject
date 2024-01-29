@@ -257,7 +257,6 @@ const ModifyProduct = () => {
     fetchData(); // Invoke the fetch function when the component mounts
   }, [id]);
 
-  console.log(product);
   return (
     <div className="board-write-wrapper base-color">
       <div className="board-write-container">
