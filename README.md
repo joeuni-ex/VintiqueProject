@@ -1,4 +1,4 @@
- # SpringBoot + React + Firebase Project -Vintique
+![image](https://github.com/joeuni-ex/VintiqueProject/assets/141595215/135cfa4f-de98-4724-bf1d-3fccfce1ae7b) # SpringBoot + React + Firebase Project -Vintique
 SpringBoot + FireBase + Firebase 를 활용한 Fullstack 웹 프로젝트 
 
 ## 💻 프로젝트 소개
@@ -27,17 +27,23 @@ SpringBoot + Firebase + React 를 활용하여 제작한 인테리어 소품을 
 ## 📌주요기능
 
 #### 회원가입
+![image](https://github.com/joeuni-ex/VintiqueProject/assets/141595215/f08d780f-be40-4d4d-8874-01fc66f879d0)
+
 - 아이디 중복확인을 통해 이미 가입된 아이디가 있는지 확인 가능
 - 아이디 6자리 이상 입력하지 않을 경우 에러메세지 출력
 - 비밀번호와 비밀번호 재확인이 일치하지 않으면 에러메세지 출력
-- https://vintique-joeuni.netlify.app/signup
-  
+
+---
+
 
 #### 로그인
-- 아이디 비밀번호 일치하지 않을 경우 에러메세지 출력 
+![image](https://github.com/joeuni-ex/VintiqueProject/assets/141595215/8871c2d1-50d9-4286-a66d-9642dfbb2980)
+- 아이디 비밀번호 일치하지 않을 경우 에러메세지 출력
+
+  
 
 #### 판매 페이지
-- ![image](https://github.com/joeuni-ex/VintiqueProject/assets/141595215/89d2af3c-6e4f-47b7-80a4-50fddf0a2e21)
+![image](https://github.com/joeuni-ex/VintiqueProject/assets/141595215/89d2af3c-6e4f-47b7-80a4-50fddf0a2e21)
 
 - 카테고리 별 조회 가능
 - Show 의 숫자 변경으로 한 페이지에 원하는 개수의 제품만 출력 가능
