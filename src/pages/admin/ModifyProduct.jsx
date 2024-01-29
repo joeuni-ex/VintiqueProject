@@ -218,8 +218,18 @@ const ModifyProduct = () => {
       try {
         const response = await productService.getByIdProduct(id);
         const productData = response.data[0];
-        const boardImageList = productData.boardImageList || [];
+        const productDataForImage = response.data;
 
+        let boardImageList = [];
+
+        productDataForImage.forEach((productData) => {
+          if (
+            productData.boardImageList &&
+            productData.boardImageList.length > 0
+          ) {
+            boardImageList = [...boardImageList, ...productData.boardImageList];
+          }
+        });
         //카테고리 세팅
         setSelected(productData.category);
         //메인 이미지 세팅
@@ -247,6 +257,7 @@ const ModifyProduct = () => {
     fetchData(); // Invoke the fetch function when the component mounts
   }, [id]);
 
+  console.log(product);
   return (
     <div className="board-write-wrapper base-color">
       <div className="board-write-container">
