@@ -1,4 +1,4 @@
-![image](https://github.com/joeuni-ex/VintiqueProject/assets/141595215/135cfa4f-de98-4724-bf1d-3fccfce1ae7b) # SpringBoot + React + Firebase Project -Vintique
+# SpringBoot + React + Firebase Project -Vintique
 SpringBoot + FireBase + Firebase 를 활용한 Fullstack 웹 프로젝트 
 
 ## 💻 프로젝트 소개
@@ -40,6 +40,7 @@ SpringBoot + Firebase + React 를 활용하여 제작한 인테리어 소품을 
 ![image](https://github.com/joeuni-ex/VintiqueProject/assets/141595215/8871c2d1-50d9-4286-a66d-9642dfbb2980)
 - 아이디 비밀번호 일치하지 않을 경우 에러메세지 출력
 
+---
   
 
 ### 판매 페이지
