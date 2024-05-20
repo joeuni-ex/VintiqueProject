@@ -72,6 +72,7 @@ const ProductDetails = () => {
     reviewService.getReviewByProduct(id).then((response) => {
       setReviews(response.data);
       setReviewCnt(response.data.length); //리뷰 총 개수
+
       let sum = 0;
       for (let i = 0; i < response.data.length; i++) {
         sum += response.data[i].rate;
@@ -309,7 +310,8 @@ const ProductDetails = () => {
                 고객님이 리뷰를 남겨주셨습니다.
               </p>
             </div>
-            {reviews && reviews.map((review) => <Reviews review={review} />)}
+            {reviews &&
+              reviews.map((review) => <Reviews key={review} review={review} />)}
           </div>
         ) : (
           ""
