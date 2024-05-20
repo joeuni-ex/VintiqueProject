@@ -53,7 +53,7 @@ const AdminProduct = () => {
             <table>
               <thead>
                 <tr>
-                  <th>No</th>
+                  <th>제품번호</th>
                   <th>카테고리</th>
                   <th>제품명</th>
                   <th>가격</th>

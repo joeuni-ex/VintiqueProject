@@ -43,7 +43,7 @@ const OrderDetail = ({ item, isMyPage, createReviewRequest }) => {
       </div>
       {isMyPage ? (
         <div style={{ flex: 0.15 }}>
-          {item?.writtenReview === "false" ? (
+          {item?.writtenReview === false ? (
             <p
               onClick={() => createReviewRequest(item.productId, item.id)}
               style={{ fontSize: "0.9rem", fontWeight: 500, cursor: "pointer" }}

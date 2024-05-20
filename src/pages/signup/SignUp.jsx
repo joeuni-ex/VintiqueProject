@@ -27,6 +27,7 @@ const SignUp = () => {
 
   //아이디 중복확인
   const userCheck = () => {
+    setLoading(true);
     setUsernameError(""); //아이디 에러초기화
     if (user.username.trim().length < 6) {
       setUsernameError("아이디는 6자리 이상 입력이 필요합니다.");
@@ -43,6 +44,7 @@ const SignUp = () => {
         });
       setUserIdCheck(true);
     }
+    setLoading(false);
   };
 
   const handleChange = (e) => {
@@ -71,7 +73,7 @@ const SignUp = () => {
     }
 
     if (user.password !== user.password2) {
-      setPasswordError("비밀번호가 맞지 않습니다.");
+      setPasswordError("비밀번호가 일치하지 않습니다.");
       return;
     }
     setLoading(true); //로딩 시작

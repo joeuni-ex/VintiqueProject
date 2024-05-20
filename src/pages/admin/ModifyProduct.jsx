@@ -218,8 +218,18 @@ const ModifyProduct = () => {
       try {
         const response = await productService.getByIdProduct(id);
         const productData = response.data[0];
-        const boardImageList = productData.boardImageList || [];
+        const productDataForImage = response.data;
 
+        let boardImageList = [];
+
+        productDataForImage.forEach((productData) => {
+          if (
+            productData.boardImageList &&
+            productData.boardImageList.length > 0
+          ) {
+            boardImageList = [...boardImageList, ...productData.boardImageList];
+          }
+        });
         //카테고리 세팅
         setSelected(productData.category);
         //메인 이미지 세팅
@@ -251,7 +261,7 @@ const ModifyProduct = () => {
     <div className="board-write-wrapper base-color">
       <div className="board-write-container">
         <div className="board-write-title-box">
-          <p>제품 추가</p>
+          <p>제품 수정</p>
         </div>
         <div className="divider"></div>
         <div className="board-write-box">

@@ -16,7 +16,6 @@ const BottomBanner = () => {
             <p>
               <span className="bottom-banner-content-title">High Quality</span>
             </p>
-            <p>crafted from top materials</p>
           </div>
         </div>
         <div className="bottom-banner-content">
@@ -29,7 +28,6 @@ const BottomBanner = () => {
                 Warranty Protection
               </span>
             </p>
-            <p>Over 2 years</p>
           </div>
         </div>
         <div className="bottom-banner-content">
@@ -38,7 +36,6 @@ const BottomBanner = () => {
           </div>
           <div className="bottom-banner-content-text">
             <span className="bottom-banner-content-title">Free Shipping</span>
-            <p>Order over 150 $</p>
           </div>
         </div>
         <div className="bottom-banner-content">
@@ -47,7 +44,6 @@ const BottomBanner = () => {
           </div>
           <div className="bottom-banner-content-text">
             <span className="bottom-banner-content-title">24 / 7 Support</span>
-            <p>Dedicated support</p>
           </div>
         </div>
       </div>

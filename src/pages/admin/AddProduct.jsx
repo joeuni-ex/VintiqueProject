@@ -51,7 +51,6 @@ const AddProduct = () => {
 
     setMainImageUrl(imageUrl);
 
-    console.log(file);
     setProduct((prevState) => {
       return {
         ...prevState,
